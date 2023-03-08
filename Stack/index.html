@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stack Visualization</title>
+    <style>
+        /* Add styles to the container div */
+        
+        #stack-container {
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Add styles to the stack items */
+        
+        .stack-item {
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="stack-container"></div>
+    <input type="text" id="push-input">
+    <button id="startButton">Start listening</button>
+    <p id="transcription"></p>
+    <script>
+        const startButton = document.getElementById('startButton');
+        const transcription = document.getElementById('transcription');
+
+        const recognition = new window.webkitSpeechRecognition();
+
+        recognition.continuous = true;
+        recognition.lang = 'en-US';
+
+        startButton.addEventListener('click', () => {
+            recognition.start();
+            startButton.innerHTML = 'Listening...';
+        });
+
+        recognition.addEventListener('result', (event) => {
+            const transcript = event.results[event.results.length - 1][0].transcript.trim();
+            transcription.innerHTML = transcript.trim();
+
+            if (true) {
+                const input = document.getElementById('push-input');
+                const value = input.value;
+                stack.push(value);
+                input.value = '';
+                renderStack(stack);
+            }
+
+            if (transcript == "pop from the stack") {
+                stack.pop();
+                renderStack(stack);
+            }
+            console.log(transcript);
+        });
+
+        recognition.addEventListener('end', () => {
+            startButton.innerHTML = 'Start listening';
+        });
+    </script>
+    <button id="push-button">Push</button>
+    <button id="pop-button">Pop</button>
+    <script src="index.js"></script>
+</body>
+
+</html>

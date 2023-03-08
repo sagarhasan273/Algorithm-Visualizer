@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="startButton">Start listening</button>
+    <p id="transcription"></p>
+    <script>
+        const startButton = document.getElementById('startButton');
+        const transcription = document.getElementById('transcription');
+
+        const recognition = new window.webkitSpeechRecognition();
+
+        recognition.continuous = true;
+        recognition.lang = 'en-US';
+
+        startButton.addEventListener('click', () => {
+            recognition.start();
+            startButton.innerHTML = 'Listening...';
+        });
+
+        recognition.addEventListener('result', (event) => {
+            const transcript = event.results[event.results.length - 1][0].transcript;
+            transcription.innerHTML = transcript;
+            if (transcript == "push to the stack") {
+
+            }
+        });
+
+        recognition.addEventListener('end', () => {
+            startButton.innerHTML = 'Start listening';
+        });
+    </script>
+</body>
+
+</html>
