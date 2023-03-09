@@ -21,11 +21,9 @@ body {
     background-color: #2e2e2d;
     color: white;
     padding: 50px;
-    margin-top: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 150px;
+    margin: 5%;
     box-sizing: border-box;
+    border-radius: 10px;
     overflow-y: scroll;
 }
 
@@ -107,7 +105,8 @@ li a:hover {
 }
 
  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #424141;
+    border-radius: 5px;
 }
 
  ::-webkit-scrollbar-thumb {
