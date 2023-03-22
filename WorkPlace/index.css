@@ -13,13 +13,19 @@
         display: flex;
     }
     
-    .sidebar {
+    div.sidebar {
         width: 200px;
         background-color: #ccc;
         padding: 20px;
         overflow-y: scroll;
         height: 98vh;
         margin: 5px;
+    }
+    
+    @media screen and (max-width: 1080px) {
+        div.sidebar {
+            display: none;
+        }
     }
     
     .sidebar ul {
