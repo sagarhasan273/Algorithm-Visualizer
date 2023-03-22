@@ -1,89 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Two Divs Side by Side</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="stack.css">
+    <title>Document</title>
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="left_btns">
+    <div class="wrapper">
+        <div class="sidebar">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-
+                <div id="tooltip" style="display:none;position:absolute;background-color:#fff;border:1px solid #000;padding:5px;"></div>
+                <h4>Data Structure</h4>
+                <hr>
+                <li><a href="#" id="a1" class="a active" onclick="showSection(event, 'array-section', 'a1')">Array</a></li>
+                <li><a href="#" id="a2" class="a" onclick="showSection(event, 'stack-section', 'a2')">Stack</a></li>
+                <li><a href="#" id="a3" class="a" onclick="showSection(event, 'queue-section', 'a3')">Queue</a></li>
+                <li><a href="#" id="a4" class="a" onclick="showSection(event, 'deque-section', 'a4')">Deque</a></li>
+                <li><a href="#" id="a5" class="a" onclick="showSection(event, 'linkedlist-section', 'a5')">Linked list</a></li>
+                <li><a href="#" id="a6" class="a" onclick="showSection(event, 'doublylinkedlist-section', 'a6')">Doubly linked list</a></li>
+                <li><a href="#" id="a7" class="a" onclick="showSection(event, 'binary-tree-section', 'a7')">Binary Tree</a></li>
+                <li><a href="#" id="a8" class="a" onclick="showSection(event, 'heap-section', 'a8')">Heap</a></li>
+                <li><a href="#" id="a9" class="a" onclick="showSection(event, 'graph-section', 'a9')">Graph</a></li>
+                <hr>
+                <h4>Algorithms</h4>
+                <hr>
+                <li><a href="#" id="a10" class="a" onclick="showSection(event, 'brute-force-section', 'a10')">Brute Force</a></li>
+                <li><a href="#" id="a11" class="a" onclick="showSection(event, 'recursive-section', 'a11')">Recursive</a></li>
+                <li><a href="#" id="a12" class="a" onclick="showSection(event, 'backtracking-section', 'a12')">Backtracking</a></li>
+                <li><a href="#" id="a13" class="a" onclick="showSection(event, 'searching-section', 'a13')">Searching</a></li>
+                <li><a href="#" id="a14" class="a" onclick="showSection(event, 'sorting-section', 'a14')">Sorting</a></li>
+                <li><a href="#" id="a15" class="a" onclick="showSection(event, 'hashing-section', 'a15')">Hashing</a></li>
+                <li><a href="#" id="a16" class="a" onclick="showSection(event, 'divide-conquer-section', 'a16')">Divide and Conquer</a></li>
+                <li><a href="#" id="a17" class="a" onclick="showSection(event, 'greedy-section', 'a17')">Greedy Algorithm</a></li>
+                <li><a href="#" id="a18" class="a" onclick="showSection(event, 'dynamic-programming-section', 'a18')">Dynamic Programming</a></li>
             </ul>
         </div>
-        <div class="content">
-            <div id="stack-container"></div>
-            <input type="text" id="push-input">
-            <button id="startButton">Start listening</button>
-            <p id="transcription"></p>
-            <script>
-                const startButton = document.getElementById('startButton');
-                const transcription = document.getElementById('transcription');
+        <div class="container">
+            <div class="section active" id="array-section">
+                <h2>Array Visualization</h2>
+                <div class="horizontal-line"></div>
 
-                const recognition = new window.webkitSpeechRecognition();
+                <script>
+                </script>
+            </div>
+            <div class="section" id="stack-section">
+                <h2>Stack Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
 
-                recognition.continuous = true;
-                recognition.lang = 'en-US';
+            <div class="section" id="queue-section">
+                <h2>Queue Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="deque-section">
+                <h2>Deque Visualization</h2>
+                <div class="horizontal-line"></div>
 
-                startButton.addEventListener('click', () => {
-                    recognition.start();
-                    startButton.innerHTML = 'Listening...';
-                });
-
-                recognition.addEventListener('result', (event) => {
-                    const transcript = event.results[event.results.length - 1][0].transcript.trim();
-                    transcription.innerHTML = transcript.trim();
-
-                    if (transcript == "push 20") {
-                        const input = document.getElementById('push-input');
-                        const value = input.value;
-                        stack.push(20);
-                        input.value = '';
-                        renderStack(stack);
-                    }
-
-                    if (transcript == "pop") {
-                        stack.pop();
-                        renderStack(stack);
-                    }
-                    console.log(transcript);
-                });
-
-                recognition.addEventListener('end', () => {
-                    startButton.innerHTML = 'Start listening';
-                });
-            </script>
-            <button id="push-button">Push</button>
-            <button id="pop-button">Pop</button>
-            <script src="stack.js"></script>
+            </div>
+            <div class="section" id="linkedlist-section">
+                <h2>Linked list Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="doublylinkedlist-section">
+                <h2>Doubly linked list Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="binary-tree-section">
+                <h2>Binary Tree Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="heap-section">
+                <h2>Heap Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="graph-section">
+                <h2>Graph Visualization</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="brute-force-section">
+                <h2>Brute Force Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="recursive-section">
+                <h2>Recursive Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="backtracking-section">
+                <h2>Backtracking Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="searching-section">
+                <h2>Searching Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="sorting-section">
+                <h2>Sorting Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="hashing-section">
+                <h2>Hashing Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="divide-conquer-section">
+                <h2>Divide and Conquer Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="greedy-section">
+                <h2>Greedy Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <div class="section" id="dynamic-programming-section">
+                <h2>Dynamic Programming Algorithm</h2>
+                <div class="horizontal-line"></div>
+            </div>
+            <script src="index.js"></script>
         </div>
     </div>
+
 </body>
 
 </html>
