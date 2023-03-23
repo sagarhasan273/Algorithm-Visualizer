@@ -20,6 +20,7 @@
         overflow-y: scroll;
         height: 98vh;
         margin: 5px;
+        display: none;
     }
     
     @media screen and (max-width: 1080px) {
@@ -45,11 +46,40 @@
         color: #333;
         text-decoration: none;
         text-align: center;
+        transition: all 0.3s ease;
+        outline: none;
+        position: relative;
     }
     
     .sidebar a:hover {
         background-color: #999;
         color: #fff;
+    }
+    
+    .sidebar a:before,
+    .sidebar a:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 1px;
+        width: 0;
+        background: #666666;
+        box-shadow: -1px -1px 5px 0px #929292, 7px 7px 20px 0px #0003, 4px 4px 5px 0px #0002;
+        transition: 200ms ease all;
+    }
+    
+    .sidebar a:after {
+        right: inherit;
+        top: inherit;
+        left: 0;
+        bottom: 0;
+    }
+    
+    .sidebar a:hover:before,
+    .sidebar a:hover:after {
+        width: 100%;
+        transition: 800ms ease all;
     }
     
     .sidebar a.active {
@@ -58,12 +88,105 @@
         font-size: medium;
     }
     
+    #homebtn {
+        font-size: 30px;
+        transition: all 0.3s ease;
+        outline: none;
+        position: relative;
+    }
+    
+    #homebtn:hover {
+        cursor: pointer;
+    }
+    
+    #homebtn:before,
+    #homebtn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 2px;
+        width: 0;
+        background: #313131;
+        box-shadow: -1px -1px 5px 0px #3d3d3d, 7px 7px 20px 0px #0003, 4px 4px 5px 0px #0002;
+        transition: 500ms ease all;
+    }
+    
+    #homebtn:after {
+        right: inherit;
+        top: inherit;
+        left: 0;
+        bottom: 0;
+    }
+    
+    #homebtn:hover:before,
+    #homebtn:hover:after {
+        width: 100%;
+        transition: 800ms ease all;
+    }
+    
+    .start-btn {
+        width: 130px;
+        height: 40px;
+        border-radius: 5px;
+        /* font-family: 'Lato', sans-serif; */
+        font-weight: 500;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px 0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+        outline: none;
+        line-height: 42px;
+        padding: 0px;
+        font-size: 20px;
+        border: none;
+        background: #6e6e6e;
+        background: linear-gradient(0deg, #6e6e6e 0%, #969595 100%);
+    }
+    
+    .start-btn:hover {
+        color: #080808;
+        background: transparent;
+        box-shadow: none;
+    }
+    
+    .start-btn:before,
+    .start-btn:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 2px;
+        width: 0;
+        background: #666666;
+        box-shadow: -1px -1px 5px 0px #fff, 7px 7px 20px 0px #0003, 4px 4px 5px 0px #0002;
+        transition: 400ms ease all;
+    }
+    
+    .start-btn:after {
+        right: inherit;
+        top: inherit;
+        left: 0;
+        bottom: 0;
+    }
+    
+    .start-btn:hover:before,
+    .start-btn:hover:after {
+        width: 100%;
+        transition: 800ms ease all;
+    }
+    
     .container {
         flex: 1;
         padding: 20px;
         height: 98vh;
         background-color: #ccc;
         margin: 5px;
+        background-image: url('./homebackground.png');
+        background-size: cover;
+        background-position: center;
     }
     
     .horizontal-line {

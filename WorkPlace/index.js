@@ -11,6 +11,7 @@ function showSection(event, id1, id2) {
         tooltip.style.top = (event.pageY - 45) + "px";
     } else {
         var section = document.getElementById(id1);
+        document.getElementsByClassName('container')[0].style.backgroundImage = "None";
         var sections = document.getElementsByClassName('section');
         for (var i = 0; i < sections.length; i++) {
             sections[i].classList.remove('active');
@@ -27,7 +28,20 @@ function showSection(event, id1, id2) {
     }
 }
 
+document.getElementById("homebtn").addEventListener("click", function() {
+    window.location.href = './index.html';
+});
 document.addEventListener("mouseout", function() {
     var tooltip = document.getElementById("tooltip");
     tooltip.style.display = "none";
 });
+
+function startMenu() {
+    var start = document.getElementsByClassName("sidebar")[0].style;
+
+    if (start.display == "block") {
+        start.display = "none";
+    } else {
+        start.display = "block";
+    }
+}
