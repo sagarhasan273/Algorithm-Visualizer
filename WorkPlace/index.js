@@ -1,12 +1,32 @@
+section_active_id = "";
+
 function load_js(term) {
-    var head = document.getElementsByTagName('head')[0];
+    var secScript = document.getElementById('array-section');
     var script = document.createElement('script');
     script.src = term + '.js';
-    head.appendChild(script);
+    secScript.appendChild(script);
 }
-var active_section_bool = true;
+
+function sidebar_hide_show(hide_show_id) {
+    const hide_show_section = document.querySelector("#" + hide_show_id);
+    var fullscreenBtn = hide_show_section.querySelector('.sidebar_hide_show');
+    var sidebar = document.querySelector(".sidebar");
+    console.log(fullscreenBtn);
+    if (fullscreenBtn.classList[2] == "fa-bars") {
+        sidebar.style.display = "block";
+        fullscreenBtn.classList.remove("fa-bars");
+        fullscreenBtn.classList.add("fa-chevron-left");
+    } else {
+        fullscreenBtn.classList.remove("fa-chevron-left");
+        fullscreenBtn.classList.add("fa-bars");
+        sidebar.style.display = "none";
+    }
+}
+
+// }
 
 function showSection(event, id1, id2, term) {
+    // Unavailable display
     const notavails = new Map([
         ["a15", 1],
     ]);
@@ -21,7 +41,6 @@ function showSection(event, id1, id2, term) {
         var section = document.getElementById(id1);
         document.getElementsByClassName('container')[0].style.backgroundImage = "None";
         var sections = document.getElementsByClassName('section');
-
         for (var i = 0; i < sections.length; i++) {
             sections[i].classList.remove('active');
         }
@@ -34,9 +53,10 @@ function showSection(event, id1, id2, term) {
             as[i].classList.remove('active');
         }
         a.classList.add('active');
-        if (term != "" && active_section_bool)
+        if (term != "" && section_active_id != id2) {
+            section_active_id = id2;
             load_js(term);
-        active_section_bool = false;
+        }
     }
 }
 

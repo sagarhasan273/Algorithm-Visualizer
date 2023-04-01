@@ -11,10 +11,10 @@ body {
 
 .sidebar {
     width: 200px;
+    height: 98vh;
     background-color: #ccc;
     padding: 20px;
     overflow-y: scroll;
-    height: 98vh;
     margin: 5px;
     display: none;
     box-sizing: border-box;
@@ -186,6 +186,7 @@ body {
     background-image: url('./homebackground.png');
     background-size: cover;
     background-position: center;
+    box-sizing: border-box;
 }
 
 .horizontal-line {
@@ -245,4 +246,9 @@ h2 {
 
  ::-webkit-scrollbar-thumb:hover {
     background: #2c2b2b;
+}
+
+.sidebar_hide_show {
+    position: absolute;
+    cursor: pointer;
 }

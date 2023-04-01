@@ -20,6 +20,25 @@ slots_arrayClass = new Array();
 slots_arrayPos = new Array();
 array = new Array(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
+function reset() {
+    doc = null;
+    pos1 = 0,
+        pos2 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        index = 0,
+        array_size = 0;
+
+    element = null;
+    div_create = null;
+
+    value = null;
+    array = null;
+
+    array = new Array(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+    arrayContainerUpdate(array);
+}
+
 fetch('./array/array.html')
     .then(response => response.text())
     .then(html => {
@@ -34,8 +53,10 @@ fetch('./array/array.html')
         targetDiv.appendChild(div);
         targetDiv.appendChild(div1);
 
+
         slots = document.querySelector(".slots");
         slots_pos = slots.getBoundingClientRect();
+
         for (let i = 0; i < 15; i++) {
             let slt = ".slot" + i;
             slots_arrayClass.push(document.querySelector(slt));
@@ -46,8 +67,6 @@ fetch('./array/array.html')
         }
 
     });
-
-
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -60,7 +79,9 @@ let randomNumber = getRandomInt(1, 10);
 function arrayContainerUpdate(update_array) {
     for (let i = 0; i < update_array.length; i++) {
         if (update_array[i] == null) {
-            break;
+            slots_arrayClass[i].style.color = "black";
+            slots_arrayClass[i].style.backgroundColor = "black";
+            continue;
         }
         slots_arrayClass[i].style.color = "black";
         slots_arrayClass[i].style.backgroundColor = "green";
@@ -157,7 +178,8 @@ function slotsSetOnChange() {
         if (distance(element.offsetLeft, element.offsetTop, xs, ys) < 25) {
             element.style.top = "27.5" + "px";
             element.style.left = xs + "px";
-            element.style.zIndex = -1;
+            // element.style.zIndex = -1;
+            element.style.display = "none";
             element = null;
 
             const newArray = new Array();
