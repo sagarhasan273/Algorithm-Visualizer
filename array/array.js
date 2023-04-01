@@ -39,7 +39,8 @@ function reset() {
     }
     if (element)
         element.style.display = "none";
-    div_create.style.display = "block";
+    if (div_create)
+        div_create.style.display = "block";
     array = null;
     element = null;
     div_create = null;
@@ -58,7 +59,7 @@ fetch('./array/array.html')
         doc = parser.parseFromString(html, 'text/html');
         const div = doc.querySelector('.container_array');
 
-        const div1 = doc.querySelector('.footer_btns');
+        const div1 = doc.querySelector('.footer_array');
 
         const targetDiv = document.querySelector('#array-section');
 
@@ -182,7 +183,7 @@ function slotsColorChange() {
         slots_arrayClass[index].style.backgroundColor = "red";
     } else if (array_size > index) {
         slots_arrayClass[array_size].style.color = "black";
-        slots_arrayClass[array_size].style.backgroundColor = "green";
+        slots_arrayClass[array_size].style.backgroundColor = "black";
 
         newArray.splice(index, 0, value.value);
     }

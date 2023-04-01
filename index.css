@@ -2,7 +2,6 @@ body {
     background-color: #858585;
     margin: 3px;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 .wrapper {
@@ -55,7 +54,7 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    height: 1px;
+    height: 1px!important;
     width: 0;
     background: #666666;
     box-shadow: -1px -1px 5px 0px #929292, 7px 7px 20px 0px #0003, 4px 4px 5px 0px #0002;

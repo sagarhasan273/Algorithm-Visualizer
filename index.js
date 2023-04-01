@@ -1,7 +1,7 @@
 section_active_id = "";
 
-function load_js(term) {
-    var secScript = document.getElementById('array-section');
+function load_js(term, id1) {
+    var secScript = document.getElementById(id1);
     var script = document.createElement('script');
     script.src = term + '.js';
     secScript.appendChild(script);
@@ -54,7 +54,7 @@ function showSection(event, id1, id2, term) {
         a.classList.add('active');
         if (term != "" && section_active_id != id2) {
             section_active_id = id2;
-            load_js(term);
+            load_js(term, id1);
         }
     }
 }
