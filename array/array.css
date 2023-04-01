@@ -1,0 +1,207 @@
+.container_array {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: 500px;
+    /* background-color: aqua; */
+    overflow-x: scroll;
+}
+
+.box {
+    width: 45px;
+    height: 45px;
+    background-color: rgb(0, 255, 85);
+    cursor: move;
+    position: absolute;
+    top: 125px;
+    left: 377.5px;
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.value {
+    position: relative;
+    text-align: center;
+    top: -20px;
+}
+
+.slots {
+    position: relative;
+    top: 100px;
+    display: flex;
+    width: 800px;
+    height: 100px;
+    margin: auto;
+}
+
+.slot {
+    float: left;
+    width: 45px;
+    height: 45px;
+    background-color: rgb(0, 0, 0);
+    margin: auto;
+    border-radius: 5px;
+    display: none;
+    position: relative;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.5), 0 20px 20px 0 rgba(0, 0, 0, 0.5);
+    /* opacity: 0.5; */
+    transition: transform .5s ease-in-out;
+}
+
+.slot0 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 4.16px;
+    display: block;
+}
+
+.slot1 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 57.48px;
+    display: block;
+}
+
+.slot2 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 110.8px;
+    display: block;
+}
+
+.slot3 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 164.1335px;
+    display: block;
+}
+
+.slot4 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 217.45px;
+    display: block;
+}
+
+.slot5 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 270.78px;
+    display: block;
+}
+
+.slot6 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 324.105px;
+    display: block;
+}
+
+.slot7 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 377.428px;
+    display: block;
+}
+
+.slot8 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 430.752px;
+    display: block;
+}
+
+.slot9 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 484.0767px;
+    display: block;
+}
+
+.slot10 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 537.4005px;
+    display: block;
+}
+
+.slot11 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 590.7244px;
+    display: block;
+}
+
+.slot12 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 644.0482px;
+    display: block;
+}
+
+.slot13 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 697.372px;
+    display: block;
+}
+
+.slot14 {
+    float: left;
+    position: absolute;
+    top: 27.5px;
+    left: 750.658px;
+    display: block;
+}
+
+#index0,
+#index1,
+#index2,
+#index3,
+#index4,
+#index5,
+#index6,
+#index7,
+#index8,
+#index9,
+#index10,
+#index11,
+#index12,
+#index13,
+#index14 {
+    position: relative;
+    top: -25px;
+    margin: auto;
+    text-align: center;
+}
+
+#footer_btns {
+    position: relative;
+    border: 1px solid black;
+    display: flex;
+}
+
+#create-div {
+    position: relative;
+    float: left;
+}
+
+#reset {
+    position: relative;
+    float: left;
+}

@@ -183,7 +183,7 @@ body {
     height: 98vh;
     background-color: #f1f1f1;
     margin: 5px;
-    background-image: url('./homebackground.png');
+    background-image: url('./images/homebackground.png');
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
@@ -223,28 +223,28 @@ h2 {
 
 /* Scroll bar */
 
- ::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar {
     width: 5px;
 }
 
 
 /* Track */
 
- ::-webkit-scrollbar-track {
+.sidebar::-webkit-scrollbar-track {
     background: #6e6e6e;
 }
 
 
 /* Handle */
 
- ::-webkit-scrollbar-thumb {
+.sidebar::-webkit-scrollbar-thumb {
     background: #443e3e;
 }
 
 
 /* Handle on hover */
 
- ::-webkit-scrollbar-thumb:hover {
+.sidebar::-webkit-scrollbar-thumb:hover {
     background: #2c2b2b;
 }
 

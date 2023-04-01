@@ -11,7 +11,6 @@ function sidebar_hide_show(hide_show_id) {
     const hide_show_section = document.querySelector("#" + hide_show_id);
     var fullscreenBtn = hide_show_section.querySelector('.sidebar_hide_show');
     var sidebar = document.querySelector(".sidebar");
-    console.log(fullscreenBtn);
     if (fullscreenBtn.classList[2] == "fa-bars") {
         sidebar.style.display = "block";
         fullscreenBtn.classList.remove("fa-bars");
