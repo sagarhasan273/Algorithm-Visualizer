@@ -1,0 +1,8 @@
+.container_stack {
+    width: 100%;
+    height: 100%;
+    height: 89vh;
+    margin: 5px;
+    background-color: aqua;
+    overflow-y: scroll;
+}

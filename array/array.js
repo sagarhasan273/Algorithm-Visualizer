@@ -33,6 +33,7 @@ function reset() {
     for (let i = 0; i < 15; i++) {
         let slt = "slot" + i;
         if (allslots[i].classList.contains(slt)) {
+            document.querySelector("." + slt).style.backgroundColor = "black";
             allslots[i].querySelector(".value").remove();
             allslots[i].classList.remove(slt);
         }
@@ -131,13 +132,12 @@ function arrayContainerUpdate(update_array) {
             continue;
         }
         slots_arrayClass[i].style.color = "black";
-        slots_arrayClass[i].style.backgroundColor = "green";
+        slots_arrayClass[i].style.backgroundColor = "#ffd400";
         var text = slots_arrayClass[i].querySelector(".value");
         text.textContent = update_array[i];
     }
 
 }
-
 
 function dragMouseMove(e) {
     e = e || window.event;
@@ -155,6 +155,17 @@ function distance(x1, y1, x2, y2) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
+function transformScaleSlot(index) {
+    for (let i = 0; i < slots_arrayClass.length; i++) {
+        if (i == index) {
+            slots_arrayClass[i].style.transform = "scale(1.13)";
+            slots_arrayClass[i].style.color = "rgb(255 129 0)";
+            slots_arrayClass[i].style.backgroundColor = "rgb(255 129 0)";
+        } else {
+            slots_arrayClass[i].style.transform = "scale(1.0)";
+        }
+    }
+}
 var sloted = new Set();
 
 function slotsColorChange() {
@@ -166,6 +177,7 @@ function slotsColorChange() {
     for (let i = 0; i < array_size; i++) {
         newArray.push(array[i]);
     }
+    const output = document.querySelector(".output_code_array");
     for (let i = 0; i < array_size + 1; i++) {
         xs = slots_arrayPos[i].left - slots_pos.left;
         ys = slots_arrayPos[i].top - slots_pos.top;
@@ -175,21 +187,25 @@ function slotsColorChange() {
         } else if (array_size <= i) {
             slots_arrayClass[i].style.color = "black";
             slots_arrayClass[i].style.backgroundColor = "black";
+            output.innerHTML = "";
         }
     }
-
     if (array_size <= index) {
-        slots_arrayClass[index].style.color = "red";
-        slots_arrayClass[index].style.backgroundColor = "red";
+        var text = slots_arrayClass[index].querySelector(".value");
+        slots_arrayClass[index].style.color = "rgb(255 129 0)";
+        slots_arrayClass[index].style.backgroundColor = "rgb(255 129 0)";
+        output.innerHTML = "array.append(" + value.value + ")";
+        text.textContent = value.value;
+        text.style.color = "black";
     } else if (array_size > index) {
         slots_arrayClass[array_size].style.color = "black";
         slots_arrayClass[array_size].style.backgroundColor = "black";
-
+        output.innerHTML = "array.insert(" + index + ", " + value.value + ")";
         newArray.splice(index, 0, value.value);
     }
     arrayContainerUpdate(newArray);
+    transformScaleSlot(index);
 }
-
 
 function slotsSetOnChange() {
     if (element == null) {
@@ -218,9 +234,10 @@ function slotsSetOnChange() {
                 array[i] = newArray[i];
             }
             arrayContainerUpdate(array);
+            transformScaleSlot(array_size + 1);
             value.value = "";
-
-            div_create.style.display = "block";
+            if (array.length < 15)
+                div_create.style.display = "block";
             break;
         }
     }
@@ -237,6 +254,14 @@ function mouseMove(e) {
     if (element == null) {
         return;
     }
+
+    // const container_array = document.querySelector("#container_array");
+    // const box_ = document.querySelector(".box");
+    // const container_array_pos = container_array.getBoundingClientRect();
+    // const box_pos = box_.getBoundingClientRect();
+    // if (container_array_pos.left < box_pos.left && box_pos.left < ((container_array_pos.width + container_array_pos.left) - 45) && container_array_pos.top < box_pos.top && box_pos.top < ((container_array_pos.height + container_array_pos.top) - 45)) {
+    //     console.log("YES");
+    // }
     element.style.top = (element.offsetTop - pos2) + "px";
     element.style.left = (element.offsetLeft - pos1) + "px";
 }
