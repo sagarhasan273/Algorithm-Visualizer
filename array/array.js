@@ -58,6 +58,8 @@ function reset() {
     index = 0;
     array_size = 0;
     value_array = null;
+    const create_list_array_button = document.querySelector("#create-list-array-button");
+    create_list_array_button.style.display = "block";
     const allslots = document.querySelectorAll(".slot");
     for (let i = 0; i < 15; i++) {
         let slt = "slot" + i;
@@ -96,11 +98,59 @@ print(array) # print array
 }
 
 function insert_array() {
+    const values_array = document.querySelector("#values_array");
+    if (values_array.value == "") {
+        console.log("array none");
+        return;
+    }
+    const arr = values_array.value.split(", ");
+    const nums = arr.map(num => parseInt(num));
+    console.log(nums);
+    values_array.value = ""
 
+    const create_list_array_button = document.querySelector("#create-list-array-button");
+    create_list_array_button.style.display = "none";
+
+    var array_string = "[";
+    for (let i = 0; i < nums.length; i++) {
+        if (i + 1 != nums.length)
+            array_string += nums[i] + ", ";
+        else
+            array_string += nums[i]
+    }
+    array_string += "]";
+    var python_code =
+        `array = ${array_string}  # Array
+
+print(array) # print array
+`
+    codeOutput(python_code);
+
+    const allslots = document.querySelectorAll(".slot");
+
+    for (let i = 0; i < nums.length; i++) {
+        let slt = "slot" + i;
+        allslots[i].classList.add(slt);
+        slots_arrayClass.push(document.querySelector(".slot" + i));
+        slots_arrayPos.push(slots_arrayClass[i].getBoundingClientRect());
+        var p = document.createElement('p');
+        p.classList.add("value");
+        slots_arrayClass[i].appendChild(p);
+        slots_arrayClass[i].style.color = "black";
+        slots_arrayClass[i].style.backgroundColor = "#ffd400";
+        var text = slots_arrayClass[i].querySelector(".value");
+        text.textContent = nums[i];
+        array.push(nums[i]);
+        array_size += 1;
+    }
+    arrayContainerUpdate(array);
 }
 
 
 function createDiv() {
+    const create_list_array_button = document.querySelector("#create-list-array-button");
+    create_list_array_button.style.display = "none";
+
     div_create = document.getElementById('create-box-array');
     div_create.style.display = "none";
 
@@ -160,7 +210,8 @@ function update_slots_position(t) {
     slots = document.querySelector(".slots");
     slots_pos = slots.getBoundingClientRect();
     for (let i = 0; i < array_size + t; i++) {
-        slots_arrayPos[i] = document.querySelector(".slot" + i).getBoundingClientRect();
+        if (document.querySelector(".slot" + i))
+            slots_arrayPos[i] = document.querySelector(".slot" + i).getBoundingClientRect();
     }
 }
 
@@ -200,6 +251,8 @@ function transformScaleSlot(index) {
         if (i == index) {
             slots_arrayClass[i].style.transform = "scale(1.13)";
             slots_arrayClass[i].style.color = "rgb(255 129 0)";
+            var text = slots_arrayClass[index].querySelector(".value");
+            text.style.color = "black";
             slots_arrayClass[i].style.backgroundColor = "rgb(255 129 0)";
         } else {
             slots_arrayClass[i].style.transform = "scale(1.0)";
@@ -259,16 +312,16 @@ print(array) # print array
     }
     if (array_size <= index) {
         var text = slots_arrayClass[index].querySelector(".value");
-        slots_arrayClass[index].style.color = "rgb(179, 255, 0)";
+        slots_arrayClass[index].style.color = "rgb(255 129 0)";
         slots_arrayClass[index].style.backgroundColor = "rgb(255 129 0)";
         var python_code =
             `array = ${array_string} # Array 
 
-def function(value):
+def addElement(value):
     array.append(value) # add method
     return array # return array
         
-print(function(${value_array.value})) # print array
+print(addElement(${value_array.value})) # print array
 `
         codeOutput(python_code);
         text.textContent = value_array.value;
@@ -279,11 +332,11 @@ print(function(${value_array.value})) # print array
         var python_code =
             `array = ${array_string}  # Array
             
-def function(index, value):
+def insertion(index, value):
     array.insert(index, value) # insertion method
     return array # return array
 
-print(function(${index}, ${value_array.value})) # print array
+print(insertion(${index}, ${value_array.value})) # print array
 `
         codeOutput(python_code);
         newArray.splice(index, 0, value_array.value);

@@ -237,6 +237,17 @@
     width: 300px;
 }
 
+#create-list-array-button {
+    width: 32px;
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+}
+
+#create-list-array-button:hover {
+    cursor: pointer;
+}
+
 .third_key_slot_array {
     display: flex;
 }
@@ -310,7 +321,7 @@
 
 #copy_btn {
     position: absolute;
-    top: 55px;
+    top: 45px;
     right: 14px;
     display: none;
 }
