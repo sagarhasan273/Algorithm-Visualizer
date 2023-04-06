@@ -209,35 +209,112 @@
     display: flex;
 }
 
-#create-div {
-    position: relative;
-    float: left;
-}
-
-#reset {
-    position: relative;
-    float: left;
-}
-
 .key_section_array {
     position: relative;
     float: left;
     width: 48%;
-    background-color: antiquewhite;
+    height: 40vh;
     margin: auto;
+    padding: 10px;
+    justify-content: center;
+}
+
+.first_key_slot_array {
+    display: flex;
+    justify-content: center;
+}
+
+.label_array {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+
+#values_array {
+    font-size: 16px;
+    padding: 3px 12px;
+    margin: 4px 2px;
+    width: 300px;
+}
+
+.third_key_slot_array {
+    display: flex;
+}
+
+.second_key_slot_array {
+    padding: 10px;
+    display: flex;
+    /* background-color: aqua; */
+    justify-content: center;
+}
+
+#value_array {
+    float: left;
+    font-size: 16px;
+    padding: 3px 12px;
+    margin: 4px 2px;
+}
+
+#create-box-array {
+    background-color: #030303;
+    border: none;
+    padding: 3px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid #464747;
+}
+
+#create-box-array:hover {
+    background-color: #424242;
+    color: white;
+}
+
+.reset_array {
+    position: relative;
+    border: none;
+    padding: 5px 25px;
+    justify-self: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: auto;
+    margin-top: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+}
+
+.reset_array:hover {
+    background-color: #008CBA;
+    color: white;
 }
 
 .output_section_array {
     position: relative;
     float: left;
     width: 48%;
-    background-color: aquamarine;
+    height: 40vh;
+    /* background-color: aquamarine; */
     margin: auto;
+    padding: 10px;
 }
 
-.output_code_array {
+#copy_btn {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    font-size: 35px;
+    top: 55px;
+    right: 14px;
+    display: none;
+}
+
+#add_code {
+    font-size: 16px;
 }

@@ -30,31 +30,45 @@
         <div class="slot">
             <p id="index9">9</p>
         </div>
-        <div class="slot ">
+        <div class="slot">
             <p id="index10">10</p>
         </div>
-        <div class="slot ">
+        <div class="slot">
             <p id="index11">11</p>
         </div>
-        <div class="slot ">
+        <div class="slot">
             <p id="index12">12</p>
         </div>
-        <div class="slot ">
+        <div class="slot">
             <p id="index13">13</p>
         </div>
-        <div class="slot ">
+        <div class="slot">
             <p id="index14">14</p>
         </div>
     </div>
 </div>
 <div class="footer_array">
     <div class="key_section_array">
-        <button id="reset" onclick="reset()">Reset</button>
-        <button onclick="createDiv()" id="create-div">create</button>
-        <input type="text" value="12" id="value">
-
+        <label class="label_array" style="padding-bottom: 10px; padding-top: 50px;">Enter Array Values Separate by Comma (",")</label>
+        <div class="first_key_slot_array">
+            <input type="text" value="" id="values_array" placeholder="1, 2, 3, 4, 5, 6..">
+        </div>
+        <label class="label_array" style="padding-bottom: 20px; padding-top: 15px;">----------------or------------------</label>
+        <div class="second_key_slot_array">
+            <button onclick="createDiv()" id="create-box-array">Create Element Box</button>
+            <input type="text" value="" id="value_array" placeholder="Enter value..">
+        </div>
+        <div class="third_key_slot_array">
+            <button class="reset_array" id="reset" onclick="reset()">Reset</button>
+        </div>
     </div>
     <div class="output_section_array">
-        <div class="output_code_array"></div>
+        <div class="output_code_array">
+            <pre>
+                <button id="copy_btn">copy the code</button>
+                <code class="language-python" id="add_code">
+                </code>
+            </pre>
+        </div>
     </div>
 </div>
