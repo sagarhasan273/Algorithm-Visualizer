@@ -31,10 +31,12 @@ function removeElementThatAdded() {
         document.querySelector("#script_array-section").remove();
         document.querySelector("#container_array").remove();
         document.querySelector(".footer_array").remove();
+        document.querySelector("#array_css").remove();
     }
     if (document.querySelector("#container_stack")) {
         document.querySelector("#script_stack-section").remove();
         document.querySelector("#container_stack").remove();
+        document.querySelector("#stack_css").remove();
     }
 }
 

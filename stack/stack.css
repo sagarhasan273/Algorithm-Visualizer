@@ -1,8 +1,157 @@
-.container_stack {
-    width: 100%;
-    height: 100%;
-    height: 89vh;
-    margin: 5px;
-    background-color: aqua;
-    overflow-y: scroll;
+#container_stack {
+    margin: 50px;
+}
+
+.container_stack_list {
+    position: relative;
+    display: flex;
+    height: 60px;
+}
+
+.stack_slots {
+    position: relative;
+    display: left;
+    width: 50px;
+    height: 40px;
+    background-color: #ff5733;
+    margin: 2px;
+    margin-top: 20px;
+}
+
+.index {
+    position: relative;
+    top: -20px;
+    display: flex;
+    justify-content: center;
+}
+
+#stack_label_list {
+    position: relative;
+    top: 20px;
+    /* left: 50%; */
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#stack_label {
+    position: relative;
+    top: 430px;
+    left: 20px;
+    font-size: 30px;
+}
+
+#add_stack_box {
+    position: relative;
+    top: 470px;
+    left: -50px;
+}
+
+#delete_stack_box {
+    position: relative;
+    top: 470px;
+    left: -35px;
+}
+
+#stack_input_value {
+    position: relative;
+    top: 470px;
+    left: -45px;
+}
+
+.value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.brick-stack {
+    perspective: 1500px;
+}
+
+.brick {
+    position: absolute;
+    width: 120px;
+    height: 70px;
+    background-color: #ff5733;
+    transform-origin: bottom left;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+    border: 1px solid rgb(163, 39, 1);
+}
+
+.brick:nth-child(1) {
+    transform: rotateX(0deg) translate3d(0, 300px, 50px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(2) {
+    transform: rotateX(0deg) translate3d(0, 290px, 45px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(3) {
+    transform: rotateX(0deg) translate3d(0, 280px, 40px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(4) {
+    transform: rotateX(0deg) translate3d(0, 270px, 35px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(5) {
+    transform: rotateX(0deg) translate3d(0, 260px, 30px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(6) {
+    transform: rotateX(0deg) translate3d(0, 250px, 25px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(7) {
+    transform: rotateX(0deg) translate3d(0, 240px, 20px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(8) {
+    transform: rotateX(0deg) translate3d(0, 230px, 15px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(9) {
+    transform: rotateX(0deg) translate3d(0, 220px, 10px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(10) {
+    transform: rotateX(0deg) translate3d(0, 210px, 5px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(11) {
+    transform: rotateX(0deg) translate3d(0, 200px, 0px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(12) {
+    transform: rotateX(0deg) translate3d(0, 190px, -5px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(13) {
+    transform: rotateX(0deg) translate3d(0, 180px, -10px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(14) {
+    transform: rotateX(0deg) translate3d(0, 170px, -15px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
+}
+
+.brick:nth-child(15) {
+    transform: rotateX(0deg) translate3d(0, 160px, -20px);
+    box-shadow: 3px 3px 3px rgba(119, 0, 0, 0.5);
 }

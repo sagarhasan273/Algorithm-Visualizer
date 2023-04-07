@@ -24,13 +24,16 @@ fetch('./array/array.html')
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
         const div = doc.querySelector('.container_array');
-
         const div1 = doc.querySelector('.footer_array');
-
         const targetDiv = document.querySelector('#array-section');
-
         targetDiv.appendChild(div);
         targetDiv.appendChild(div1);
+
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './array/array.css';
+        link.id = 'array_css';
+        document.head.appendChild(link);
 
         slots = document.querySelector(".slots");
         slots_pos = slots.getBoundingClientRect();
