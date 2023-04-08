@@ -324,6 +324,12 @@
     top: 45px;
     right: 14px;
     display: none;
+    width: 90px;
+    height: 20px;
+    background-color: #d4d3d3;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 #add_code {

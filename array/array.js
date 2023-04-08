@@ -226,7 +226,7 @@ function arrayContainerUpdate(update_array) {
             continue;
         }
         slots_arrayClass[i].style.color = "black";
-        slots_arrayClass[i].style.backgroundColor = "#ffd400";
+        slots_arrayClass[i].style.backgroundColor = "#ff5733";
         var text = slots_arrayClass[i].querySelector(".value");
         text.textContent = update_array[i];
     }
@@ -268,17 +268,30 @@ function codeOutput(python_code) {
     const add_code = document.querySelector("#add_code");
     add_code.innerHTML = python_code;
     hljs.initHighlightingOnLoad();
+
     var copy_btn = document.querySelector("#copy_btn");
     copy_btn.style.display = "block";
-    copy_btn.addEventListener("click", function() {
-        const textarea = document.createElement("textarea");
-        textarea.value = python_code;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
+    const originalText = copy_btn.textContent;
+    copy_btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(originalText)
+            .then(() => {
+                copy_btn.innerHTML = `<span class='fas fa-check-double' style='font-size:16px; color: green;'>Copied!</span>`;
+                const textarea = document.createElement("textarea");
+                textarea.value = python_code;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+            })
+            .catch((err) => {
+                console.error('Failed to copy text: ', err);
+            });
     });
-
+    copy_btn.addEventListener('mouseleave', () => {
+        setTimeout(() => {
+            copy_btn.textContent = originalText;
+        }, 1500);
+    });
 }
 
 function slotsColorChange() {

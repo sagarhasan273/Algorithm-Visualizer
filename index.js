@@ -38,6 +38,11 @@ function removeElementThatAdded() {
         document.querySelector("#container_stack").remove();
         document.querySelector("#stack_css").remove();
     }
+    if (document.querySelector("#container_queue")) {
+        document.querySelector("#script_queue-section").remove();
+        document.querySelector("#container_queue").remove();
+        document.querySelector("#queue_css").remove();
+    }
 }
 
 function showSection(event, id1, id2, term) {
