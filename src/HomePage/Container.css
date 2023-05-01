@@ -2,7 +2,6 @@
 	flex: 1;
 	padding: 20px;
 	padding-top: 5px;
-	/* height: 98vh; */
 	height: 100%;
 	background-color: #f1f1f1;
 	margin: 2px;
@@ -14,13 +13,8 @@
 }
 
 .sectionContainer {
-	display: none;
 	height: 99%;
 	position: relative;
-}
-
-.sectionContainer.active {
-	display: block;
 }
 
 .startButton {

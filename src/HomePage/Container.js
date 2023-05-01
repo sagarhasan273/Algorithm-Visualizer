@@ -9,117 +9,146 @@ export default function Container(props) {
   const { active, sideBarHideShowHandle, sideBarHideShow } = props;
   return (
     <div className="container">
-      <div id="startingWindow" className={`sectionContainer ${active === 'homebtn' ? 'active' : ''}`}>
-        <h1>Welcome, to Our Site!</h1>
-        <button type="button" className="buttonRemove startButton" onClick={sideBarHideShowHandle}>Start</button>
-      </div>
+      {active === 'homebtn' ? (
+        <div id="startingWindow" className="sectionContainer">
+          <h1>Welcome, to Our Site!</h1>
+          <button type="button" className="buttonRemove startButton" onClick={sideBarHideShowHandle}>Start</button>
+        </div>
+      ) : null}
 
-      <div id="arraySectionContainer" className={`sectionContainer ${active === 'buttonArray' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Array Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
+      {active === 'buttonArray' ? (
+        <div id="arraySectionContainer" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Array Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
 
-      <div id="stackSectionConatiner" className={`sectionContainer ${active === 'buttonStack' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Stack Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="queueSectionConatiner" className={`sectionContainer ${active === 'buttonQueue' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Queue Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="dequeSectionConatiner" className={`sectionContainer ${active === 'buttonDeque' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Deque Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="linkedListSectionConatiner" className={`sectionContainer ${active === 'buttonLinkedList' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Linked list Visualization</h2>
-        <div className="horizontal-line" />
-        <LinkedList />
-      </div>
-      <div id="doublyLinkedListSectionConatiner" className={`sectionContainer ${active === 'buttonDoublyLinkedList' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Doubly linked list Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="binaryTreeSectionConatiner" className={`sectionContainer ${active === 'buttonBinaryTree' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Binary Tree Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="bruteForceSectionConatiner" className={`sectionContainer ${active === 'buttonBruteForce' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Brute Force Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="recursiveSectionConatiner" className={`sectionContainer ${active === 'buttonRecursive' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Recursive Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="backtrackingSectionConatiner" className={`sectionContainer ${active === 'buttonBacktracking' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Backtracking Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="sortingSectionConatiner" className={`sectionContainer ${active === 'buttonSorting' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Sorting Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="HashingSectionConatiner" className={`sectionContainer ${active === 'buttonHashing' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Hashing Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
-      <div id="dynamicProgrammingSectionConatiner" className={`sectionContainer ${active === 'buttonDynamicProgramming' ? 'active' : ''}`}>
-        <HideShowMenu
-          sideBarHideShow={sideBarHideShow}
-          sideBarHideShowHandle={sideBarHideShowHandle}
-        />
-        <h2 style={headingNameStyle}>Dynamic Programming Visualization</h2>
-        <div className="horizontal-line" />
-      </div>
+      {active === 'buttonStack' ? (
+        <div id="stackSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Stack Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+
+      {active === 'buttonQueue' ? (
+        <div id="queueSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Queue Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonDeque' ? (
+        <div id="dequeSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Deque Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonLinkedList' ? (
+        <div id="linkedListSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Linked list Visualization</h2>
+          <div className="horizontal-line" />
+          <LinkedList />
+        </div>
+      ) : null}
+      {active === 'buttonDoublyLinkedList' ? (
+        <div id="doublyLinkedListSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Doubly linked list Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonBinaryTree' ? (
+        <div id="binaryTreeSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Binary Tree Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonBruteForce' ? (
+        <div id="bruteForceSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Brute Force Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonRecursive' ? (
+        <div id="recursiveSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Recursive Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonBacktracking' ? (
+        <div id="backtrackingSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Backtracking Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonSorting' ? (
+        <div id="sortingSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Sorting Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonHashing' ? (
+        <div id="HashingSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Hashing Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonDynamicProgramming' ? (
+        <div id="dynamicProgrammingSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Dynamic Programming Visualization</h2>
+          <div className="horizontal-line" />
+        </div>
+      ) : null}
     </div>
   );
 }
