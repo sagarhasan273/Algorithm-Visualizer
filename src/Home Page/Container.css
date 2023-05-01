@@ -18,6 +18,7 @@
 	display: none;
 	/* background-color: #02d60d; */
 	height: 99%;
+	position: relative;
 }
 
 .sectionContainer.active {
@@ -48,48 +49,16 @@
 
 .startButton:hover {
 	color: #080808;
-	background: transparent;
 	box-shadow: none;
-	background: linear-gradient(0deg, #46e407 0%, #02d60d 100%);
-}
-
-.startButton:before,
-.startButton:after {
-	content: '';
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 2px;
-	width: 0;
-	/* background: #666666; */
-	box-shadow: -1px -1px 5px 0px #fff, 7px 7px 20px 0px #0003,
-		4px 4px 5px 0px #0002;
-	transition: 400ms ease all;
-}
-
-.startButton:after {
-	right: inherit;
-	top: inherit;
-	left: 0;
-	bottom: 0;
-}
-
-.startButton:hover:before,
-.startButton:hover:after {
-	width: 100%;
-	transition: 800ms ease all;
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+		7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+	background: linear-gradient(0deg, #464444 0%, #585656 100%);
 }
 
 .horizontal-line {
 	border-bottom: 2px solid rgb(83, 83, 83);
 	border-radius: 2px;
 	padding: 0px;
-}
-
-.legendSectionContainer {
-	font-size: 1.2em;
-	font-weight: bold;
-	font-size: 30px;
 }
 
 /* Scroll bar */

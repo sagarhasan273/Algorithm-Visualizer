@@ -28,6 +28,12 @@ export default function SideBar(props) {
         <hr />
         <h4 className="sectionName">Algorithms</h4>
         <hr />
+        <li><button id="buttonBruteForce" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonBruteForce' ? 'active' : ''}`} onClick={sectionActiveHandle}>Brute Force</button></li>
+        <li><button id="buttonRecursive" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonRecursive' ? 'active' : ''}`} onClick={sectionActiveHandle}>Recursive</button></li>
+        <li><button id="buttonBacktracking" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonBacktracking' ? 'active' : ''}`} onClick={sectionActiveHandle}>Backtracking</button></li>
+        <li><button id="buttonSorting" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonSorting' ? 'active' : ''}`} onClick={sectionActiveHandle}>Sorting</button></li>
+        <li><button id="buttonHashing" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonHashing' ? 'active' : ''}`} onClick={sectionActiveHandle}>Hashing</button></li>
+        <li><button id="buttonDynamicProgramming" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDynamicProgramming' ? 'active' : ''}`} onClick={sectionActiveHandle}>Dynamic Programming</button></li>
       </ul>
     </div>
   );

@@ -25,7 +25,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <SideBar active={sideBarActive} sectionActiveHandle={this.sectionActiveHandle} sideBarHideShow={sideBarHideShow ? { display: 'block' } : { display: 'none' }} />
-        <Container active={containerActive} sideBarHideShowHandle={this.sideBarHideShowHandle} />
+        <Container
+          active={containerActive}
+          sideBarHideShowHandle={this.sideBarHideShowHandle}
+          sideBarHideShow={sideBarHideShow}
+        />
       </div>
     );
   }
