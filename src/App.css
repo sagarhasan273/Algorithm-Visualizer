@@ -21,7 +21,10 @@ body {
 	cursor: pointer;
 	outline: inherit;
 }
-
+.Sidebar_hide_show {
+	position: absolute;
+	cursor: pointer;
+}
 /* Scroll bar */
 
 .Sidebar::-webkit-scrollbar {
@@ -44,9 +47,4 @@ body {
 
 .Sidebar::-webkit-scrollbar-thumb:hover {
 	background: #2c2b2b;
-}
-
-.Sidebar_hide_show {
-	position: absolute;
-	cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import Container from './Home Page/Container';
-import SideBar from './Home Page/Sidebar';
+import Container from './HomePage/Container';
+import SideBar from './HomePage/Sidebar';
 
 class App extends React.Component {
   constructor(props) {
