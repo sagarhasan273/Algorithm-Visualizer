@@ -1,8 +1,11 @@
+import LinkedList from '../DataStructures/LinkedList/LinkedList';
 import './Container.css';
 import HideShowMenu from './HideShowMenu/HideShowMenu';
 
 export default function Container(props) {
-  const headingNameStyle = { paddingLeft: '15px', margin: '10px' };
+  const headingNameStyle = {
+    paddingLeft: '15px', margin: '10px', marginBottom: '5px',
+  };
   const { active, sideBarHideShowHandle, sideBarHideShow } = props;
   return (
     <div className="container">
@@ -51,6 +54,7 @@ export default function Container(props) {
         />
         <h2 style={headingNameStyle}>Linked list Visualization</h2>
         <div className="horizontal-line" />
+        <LinkedList />
       </div>
       <div id="doublyLinkedListSectionConatiner" className={`sectionContainer ${active === 'buttonDoublyLinkedList' ? 'active' : ''}`}>
         <HideShowMenu

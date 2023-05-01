@@ -10,13 +10,11 @@
 	background-size: cover;
 	background-position: center;
 	box-sizing: border-box;
-	overflow: scroll;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 .sectionContainer {
 	display: none;
-	/* background-color: #02d60d; */
 	height: 99%;
 	position: relative;
 }
@@ -59,28 +57,4 @@
 	border-bottom: 2px solid rgb(83, 83, 83);
 	border-radius: 2px;
 	padding: 0px;
-}
-
-/* Scroll bar */
-
-.container::-webkit-scrollbar {
-	width: 5px;
-}
-
-/* Track */
-
-.container::-webkit-scrollbar-track {
-	background: #6e6e6e;
-}
-
-/* Handle */
-
-.container::-webkit-scrollbar-thumb {
-	background: #686363;
-}
-
-/* Handle on hover */
-
-.container::-webkit-scrollbar-thumb:hover {
-	background: #525151;
 }

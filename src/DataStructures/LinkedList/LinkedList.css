@@ -1,0 +1,26 @@
+.LinkedListContainer {
+	/* background-color: aqua; */
+	height: 95%;
+	margin-top: 0px !important;
+	overflow: auto;
+	overflow-x: hidden;
+}
+/* Scroll bar */
+.LinkedListContainer::-webkit-scrollbar {
+	width: 8px;
+}
+/* Track */
+/* .LinkedListContainer::-webkit-scrollbar-track {
+	background: #ffffff;
+} */
+
+/* Handle */
+.LinkedListContainer::-webkit-scrollbar-thumb {
+	max-height: 10px;
+	background-color: gray;
+}
+
+/* Handle on hover */
+.LinkedListContainer::-webkit-scrollbar-thumb:hover {
+	background: #1d1d1d;
+}
