@@ -2,13 +2,13 @@ import './HideShowMenu.css';
 
 function HideButton({ sideBarHideShowHandle }) {
   return (
-    <button type="button" className="buttonRemove arrow right" onClick={sideBarHideShowHandle} />
+    <button type="button" className="buttonRemove arrowhideShow right" onClick={sideBarHideShowHandle} />
   );
 }
 
 function ShowButton({ sideBarHideShowHandle }) {
   return (
-    <button type="button" className="buttonRemove arrow left" onClick={sideBarHideShowHandle} />
+    <button type="button" className="buttonRemove arrowhideShow left" onClick={sideBarHideShowHandle} />
   );
 }
 

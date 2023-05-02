@@ -5,7 +5,7 @@
 	left: -18px;
 }
 
-.arrow {
+.arrowhideShow {
 	position: absolute;
 	background-image: url('./chevron.png') !important;
 	height: 45px;
@@ -20,10 +20,10 @@
 	border-radius: 3px;
 }
 
-.arrow.left {
+.arrowhideShow.left {
 	transform: rotate(180deg);
 }
 
-.arrow.right {
+.arrowhideShow.right {
 	transform: rotate(0deg);
 }

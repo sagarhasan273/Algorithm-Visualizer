@@ -1,33 +1,25 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import DraggableDiv from './DraggableDiv';
 import './LinkedList.css';
 
 export default class LinkedList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { x: 0, y: 0 };
+    this.state = { deg: 0 };
   }
-
-  componentDidMount() {
-    document.addEventListener('mousemove', this.handleMouseMove);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousemove', this.handleMouseMove);
-    console.log('yes');
-  }
-
-  handleMouseMove = (event) => {
-    this.setState({ x: event.clientX, y: event.clientY });
-  };
 
   render() {
-    const { x, y } = this.state;
-    console.log(x, y);
+    const { deg } = this.state;
+    const style = {
+      transform: `rotate(${deg}deg)`,
+    };
     return (
       <div className="LinkedListContainer">
-        <h1>Mouse position: {x}, {y}</h1>
+        <div className="line" style={style} />
+        <DraggableDiv className="movingDiv1" />
+        <DraggableDiv className="movingDiv2" />
       </div>
+
     );
   }
 }
