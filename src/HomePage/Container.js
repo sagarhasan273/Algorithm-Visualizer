@@ -1,4 +1,5 @@
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
+import Testing from '../DataStructures/Testing/Testing';
 import './Container.css';
 import HideShowMenu from './HideShowMenu/HideShowMenu';
 
@@ -147,6 +148,17 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Dynamic Programming Visualization</h2>
           <div className="horizontal-line" />
+        </div>
+      ) : null}
+      {active === 'buttonTesting' ? (
+        <div id="testingSectionConatiner" className="sectionContainer">
+          <HideShowMenu
+            sideBarHideShow={sideBarHideShow}
+            sideBarHideShowHandle={sideBarHideShowHandle}
+          />
+          <h2 style={headingNameStyle}>Testing Visualization</h2>
+          <div className="horizontal-line" />
+          <Testing />
         </div>
       ) : null}
     </div>

@@ -8,6 +8,10 @@ export default class LinkedList extends React.Component {
     this.state = { deg: 0 };
   }
 
+  changePositionHandle = (event) => {
+    this.setState({ deg: event.target.className });
+  };
+
   render() {
     const { deg } = this.state;
     const style = {
@@ -16,7 +20,7 @@ export default class LinkedList extends React.Component {
     return (
       <div className="LinkedListContainer">
         <div className="line" style={style} />
-        <DraggableDiv className="movingDiv1" />
+        <DraggableDiv className="movingDiv1" onChange={this.changePositionHandle} />
         <DraggableDiv className="movingDiv2" />
       </div>
 
