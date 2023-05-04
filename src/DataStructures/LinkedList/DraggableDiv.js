@@ -1,5 +1,7 @@
+/* eslint-disable import/named */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect, useState } from 'react';
+import { exampleFunction } from './position';
 
 export default function DraggableDiv(props) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -38,7 +40,7 @@ export default function DraggableDiv(props) {
       y: event.clientY - position.y,
     });
   }
-
+  exampleFunction();
   return (
     <div
       className={className}

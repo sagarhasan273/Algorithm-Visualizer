@@ -22,6 +22,7 @@ export default class LinkedList extends React.Component {
         <div className="line" style={style} />
         <DraggableDiv className="movingDiv1" onChange={this.changePositionHandle} />
         <DraggableDiv className="movingDiv2" />
+        <script src="./position.js" />
       </div>
 
     );
