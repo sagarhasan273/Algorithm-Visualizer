@@ -9,7 +9,7 @@ export default function Testing() {
       <svg>
         <path d="M60 160, 435 160" strokeWidth={4} stroke="black" fill="transparent" />
       </svg>
-      <image className="imagetesting" href="./sendmessage.png" height="20px" width="20px" style={{ top: '50px', left: '430px' }} />
+      <div className="imagetesting" style={{ top: '150px', left: '430px' }} />
       <div>hellow</div>
     </main>
 

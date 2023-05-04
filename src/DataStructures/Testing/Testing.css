@@ -22,4 +22,11 @@ svg {
 }
 .imagetesting {
 	position: absolute;
+	background-image: url('./sendmessage.png') !important;
+	height: 20px;
+	width: 20px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-size: contain;
+	background-position: center;
 }
