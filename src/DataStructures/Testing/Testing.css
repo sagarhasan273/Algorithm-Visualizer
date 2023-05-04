@@ -1,45 +1,25 @@
-.containerT {
+main {
 	position: relative;
-	width: 500px;
-	height: 500px;
-	border: 1px solid black;
+	width: 100vw;
+	height: 100vh;
 }
 
 .node {
 	position: absolute;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background-color: black;
+	width: 10px;
+	height: 10px;
+	background-color: red;
+	border: 5px solid black;
+	border-radius: 10px;
 }
 
-.edge {
+svg {
 	position: absolute;
-	height: 2px;
-	background-color: black;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
 }
-.node1 {
-	top: 50px;
-	left: 50px;
-}
-
-.node2 {
-	top: 100px;
-	left: 200px;
-}
-.node3 {
-	top: 200px;
-	left: 250px;
-}
-.edge1 {
-	top: 60px;
-	left: 60px;
-	width: 150px;
-	transform: rotate(45deg);
-}
-.edge2 {
-	top: 110px;
-	left: 210px;
-	width: 70px;
-	transform: rotate(-30deg);
+.imagetesting {
+	position: absolute;
 }
