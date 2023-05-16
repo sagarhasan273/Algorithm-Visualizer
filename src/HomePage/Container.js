@@ -1,4 +1,5 @@
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
+import Stack from '../DataStructures/Stack/Stack';
 import Testing from '../DataStructures/Testing/Testing';
 import './Container.css';
 import HideShowMenu from './HideShowMenu/HideShowMenu';
@@ -36,6 +37,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Stack Visualization</h2>
           <div className="horizontal-line" />
+          <Stack />
         </div>
       ) : null}
 
@@ -65,7 +67,7 @@ export default function Container(props) {
             sideBarHideShow={sideBarHideShow}
             sideBarHideShowHandle={sideBarHideShowHandle}
           />
-          <h2 style={headingNameStyle}>Linked list Visualization</h2>
+          <h2 style={headingNameStyle}>Singly Linked list Visualization</h2>
           <div className="horizontal-line" />
           <LinkedList />
         </div>

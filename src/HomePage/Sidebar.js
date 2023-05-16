@@ -22,7 +22,7 @@ export default function SideBar(props) {
         <li><button id="buttonStack" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonStack' ? 'active' : ''}`} onClick={sectionActiveHandle}>Stack</button></li>
         <li><button id="buttonQueue" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonQueue' ? 'active' : ''}`} onClick={sectionActiveHandle}>Queue</button></li>
         <li><button id="buttonDeque" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDeque' ? 'active' : ''}`} onClick={sectionActiveHandle}>Deque</button></li>
-        <li><button id="buttonLinkedList" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonLinkedList' ? 'active' : ''}`} onClick={sectionActiveHandle}>Linked list</button></li>
+        <li><button id="buttonLinkedList" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonLinkedList' ? 'active' : ''}`} onClick={sectionActiveHandle}>Singly Linked list</button></li>
         <li><button id="buttonDoublyLinkedList" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDoublyLinkedList' ? 'active' : ''}`} onClick={sectionActiveHandle}>Doubly linked list</button></li>
         <li><button id="buttonBinaryTree" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonBinaryTree' ? 'active' : ''}`} onClick={sectionActiveHandle}>Binary Tree</button></li>
         <hr />
