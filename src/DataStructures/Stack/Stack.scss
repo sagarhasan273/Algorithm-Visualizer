@@ -4,7 +4,7 @@
 	justify-content: space-between;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	background-color: antiquewhite;
+	// background-color: antiquewhite;
 	height: 96%;
 	position: relative;
 	.stackList {
@@ -71,93 +71,117 @@
 		width: 98%;
 		height: 335px;
 		max-height: fit-content;
-		background-color: aqua;
+		// background-color: aqua;
 		margin: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		gap: 5px;
 		padding-top: 20px;
-		.element {
+		.glassElements {
 			position: relative;
-			left: 100px;
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: #ff5733;
-			height: 30px;
-			width: 100px;
-			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
-				0 5px 5px 0 rgba(0, 0, 0, 0.5);
-			p {
-				font-weight: 500;
-				font-size: 24px;
+			flex-direction: column;
+			justify-content: flex-end;
+			gap: 5px;
+			left: 15%;
+			.element {
+				position: relative;
+				left: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background-color: #ff5733;
+				height: 30px;
+				width: 100px;
+				box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
+					0 5px 5px 0 rgba(0, 0, 0, 0.5);
+				p {
+					font-weight: 500;
+					font-size: 24px;
+				}
 			}
-		}
-		@keyframes fadeIn {
-			0% {
-				opacity: 0.5;
-				transform: scale(0.5);
+			@keyframes fadeIn {
+				0% {
+					opacity: 0.5;
+					transform: scale(0.5);
+				}
+				100% {
+					opacity: 1;
+					transform: scale(1);
+				}
 			}
-			100% {
-				opacity: 1;
-				transform: scale(1);
+			.elementTop {
+				animation-name: fadeIn;
+				animation-duration: 0.5s;
+				animation-timing-function: ease-in;
+				animation-fill-mode: forwards;
 			}
-		}
-		.elementTop {
-			animation-name: fadeIn;
-			animation-duration: 0.5s;
-			animation-timing-function: ease-in;
-			animation-fill-mode: forwards;
-		}
-		@keyframes fadeOut {
-			0% {
-				opacity: 1;
-				transform: scale(1);
-				top: 0px;
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+					transform: scale(1);
+					top: 0px;
+				}
+				100% {
+					opacity: 0.5;
+					transform: scale(0.1);
+					top: 15px;
+				}
 			}
-			100% {
-				opacity: 0.5;
-				transform: scale(0.1);
-				top: 15px;
+			.elementTopPop {
+				animation-name: fadeOut;
+				animation-duration: 0.5s;
+				animation-timing-function: ease-out;
+				animation-fill-mode: forwards;
 			}
-		}
-		.elementTopPop {
-			animation-name: fadeOut;
-			animation-duration: 0.5s;
-			animation-timing-function: ease-out;
-			animation-fill-mode: forwards;
-		}
 
-		.glass-container {
-			position: absolute;
-			left: 80px;
-			width: 140px;
-			bottom: -15px;
-			background: rgba(157, 242, 250, 0.281);
-			border-radius: 5px;
-			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-			backdrop-filter: blur(1px);
-			-webkit-backdrop-filter: blur(1px);
-			border: 1px solid rgba(0, 231, 252, 0.692);
+			.glass-container {
+				position: absolute;
+				left: 0px;
+				width: 140px;
+				bottom: -15px;
+				background: rgba(157, 242, 250, 0.281);
+				border-radius: 5px;
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+				backdrop-filter: blur(1px);
+				-webkit-backdrop-filter: blur(1px);
+				border: 1px solid rgba(0, 231, 252, 0.692);
+				cursor: no-drop;
+			}
 		}
 		.codeContainer {
 			position: absolute;
 			display: flex;
-			top: 35%;
+			top: 30%;
 			right: 0px;
-			width: 500px;
+			width: 50%;
 			// height: 500px;
 
 			.copy {
-				height: 30px;
+				height: 25px;
+				width: 80px;
 				position: absolute;
 				right: 10px;
+				top: 10px;
+				outline: none;
+				border: none;
+				background-color: rgb(224, 224, 224);
 			}
 			.run {
 				height: 30px;
 				position: absolute;
-				right: 100px;
+				right: 10px;
+				bottom: -35px;
+			}
+			.output {
+				position: absolute;
+
+				top: -50px;
+				width: 200px;
+			}
+			.aceEditor {
+				font-size: 16px !important;
 			}
 		}
 	}
