@@ -1,11 +1,13 @@
 .StackContainer {
+	display: flex;
+	flex-direction: column;
+
 	.stackList {
-		background-color: aqua;
-		height: 150px;
+		height: 100px;
 		width: 70%;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: left;
 		gap: 10px;
 		margin: auto;
 		.element {
@@ -13,8 +15,150 @@
 			align-items: center;
 			justify-content: center;
 			height: 30px;
-			width: 30px;
+			width: 35px;
 			background-color: #ff5733;
+			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
+				0 10px 10px 0 rgba(0, 0, 0, 0.5);
+			position: relative;
+
+			span {
+				position: absolute;
+				top: -20px;
+			}
+
+			@keyframes fadeIn {
+				0% {
+					opacity: 0.5;
+					transform: scale(0.5);
+				}
+				100% {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+
+			animation-name: fadeIn;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+		}
+
+		@keyframes fadeOut {
+			0% {
+				opacity: 1;
+				transform: scale(1);
+			}
+			100% {
+				opacity: 0.5;
+				transform: scale(0.8);
+			}
+		}
+
+		.fade-out {
+			animation-name: fadeOut;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-out;
+			animation-fill-mode: forwards;
+		}
+	}
+	.stackVirtical {
+		width: 98%;
+		height: 600px;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 5px;
+		position: relative;
+		left: 100px;
+
+		.element {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #ff5733;
+			height: 30px;
+			width: 100px;
+			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
+				0 5px 5px 0 rgba(0, 0, 0, 0.5);
+			p {
+				font-weight: 500;
+				font-size: 24px;
+			}
+		}
+		@keyframes fadeIn {
+			0% {
+				opacity: 0.5;
+				transform: scale(0.5);
+			}
+			100% {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+		.elementTop {
+			animation-name: fadeIn;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+		}
+		@keyframes fadeOut {
+			0% {
+				opacity: 1;
+				transform: scale(1);
+			}
+			100% {
+				opacity: 0.5;
+				transform: scale(0.8);
+			}
+		}
+		.elementTopPop {
+			animation-name: fadeOut;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+		}
+
+		.glass-container {
+			position: absolute;
+			width: 140px;
+			left: -20px;
+			bottom: -15px;
+			background: rgba(157, 242, 250, 0.281);
+			border-radius: 5px;
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(1px);
+			-webkit-backdrop-filter: blur(1px);
+			border: 1px solid rgba(0, 231, 252, 0.692);
+		}
+	}
+	.footer {
+		display: flex;
+		gap: 5px;
+		margin: auto;
+		button {
+			border: none;
+			background-color: #ff5733;
+			width: 80px;
+			outline: none;
+			padding: 3px;
+			font-size: 24px;
+		}
+		.push {
+			border-radius: 0% 0px 0px 0%;
+		}
+		.pop {
+			border-radius: 0px 0% 0% 0px;
+		}
+		input {
+			padding: 3px;
+			outline: none;
+			border: none;
+			&::placeholder {
+				font-weight: 500;
+				opacity: 0.8;
+				font-size: 18px;
+			}
 		}
 	}
 }

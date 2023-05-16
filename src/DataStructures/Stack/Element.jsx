@@ -1,7 +1,10 @@
-export default function Element({ value }) {
+export default function Element({ value, index }) {
   return (
-    <div className="element">
-      <p>{value}</p>
+    <div className={`element element${index}`}>
+      <span>{index}</span>
+      <p>
+        {value}
+      </p>
     </div>
   );
 }
