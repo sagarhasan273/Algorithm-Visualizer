@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Element from './Element';
 import './Stack.scss';
 import StackHolder from './StackHolder';
+import CodeContainer from './CodeContainer';
 
 function getRandomInteger(min, max) {
   const mn = Math.ceil(min);
@@ -73,10 +74,11 @@ export default function Stack() {
         {stack.map((value, index) => (<Element value={value} key={index} index={index} />))}
       </div>
       <div className="stackVirtical">
-        <div className="glass-container" />
         {reverseStack.map(
           (value, index) => (<StackHolder value={value} key={index} index={index} />),
         )}
+        <div className="glass-container" />
+        <CodeContainer />
       </div>
       <div className="footer">
         <button className="push" type="button" onClick={pushElement}>Push</button>

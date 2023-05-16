@@ -1,7 +1,12 @@
 .StackContainer {
 	display: flex;
 	flex-direction: column;
-
+	justify-content: space-between;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: antiquewhite;
+	height: 96%;
+	position: relative;
 	.stackList {
 		height: 100px;
 		width: 70%;
@@ -62,17 +67,20 @@
 		}
 	}
 	.stackVirtical {
+		position: relative;
 		width: 98%;
-		height: 600px;
+		height: 335px;
+		max-height: fit-content;
+		background-color: aqua;
 		margin: auto;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		gap: 5px;
-		position: relative;
-		left: 100px;
-
+		padding-top: 20px;
 		.element {
+			position: relative;
+			left: 100px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -106,23 +114,25 @@
 			0% {
 				opacity: 1;
 				transform: scale(1);
+				top: 0px;
 			}
 			100% {
 				opacity: 0.5;
-				transform: scale(0.8);
+				transform: scale(0.1);
+				top: 15px;
 			}
 		}
 		.elementTopPop {
 			animation-name: fadeOut;
 			animation-duration: 0.5s;
-			animation-timing-function: ease-in;
+			animation-timing-function: ease-out;
 			animation-fill-mode: forwards;
 		}
 
 		.glass-container {
 			position: absolute;
+			left: 80px;
 			width: 140px;
-			left: -20px;
 			bottom: -15px;
 			background: rgba(157, 242, 250, 0.281);
 			border-radius: 5px;
@@ -130,6 +140,25 @@
 			backdrop-filter: blur(1px);
 			-webkit-backdrop-filter: blur(1px);
 			border: 1px solid rgba(0, 231, 252, 0.692);
+		}
+		.codeContainer {
+			position: absolute;
+			display: flex;
+			top: 35%;
+			right: 0px;
+			width: 500px;
+			// height: 500px;
+
+			.copy {
+				height: 30px;
+				position: absolute;
+				right: 10px;
+			}
+			.run {
+				height: 30px;
+				position: absolute;
+				right: 100px;
+			}
 		}
 	}
 	.footer {
