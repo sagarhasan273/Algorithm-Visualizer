@@ -3,9 +3,9 @@
 /* eslint-disable react/no-array-index-key */
 
 import { useEffect, useState } from 'react';
-import CodeContainer from './CodeContainer';
 import Element from './Element';
 import './Stack.scss';
+import StackCode from './StackCode';
 import StackHolder from './StackHolder';
 
 function getRandomInteger(min, max) {
@@ -15,7 +15,7 @@ function getRandomInteger(min, max) {
 }
 
 export default function Stack() {
-  const [stack, setStack] = useState([1, 2, 3, 3]);
+  const [stack, setStack] = useState([10, 12, 23, 83, 47, 58, 78, 11, 26, 13, 58]);
   const string = stack.join(', ');
   const code = `stack = [${string}]
 
@@ -92,6 +92,7 @@ print(stack) # you must have this line of code
     <div className="StackContainer">
       <div className="stackList">
         {stack.map((value, index) => (<Element value={value} key={index} index={index} />))}
+        <h1>Stack List</h1>
       </div>
       <div className="stackVirtical">
         <div className="glassElements">
@@ -99,8 +100,9 @@ print(stack) # you must have this line of code
             (value, index) => (<StackHolder value={value} key={index} index={index} />),
           )}
           <div className="glass-container" />
+          <h2>Stack</h2>
         </div>
-        <CodeContainer setStack={setStack} code={pythonCode} setCode={setPythonCode} />
+        <StackCode setStack={setStack} code={pythonCode} setCode={setPythonCode} />
       </div>
       <div className="footer">
         <button className="push" type="button" onClick={pushElement}>Push</button>
