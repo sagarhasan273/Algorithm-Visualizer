@@ -1,4 +1,5 @@
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
+import Queue from '../DataStructures/Queue/Queue';
 import Stack from '../DataStructures/Stack/Stack';
 import Testing from '../DataStructures/Testing/Testing';
 import './Container.css';
@@ -49,6 +50,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Queue Visualization</h2>
           <div className="horizontal-line" />
+          <Queue />
         </div>
       ) : null}
       {active === 'buttonDeque' ? (

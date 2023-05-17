@@ -3,16 +3,11 @@
 /* eslint-disable react/no-array-index-key */
 
 import { useEffect, useState } from 'react';
+import getRandomInteger from '../Components/GetRandomInteger';
 import Element from './Element';
 import './Stack.scss';
 import StackCode from './StackCode';
 import StackHolder from './StackHolder';
-
-function getRandomInteger(min, max) {
-  const mn = Math.ceil(min);
-  const mx = Math.floor(max);
-  return Math.floor(Math.random() * (mx - mn + 1)) + mn;
-}
 
 export default function Stack() {
   const [stack, setStack] = useState([10, 12, 23, 83, 47, 58, 78, 11, 26, 13, 58]);

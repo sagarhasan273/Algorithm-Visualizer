@@ -1,0 +1,41 @@
+.QueueContainer {
+	position: relative;
+	height: 96%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// justify-content: center;
+	gap: 10px;
+	.queueHorizontal {
+		position: relative;
+		top: 20px;
+		width: 78%;
+		height: 120px;
+		max-height: fit-content;
+		background-color: aqua;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+		padding-top: 20px;
+
+		.element {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 30px;
+			width: 35px;
+			background-color: #ff5733;
+			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
+				0 10px 10px 0 rgba(0, 0, 0, 0.5);
+			position: relative;
+			span {
+				position: absolute;
+				top: -20px;
+			}
+		}
+	}
+	.footer {
+	}
+}
