@@ -1,18 +1,15 @@
 .QueueContainer {
-	position: relative;
-	height: 96%;
+	// position: relative;
+	height: 92vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	// justify-content: center;
 	gap: 10px;
+	overflow: auto;
 	.queueHorizontal {
-		position: relative;
-		top: 20px;
-		width: 78%;
-		height: 120px;
+		width: 100%;
+		height: 70px;
 		max-height: fit-content;
-		background-color: aqua;
 		margin: auto;
 		display: flex;
 		align-items: center;
@@ -24,8 +21,8 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			height: 30px;
-			width: 35px;
+			height: 35px;
+			width: 40px;
 			background-color: #ff5733;
 			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
 				0 10px 10px 0 rgba(0, 0, 0, 0.5);
@@ -35,7 +32,134 @@
 				top: -20px;
 			}
 		}
+		@keyframes fadeIn {
+			0% {
+				opacity: 0.5;
+				transform: scale(0.5);
+			}
+			100% {
+				opacity: 1;
+				transform: scale(1);
+			}
+		}
+		.elementLast {
+			animation-name: fadeIn;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+		}
+		@keyframes fadeOut {
+			0% {
+				opacity: 1;
+				transform: scale(1);
+				top: 0px;
+			}
+			100% {
+				opacity: 0.5;
+				transform: scale(0.1);
+				top: 15px;
+			}
+		}
+		.elementFirst {
+			animation-name: fadeOut;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+		}
 	}
 	.footer {
+		// position: absolute;
+		bottom: 80px;
+		display: flex;
+		gap: 15px;
+		margin: auto;
+		button {
+			border: none;
+			background-color: #ff5733;
+			width: 120px;
+			outline: none;
+			padding: 3px;
+			font-size: 24px;
+			color: white;
+		}
+		.enqueue {
+			border-radius: 0% 0px 0px 0%;
+		}
+		.dequeue {
+			border-radius: 0px 0% 0% 0px;
+		}
+		input {
+			padding: 3px;
+			padding-left: 10px;
+			outline: none;
+			border: none;
+			width: 250px;
+			&::placeholder {
+				font-weight: 500;
+				opacity: 0.8;
+				font-size: 18px;
+			}
+		}
+	}
+	.codeContainer {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		// top: 35%;
+		right: 0px;
+		width: 80%;
+
+		.copy {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			outline: none;
+			border: none;
+			// background-color: rgb(224, 224, 224);
+			background: transparent;
+			cursor: pointer;
+			i {
+				font-size: 16px;
+			}
+		}
+		.run {
+			height: 30px;
+			width: 120px;
+			position: absolute;
+			right: 10px;
+			bottom: -35px;
+			outline: none;
+			border: none;
+			background-color: rgb(0, 189, 9);
+			cursor: pointer;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			border-radius: 50px;
+			gap: 5px;
+			opacity: 0.8;
+			color: white;
+			font-size: 16px;
+			font-weight: 500;
+		}
+		.run:hover {
+			opacity: 1;
+		}
+		.pythonTitle {
+			position: absolute;
+			left: 20%;
+			bottom: -55px;
+			// width: 200px;
+			height: 30px;
+			background-color: azure;
+			padding-left: 20px;
+			padding-right: 20px;
+			text-align: center;
+		}
+		.aceEditor {
+			font-size: 16px !important;
+		}
 	}
 }
