@@ -1,23 +1,24 @@
 .QueueContainer {
 	// position: relative;
 	height: 92vh;
+	max-height: fit-content;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 10px;
 	overflow: auto;
 	.queueHorizontal {
-		width: 100%;
+		position: relative;
+		width: 800px;
 		height: 70px;
 		max-height: fit-content;
 		margin: auto;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 5px;
+		gap: 10px;
 		padding-top: 20px;
 
 		.element {
+			position: absolute;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -26,10 +27,36 @@
 			background-color: #ff5733;
 			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
 				0 10px 10px 0 rgba(0, 0, 0, 0.5);
-			position: relative;
+			transition: left 0.5s;
+			transition-delay: 0.5s;
 			span {
 				position: absolute;
-				top: -20px;
+				top: -38px;
+			}
+		}
+		.element0 {
+			@keyframes element0Scale {
+				0% {
+					transform: scale(1);
+				}
+				100% {
+					transform: scale(1.2);
+				}
+			}
+			animation-name: element0Scale;
+			animation-duration: 0.2s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+			transition-delay: 0.5s;
+
+			margin-right: 30px !important;
+			box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5),
+				0 10px 10px 0 rgba(0, 0, 0, 0.5);
+			color: white;
+			font-size: 24px;
+			span {
+				color: black;
+				font-size: medium;
 			}
 		}
 		@keyframes fadeIn {
@@ -52,19 +79,39 @@
 			0% {
 				opacity: 1;
 				transform: scale(1);
-				top: 0px;
 			}
+
 			100% {
 				opacity: 0.5;
 				transform: scale(0.1);
-				top: 15px;
+				display: none;
 			}
 		}
 		.elementFirst {
+			position: relative;
 			animation-name: fadeOut;
 			animation-duration: 0.5s;
 			animation-timing-function: ease-in;
 			animation-fill-mode: forwards;
+		}
+
+		.glass-container {
+			position: absolute;
+			width: 0px;
+			height: 80px;
+			left: 45px;
+			top: 0px;
+			// bottom: -15px;
+			background: rgba(157, 242, 250, 0.281);
+			border-radius: 5px;
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(1px);
+			-webkit-backdrop-filter: blur(1px);
+			border: 1px solid rgba(0, 231, 252, 0.692);
+			cursor: no-drop;
+			transition-property: width;
+			transition-duration: 1s;
+			transition-delay: 0.2s;
 		}
 	}
 	.footer {

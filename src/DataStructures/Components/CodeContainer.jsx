@@ -5,6 +5,7 @@ import AceEditor from 'react-ace';
 
 import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/theme-github';
+import keyValue from './GenerateKey';
 
 function PythonCodeEditor({
   setData, code, setCode, isHovered,
@@ -40,11 +41,12 @@ function PythonCodeEditor({
     import io
     sys.stdout = io.StringIO()
     `);
-    pyodide.runPython(code);
-    const stdout = pyodide.runPython('sys.stdout.getvalue()');
+    let stdout = null;
     try {
-      const output = JSON.parse(stdout);
-      setData(output);
+      pyodide.runPython(code);
+      stdout = pyodide.runPython('sys.stdout.getvalue()');
+      const pairs = JSON.parse(stdout).map((value) => ({ id: keyValue(), data: value }));
+      setData(pairs);
     } catch (error) {
       alert(`${stdout} \n Queue List print Just!`);
     }

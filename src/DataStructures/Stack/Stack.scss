@@ -145,14 +145,18 @@
 				position: absolute;
 				left: 0px;
 				width: 140px;
+				height: 0px;
 				bottom: -15px;
-				background: rgba(157, 242, 250, 0.281);
+				background: rgba(157, 242, 250, 0.479);
 				border-radius: 5px;
 				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 				backdrop-filter: blur(1px);
 				-webkit-backdrop-filter: blur(1px);
 				border: 1px solid rgba(0, 231, 252, 0.692);
 				cursor: no-drop;
+				transition-property: height;
+				transition-duration: 1s;
+				transition-delay: 0.25s;
 			}
 			h2 {
 				position: absolute;

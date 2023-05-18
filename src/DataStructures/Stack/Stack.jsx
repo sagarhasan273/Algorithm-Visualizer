@@ -69,7 +69,7 @@ print(stack) # you must have this line of code
       if (counter === 1) {
         clearInterval(interval);
       }
-    }, 500);
+    }, 400);
     setPythonCode(`stack = [${stack.join(', ')}]
 stack.pop()
 
