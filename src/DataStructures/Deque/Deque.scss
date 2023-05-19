@@ -35,6 +35,9 @@
 				top: -38px;
 			}
 		}
+		.elementLast {
+			margin-left: 10px;
+		}
 		.element0,
 		.elementLast {
 			margin-right: 30px !important;
@@ -42,37 +45,28 @@
 				0 10px 10px 0 rgba(0, 0, 0, 0.5);
 			color: white;
 			font-size: 24px;
+
 			span {
 				color: black;
 				font-size: medium;
 			}
+
+			@keyframes element0Scale {
+				0% {
+					transform: scale(0.8);
+				}
+				100% {
+					transform: scale(1.2);
+				}
+			}
 			animation-name: element0Scale;
-			animation-duration: 0.2s;
+			animation-duration: 0.5s;
 			animation-timing-function: ease-in;
 			animation-fill-mode: forwards;
 			// transition-delay: 0.5s;
 			z-index: 1;
 		}
-		.elementLast {
-			@keyframes fadeIn {
-				0% {
-					opacity: 0.5;
-					transform: scale(0.5);
-				}
-				100% {
-					opacity: 1;
-					transform: scale(1.2);
-				}
-			}
-			animation-name: fadeIn;
-			animation-duration: 0.5s;
-			animation-timing-function: ease-in;
-			animation-fill-mode: forwards;
 
-			// transition-delay: 0.5s;
-
-			margin-left: 10px;
-		}
 		@keyframes fadeOut {
 			0% {
 				opacity: 1;
@@ -109,6 +103,7 @@
 			cursor: no-drop;
 			transition-property: width;
 			transition-duration: 0.5s;
+			// transition-delay: 0.5s;
 		}
 	}
 	.footer {

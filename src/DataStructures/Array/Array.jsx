@@ -31,13 +31,12 @@ export default function array() {
   const [indexToAdd, setIndexToAdd] = useState(array.length - 1);
 
   let string = array.map((item) => item.data).join(', ');
-  let code = `import collections
+  let code = `array = [${string}]
+# write your code Bellow
 
-array = collections.array([${string}])
 
 # write your code above
-print(list(array)) # you must have this line of code
-
+print(array) # you must have this line of code
 `;
   const [pythonCode, setPythonCode] = useState(code);
 
@@ -55,16 +54,35 @@ print(list(array)) # you must have this line of code
     return () => {};
   }, [array]);
 
-  const handleEnqueueLast = () => {
+  const handleIndexAdd = () => {
+    randomNum = getRandomInteger(1, 100);
     string = array.map((item) => item.data).join(', ');
-    code = `import collections
+    code = `array = [${string}]
 
-array = collections.array([${string}])
-array.append(${val || randomNum})
+array.insert(${indexToAdd || (array.length)}, ${val || randomNum})
 
 # write your code above
-print(list(array)) # you must have this line of code  
+print(array) # you must have this line of code  
 
+`;
+    setPythonCode(code);
+    setarray((prevArray) => {
+      const newArray = [...prevArray];
+      newArray.splice(indexToAdd || (array.length), 0, { id: keyValue(), data: (val || randomNum) });
+      return newArray;
+    });
+    setVal('');
+  };
+
+  const handleEnqueueFront = () => {
+    randomNum = getRandomInteger(1, 100);
+    string = array.map((item) => item.data).join(', ');
+    code = `array = [${string}]
+# write your code Bellow
+array.append(${val || randomNum})
+
+# write your code Above
+print(array) # you must have this line of code  
 `;
     setPythonCode(code);
     setarray([...array, { id: keyValue(), data: (val || randomNum) }]);
@@ -75,49 +93,23 @@ print(list(array)) # you must have this line of code
         clearInterval(interval);
       }
     }, 500);
-    randomNum = getRandomInteger(1, 100);
+
     setVal('');
   };
 
-  const handleEnqueueFront = () => {
-    string = array.map((item) => item.data).join(', ');
-    code = `import collections
-
-array = collections.array([${string}])
-array.appendleft(${val || randomNum})
-
-# write your code above
-print(list(array)) # you must have this line of code  
-
-`;
-    setPythonCode(code);
-    setarray([{ id: keyValue(), data: (val || randomNum) }, ...array]);
-    let counter = 0;
-    const interval = setTimeout(() => {
-      counter += 1;
-      if (counter === 1) {
-        clearInterval(interval);
-      }
-    }, 500);
-    randomNum = getRandomInteger(1, 100);
-    setVal('');
-  };
-
-  const handlearrayueFront = () => {
+  const handleDeleteFront = () => {
     if (array.length === 0) {
       alert('array is empty. Cannot pop element.');
       return;
     }
 
     string = array.map((item) => item.data).join(', ');
-    code = `import collections
-
-array = collections.array([${string}])
-array.popleft()
-
-# write your code above
-print(list(array)) # you must have this line of code
-
+    code = `array = [${string}]
+# write your code Bellow
+array.pop(0)
+        
+# write your code Above
+print(array) # you must have this line of code 
 `;
     setPythonCode(code);
     const popDiv = document.querySelector('.element0');
@@ -133,7 +125,7 @@ print(list(array)) # you must have this line of code
     }, 500);
   };
 
-  const handlearrayueLast = () => {
+  const handleDeleteLast = () => {
     if (array.length === 0 || indexToDelete >= array.length) {
       alert('array is empty. Cannot pop element.');
       return;
@@ -194,10 +186,10 @@ print(list(array)) # you must have this line of code
       <div className="footer">
         <button type="button" onClick={handleEnqueueFront}>Add</button>
         <input type="text" className="valueInput" value={val} onChange={handleChange} placeholder={`Random number.. ${randomNum}`} />
-        <button className="enqueue" type="button" onClick={handleEnqueueLast}>Add By Index</button>
-        <input type="text" className="indexInputAdd" value={indexToAdd} onChange={handleChangeIndexAdd} placeholder={`Index to Add.. ${array.length - 1}`} />
-        <button className="arrayue" type="button" onClick={handlearrayueFront}>arrayue Front</button>
-        <button type="button" onClick={handlearrayueLast}>Delete</button>
+        <button className="enqueue" type="button" onClick={handleIndexAdd}>Add By Index</button>
+        <input type="text" className="indexInputAdd" value={indexToAdd} onChange={handleChangeIndexAdd} placeholder={`Index ${array.length}`} />
+        <button className="deleteFront" type="button" onClick={handleDeleteFront}>Delete Front</button>
+        <button type="button" onClick={handleDeleteLast}>Delete</button>
         <input type="text" className="indexInputDelete" value={indexToDelete} onChange={handleChangeIndex} placeholder={`Index to delete.. ${array.length - 1}`} />
       </div>
     </div>
