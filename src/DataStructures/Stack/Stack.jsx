@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-alert */
 /* eslint-disable react/no-array-index-key */
@@ -10,7 +11,7 @@ import StackCode from './StackCode';
 import StackHolder from './StackHolder';
 
 export default function Stack() {
-  const [stack, setStack] = useState([10, 12, 23, 83, 47, 58, 78, 11, 26, 13, 58]);
+  const [stack, setStack] = useState([10, 12, 23, 83, 47, 58]);
   const string = stack.join(', ');
   const code = `stack = [${string}]
 
@@ -82,17 +83,26 @@ print(stack) # you must have this line of code
     setVal(e.target.value);
   };
 
+  const handleStackList = () => {
+    const stackList = document.querySelector('.stackList');
+    if (stackList.style.display === 'none') {
+      stackList.style.display = 'flex';
+    } else {
+      stackList.style.display = 'none';
+    }
+  };
+
   const reverseStack = stack.slice().reverse();
   return (
     <div className="StackContainer">
       <div className="stackList">
         {stack.map((value, index) => (<Element value={value} key={index} index={index} />))}
-        <h1>Stack List</h1>
       </div>
+      <h1>Stack List <button type="button" onClick={handleStackList}>hideshow</button></h1>
       <div className="stackVirtical">
         <div className="glassElements">
           {reverseStack.map(
-            (value, index) => (<StackHolder value={value} key={index} index={index} />),
+            (value, index) => (<StackHolder value={value} key={index} index={index} length={stack.length} />),
           )}
           <div className="glass-container" />
           <h2>Stack</h2>
@@ -101,7 +111,7 @@ print(stack) # you must have this line of code
       </div>
       <div className="footer">
         <button className="push" type="button" onClick={pushElement}>Push</button>
-        <input type="text" value={val} onChange={handleInput} placeholder={`random number.. ${randomNum}`} />
+        <input type="text" value={val} onChange={handleInput} placeholder={`Random number.. ${randomNum}`} />
         <button className="pop" type="button" onClick={popElement}>Pop</button>
       </div>
     </div>
