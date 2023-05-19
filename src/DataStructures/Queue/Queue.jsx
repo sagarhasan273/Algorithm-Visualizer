@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-unused-vars */
@@ -76,7 +77,10 @@ print(list(queue)) # you must have this line of code
   };
 
   const handleDequeue = () => {
-    if (!queue.length) return;
+    if (queue.length === 0) {
+      alert('deque is empty. Cannot pop element.');
+      return;
+    }
     string = queue.map((item) => item.data).join(', ');
     code = `import collections
 

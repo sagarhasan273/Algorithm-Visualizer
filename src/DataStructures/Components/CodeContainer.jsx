@@ -5,6 +5,7 @@ import AceEditor from 'react-ace';
 
 import 'ace-builds/src-noconflict/mode-python';
 import 'ace-builds/src-noconflict/theme-github';
+import './CodeContainer.scss';
 import keyValue from './GenerateKey';
 
 function PythonCodeEditor({
@@ -32,8 +33,7 @@ function PythonCodeEditor({
 
   const handleRun = async (e) => {
     console.log('Code running...');
-    e.target.innerHTML = '<i class="fa fa-circle-o-notch fa-spin"></i>Running...';
-    e.target.style.opacity = '1';
+    e.target.innerHTML = '<i class="fa fa-circle-o-notch fa-spin"></i> Running...';
     const pyodide = await loadPyodide();
     // Pyodide is now ready to use...
     pyodide.runPython(`
@@ -51,7 +51,6 @@ function PythonCodeEditor({
       alert(`${stdout} \n Queue List print Just!`);
     }
     e.target.innerHTML = 'Run Code';
-    e.target.style.opacity = '0.8';
     console.log('Code exicuted!');
   };
 

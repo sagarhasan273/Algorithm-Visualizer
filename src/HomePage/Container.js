@@ -1,3 +1,5 @@
+import Array from '../DataStructures/Array/Array';
+import Deque from '../DataStructures/Deque/Deque';
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
 import Queue from '../DataStructures/Queue/Queue';
 import Stack from '../DataStructures/Stack/Stack';
@@ -27,6 +29,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Array Visualization</h2>
           <div className="horizontal-line" />
+          <Array />
         </div>
       ) : null}
 
@@ -61,6 +64,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Deque Visualization</h2>
           <div className="horizontal-line" />
+          <Deque />
         </div>
       ) : null}
       {active === 'buttonLinkedList' ? (

@@ -1,4 +1,4 @@
-.QueueContainer {
+.DequeContainer {
 	// position: relative;
 	height: 92vh;
 	max-height: fit-content;
@@ -7,13 +7,14 @@
 	align-items: center;
 	gap: 10px;
 	overflow: auto;
-	.queueHorizontal {
+	.dequeHorizontal {
 		position: relative;
 		width: 800px;
-		height: 70px;
+		height: 100px;
 		max-height: fit-content;
 		margin: auto;
 		display: flex;
+		align-items: center;
 		gap: 10px;
 		padding-top: 20px;
 
@@ -28,27 +29,14 @@
 			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
 				0 10px 10px 0 rgba(0, 0, 0, 0.5);
 			transition: left 0.5s;
-			transition-delay: 0.5s;
+			// transition-delay: 0.5s;
 			span {
 				position: absolute;
 				top: -38px;
 			}
 		}
-		.element0 {
-			@keyframes element0Scale {
-				0% {
-					transform: scale(1);
-				}
-				100% {
-					transform: scale(1.2);
-				}
-			}
-			animation-name: element0Scale;
-			animation-duration: 0.2s;
-			animation-timing-function: ease-in;
-			animation-fill-mode: forwards;
-			transition-delay: 0.5s;
-
+		.element0,
+		.elementLast {
 			margin-right: 30px !important;
 			box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5),
 				0 10px 10px 0 rgba(0, 0, 0, 0.5);
@@ -58,23 +46,32 @@
 				color: black;
 				font-size: medium;
 			}
+			animation-name: element0Scale;
+			animation-duration: 0.2s;
+			animation-timing-function: ease-in;
+			animation-fill-mode: forwards;
+			// transition-delay: 0.5s;
 			z-index: 1;
 		}
-		@keyframes fadeIn {
-			0% {
-				opacity: 0.5;
-				transform: scale(0.5);
-			}
-			100% {
-				opacity: 1;
-				transform: scale(1);
-			}
-		}
 		.elementLast {
+			@keyframes fadeIn {
+				0% {
+					opacity: 0.5;
+					transform: scale(0.5);
+				}
+				100% {
+					opacity: 1;
+					transform: scale(1.2);
+				}
+			}
 			animation-name: fadeIn;
 			animation-duration: 0.5s;
 			animation-timing-function: ease-in;
 			animation-fill-mode: forwards;
+
+			// transition-delay: 0.5s;
+
+			margin-left: 10px;
 		}
 		@keyframes fadeOut {
 			0% {
@@ -101,7 +98,7 @@
 			width: 0px;
 			height: 80px;
 			left: 45px;
-			top: 0px;
+			top: 35px;
 			// bottom: -15px;
 			background: rgba(157, 242, 250, 0.281);
 			border-radius: 5px;
@@ -111,41 +108,51 @@
 			border: 1px solid rgba(0, 231, 252, 0.692);
 			cursor: no-drop;
 			transition-property: width;
-			transition-duration: 1s;
-			transition-delay: 0.5s;
+			transition-duration: 0.5s;
 		}
 	}
 	.footer {
 		// position: absolute;
 		bottom: 80px;
+		height: 250px;
 		display: flex;
-		gap: 15px;
+		align-items: center;
 		margin: auto;
 		button {
 			border: none;
 			background-color: #ff5733;
-			width: 120px;
+			width: 150px;
 			outline: none;
 			padding: 3px;
-			font-size: 24px;
+			font-size: 18px;
+			color: white;
+		}
+		button:hover {
+			cursor: pointer;
+			background-color: #000000;
 			color: white;
 		}
 		.enqueue {
 			border-radius: 0% 0px 0px 0%;
+			margin-right: 10px !important;
 		}
 		.dequeue {
 			border-radius: 0px 0% 0% 0px;
+			margin-left: 10px;
 		}
 		input {
-			padding: 3px;
 			padding-left: 10px;
 			outline: none;
+			height: 26px;
 			border: none;
+			font-size: 18px;
 			width: 250px;
 			&::placeholder {
 				font-weight: 500;
 				opacity: 0.8;
 				font-size: 18px;
+				position: absolute;
+				top: 4px;
 			}
 		}
 	}

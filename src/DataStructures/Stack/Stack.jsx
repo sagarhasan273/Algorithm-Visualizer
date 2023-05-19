@@ -64,8 +64,8 @@ print(stack) # you must have this line of code
     let counter = 0;
     const interval = setTimeout(() => {
       setStack(stack.slice(0, stack.length - 1));
-      elementTopPop.classList.remove('elementTopPop');
       counter += 1;
+      elementTopPop.classList.remove('elementTopPop');
       if (counter === 1) {
         clearInterval(interval);
       }

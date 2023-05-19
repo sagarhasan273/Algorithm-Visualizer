@@ -1,19 +1,21 @@
-.QueueContainer {
+.arrayContainer {
 	// position: relative;
 	height: 92vh;
 	max-height: fit-content;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	gap: 10px;
 	overflow: auto;
-	.queueHorizontal {
+	.arrayHorizontal {
 		position: relative;
 		width: 800px;
-		height: 70px;
+		height: 100px;
 		max-height: fit-content;
 		margin: auto;
 		display: flex;
+		align-items: center;
 		gap: 10px;
 		padding-top: 20px;
 
@@ -28,127 +30,44 @@
 			box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5),
 				0 10px 10px 0 rgba(0, 0, 0, 0.5);
 			transition: left 0.5s;
-			transition-delay: 0.5s;
+			// transition-delay: 0.5s;
 			span {
 				position: absolute;
 				top: -38px;
 			}
-		}
-		.element0 {
-			@keyframes element0Scale {
+			@keyframes fadeIn {
 				0% {
-					transform: scale(1);
+					opacity: 0.5;
+					transform: scale(0.5);
 				}
 				100% {
-					transform: scale(1.2);
+					opacity: 1;
+					transform: scale(1);
 				}
 			}
-			animation-name: element0Scale;
-			animation-duration: 0.2s;
-			animation-timing-function: ease-in;
-			animation-fill-mode: forwards;
-			transition-delay: 0.5s;
-
-			margin-right: 30px !important;
-			box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5),
-				0 10px 10px 0 rgba(0, 0, 0, 0.5);
-			color: white;
-			font-size: 24px;
-			span {
-				color: black;
-				font-size: medium;
-			}
-			z-index: 1;
-		}
-		@keyframes fadeIn {
-			0% {
-				opacity: 0.5;
-				transform: scale(0.5);
-			}
-			100% {
-				opacity: 1;
-				transform: scale(1);
-			}
-		}
-		.elementLast {
 			animation-name: fadeIn;
 			animation-duration: 0.5s;
 			animation-timing-function: ease-in;
 			animation-fill-mode: forwards;
 		}
-		@keyframes fadeOut {
-			0% {
-				opacity: 1;
-				transform: scale(1);
+		.elementOut {
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+					transform: scale(1);
+				}
+				100% {
+					opacity: 0.1;
+					transform: scale(0.1);
+				}
 			}
-
-			100% {
-				opacity: 0.5;
-				transform: scale(0.1);
-				display: none;
-			}
-		}
-		.elementFirst {
-			position: relative;
 			animation-name: fadeOut;
 			animation-duration: 0.5s;
 			animation-timing-function: ease-in;
 			animation-fill-mode: forwards;
 		}
+	}
 
-		.glass-container {
-			position: absolute;
-			width: 0px;
-			height: 80px;
-			left: 45px;
-			top: 0px;
-			// bottom: -15px;
-			background: rgba(157, 242, 250, 0.281);
-			border-radius: 5px;
-			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-			backdrop-filter: blur(1px);
-			-webkit-backdrop-filter: blur(1px);
-			border: 1px solid rgba(0, 231, 252, 0.692);
-			cursor: no-drop;
-			transition-property: width;
-			transition-duration: 1s;
-			transition-delay: 0.5s;
-		}
-	}
-	.footer {
-		// position: absolute;
-		bottom: 80px;
-		display: flex;
-		gap: 15px;
-		margin: auto;
-		button {
-			border: none;
-			background-color: #ff5733;
-			width: 120px;
-			outline: none;
-			padding: 3px;
-			font-size: 24px;
-			color: white;
-		}
-		.enqueue {
-			border-radius: 0% 0px 0px 0%;
-		}
-		.dequeue {
-			border-radius: 0px 0% 0% 0px;
-		}
-		input {
-			padding: 3px;
-			padding-left: 10px;
-			outline: none;
-			border: none;
-			width: 250px;
-			&::placeholder {
-				font-weight: 500;
-				opacity: 0.8;
-				font-size: 18px;
-			}
-		}
-	}
 	.codeContainer {
 		position: relative;
 		display: flex;
@@ -208,6 +127,56 @@
 		}
 		.aceEditor {
 			font-size: 16px !important;
+		}
+	}
+	.footer {
+		bottom: 80px;
+		height: 250px;
+		// width: 100%;
+		background-color: #b4b0af;
+		display: flex;
+		align-items: center;
+		margin: auto;
+		button {
+			border: none;
+			background-color: #ff5733;
+			width: 140px;
+			outline: none;
+			font-size: 18px;
+			color: white;
+			height: 25px;
+		}
+		button:hover {
+			cursor: pointer;
+			background-color: #000000;
+			color: white;
+		}
+
+		.valueInput {
+			height: 23px;
+			outline: none;
+			border: none;
+			width: 150px;
+		}
+		.indexInputAdd {
+			height: 23px;
+			outline: none;
+			border: none;
+			width: 35px;
+			margin-right: 10px;
+		}
+		.indexInputDelete {
+			height: 23px;
+			outline: none;
+			border: none;
+			width: 100px;
+			&::placeholder {
+				font-weight: 500;
+				opacity: 0.8;
+				font-size: 12px;
+				position: absolute;
+				top: 6px;
+			}
 		}
 	}
 }
