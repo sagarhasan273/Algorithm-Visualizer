@@ -117,7 +117,7 @@ print(list(queue)) # you must have this line of code
           <Element value={value} key={value.id} index={index} length={queue.length} fade={fade} />))}
         <div className="glass-container" />
       </div>
-      <CodeContainer setData={setQueue} code={pythonCode} setCode={setPythonCode} />
+      <CodeContainer setData={setQueue} code={pythonCode} setCode={setPythonCode} data={queue} />
       <div className="footer">
         <button className="enqueue" type="button" onClick={handleEnqueue}>Enqueue</button>
         <input type="text" value={val} onChange={handleChange} placeholder={`Random number.. ${randomNum}`} />

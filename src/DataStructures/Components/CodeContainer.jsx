@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-alert */
 /* eslint-disable no-undef */
 import { useRef, useState } from 'react';
@@ -9,7 +11,7 @@ import './CodeContainer.scss';
 import keyValue from './GenerateKey';
 
 function PythonCodeEditor({
-  setData, code, setCode, isHovered,
+  setData, code, setCode, isHovered, data,
 }) {
   const editorRef = useRef(null);
 
@@ -45,10 +47,35 @@ function PythonCodeEditor({
     try {
       pyodide.runPython(code);
       stdout = pyodide.runPython('sys.stdout.getvalue()');
-      const pairs = JSON.parse(stdout).map((value) => ({ id: keyValue(), data: value }));
-      setData(pairs);
+      const list = JSON.parse(stdout);
+      const updatedArray1 = [...data];
+
+      // Traverse array1 and compare data values with array2
+      updatedArray1.forEach((item, index) => {
+        const newData = list[index];
+
+        if (newData === undefined) {
+          // Handle deletion - remove the item from updatedArray1
+          updatedArray1.splice(index, 1);
+        } else if (item.data !== newData) {
+          // Handle data update - generate a new random id
+          const newId = keyValue();
+          item.id = newId;
+          item.data = newData;
+        }
+      });
+
+      // Handle insertion of new elements from array2
+      if (list.length > updatedArray1.length) {
+        for (let i = updatedArray1.length; i < list.length; i++) {
+          const newData = list[i];
+          const newId = keyValue();
+          updatedArray1.push({ id: newId, data: newData });
+        }
+      }
+      setData(updatedArray1);
     } catch (error) {
-      alert(`${stdout} \n Queue List print Just!`);
+      alert(`${stdout} \n Do not follow the fundamental concept!`);
     }
     e.target.innerHTML = 'Run Code';
     console.log('Code exicuted!');
@@ -73,7 +100,7 @@ function PythonCodeEditor({
 }
 
 export default function CodeContainer({
-  code, setData, setCode,
+  code, setData, setCode, data,
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -98,6 +125,7 @@ export default function CodeContainer({
         code={code}
         setCode={setCode}
         isHovered={isHovered}
+        data={data}
       />
     </div>
   );

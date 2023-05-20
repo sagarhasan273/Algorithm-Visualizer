@@ -151,11 +151,11 @@ print(array) # you must have this line of code
     string = array.map((item) => item.data).join(', ');
     code = `import collections
 
-array = collections.array([${string}])
-array.pop()
+array = [${string}]
+array.pop(${indexToDelete})
 
 # write your code above
-print(list(array)) # you must have this line of code
+print(array) # you must have this line of code
 
 `;
     setPythonCode(code);
@@ -182,7 +182,7 @@ print(list(array)) # you must have this line of code
           <Element value={value} key={value.id} index={index} length={array.length} />))}
         <div className="glass-container" />
       </div>
-      <CodeContainer setData={setarray} code={pythonCode} setCode={setPythonCode} />
+      <CodeContainer setData={setarray} code={pythonCode} setCode={setPythonCode} data={array} />
       <div className="footer">
         <button type="button" onClick={handleEnqueueFront}>Add</button>
         <input type="text" className="valueInput" value={val} onChange={handleChange} placeholder={`Random number.. ${randomNum}`} />

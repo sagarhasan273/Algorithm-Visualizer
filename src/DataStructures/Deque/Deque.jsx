@@ -160,7 +160,7 @@ print(list(deque)) # you must have this line of code
           <Element value={value} key={value.id} index={index} length={deque.length} />))}
         <div className="glass-container" />
       </div>
-      <CodeContainer setData={setdeque} code={pythonCode} setCode={setPythonCode} />
+      <CodeContainer setData={setdeque} code={pythonCode} setCode={setPythonCode} data={deque} />
       <div className="footer">
         <button type="button" onClick={handleEnqueueFront}>Enqueue Front</button>
         <button className="enqueue" type="button" onClick={handleEnqueueLast}>Enqueue Last</button>
