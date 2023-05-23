@@ -53,7 +53,6 @@ function PythonCodeEditor({
       // Traverse array1 and compare data values with array2
       updatedArray1.forEach((item, index) => {
         const newData = list[index];
-
         if (newData === undefined) {
           // Handle deletion - remove the item from updatedArray1
           updatedArray1.splice(index, 1);
