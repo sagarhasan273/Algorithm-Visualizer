@@ -35,6 +35,10 @@ function App() {
       </div>
       <button onClick={handleDeleteFirst}>Delete First</button>
       <button onClick={handleDeleteLast}>Delete Last</button>
+      <div className="arrow-container">
+        <div className="arrow" />
+      </div>
+
     </div>
   );
 }
