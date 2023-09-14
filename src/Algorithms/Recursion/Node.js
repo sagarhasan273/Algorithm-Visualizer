@@ -5,7 +5,7 @@ function Node(props) {
   const { value, nodes } = props;
   return (
     <g>
-      <circle cx={nodes[value][0]} cy={nodes[value][1]} r="7" stroke="black" fill="none" strokeWidth={0.5} />
+      <circle cx={nodes[value][0]} cy={nodes[value][1]} r="7" stroke="black" fill="none" strokeWidth={0.7} />
       <text
         x={nodes[value][0]}
         y={nodes[value][1]}

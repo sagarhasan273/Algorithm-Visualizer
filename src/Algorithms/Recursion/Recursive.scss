@@ -1,13 +1,53 @@
 .callerStack {
 	display: flex;
 	flex-direction: column-reverse;
-	width: 18%;
+	width: 14%;
 	height: calc(100% - 5em);
 	padding: 5px;
+	border-left: 1px solid #af2202;
 }
 .callerStackItems {
-	background-color: #ff5733;
-	border: 2px solid #d12d08;
+	background-color: #f77153;
+	border: 2px solid #f54d27;
 	text-align: center;
 	margin: 2px;
+}
+.controlbutton {
+	padding: 0px;
+	margin: 1px;
+	border: none;
+}
+.controlbuttonRun {
+	padding: 11px;
+	margin: 2px;
+	border-radius: 3px;
+	border: 1px solid black;
+	&:hover {
+		color: #ffffff;
+		background-color: #f77153;
+		border: 1px solid rgb(255, 0, 0);
+	}
+}
+.controlInput {
+	padding: 11px;
+	margin: 2px;
+	border-radius: 3px;
+	border: 1px solid black;
+	font-size: 14px;
+	&:hover {
+		color: #ffffff;
+		background-color: #f77153;
+		border: 1px solid rgb(255, 0, 0);
+	}
+}
+.controlFont {
+	padding: 12px;
+	margin: 1px;
+	border-radius: 3px;
+	border: 1px solid black;
+	&:hover {
+		color: #ffffff;
+		background-color: #f77153;
+		border: 1px solid rgb(255, 0, 0);
+	}
 }

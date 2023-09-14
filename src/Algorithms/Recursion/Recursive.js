@@ -1,6 +1,12 @@
+/* eslint-disable indent */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-array-index-key */
+import {
+    faBackward, faForward, faPause, faPlay, faReply,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import keyValue from '../Components/GenerateKey';
 import LinkedLine from './LinkedLine';
@@ -9,10 +15,11 @@ import './Recursive.scss';
 
 export default function Recursive() {
   const [range, setRange] = useState(1);
-  const [isIntervalActive, setIsIntervalActive] = useState(true);
+  const [isIntervalActive, setIsIntervalActive] = useState(false);
+  const [num, setNum] = useState(0);
+  const [numText, setNumText] = useState(0);
   const delay = 500;
   const mx = [0, 20];
-  const num = 5;
   const nodes = {};
   const nodeArray = [];
   const callerStack = [[num]];
@@ -68,7 +75,7 @@ export default function Recursive() {
     }
 
     return () => {
-      clearInterval(interval); // Clear the interval when the component unmounts
+      clearInterval(interval);
     };
   }, [isIntervalActive]);
 
@@ -78,13 +85,24 @@ export default function Recursive() {
   };
 
   const handleChangePlus = () => {
-    if (range === nodeArray.length) return;
+    if (range === nodeArray.length || isIntervalActive) return;
     setRange((prev) => prev + 1);
   };
   const handleChangeMinus = () => {
-    if (range === 0) return;
+    if (range === 0 || isIntervalActive) return;
     setRange((prev) => prev - 1);
     setIsIntervalActive(false);
+  };
+  const handleChangeRun = (e) => {
+    e.preventDefault();
+    fb(num, 1, 'R');
+    setRange(1);
+    setNum(numText);
+    setIsIntervalActive(true);
+  };
+  const onChangeHandleInput = (event) => {
+    event.preventDefault();
+    setNumText(event.target.value);
   };
 
   const edgesList = new Map();
@@ -113,18 +131,25 @@ export default function Recursive() {
   });
   return (
     <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
-      <div style={{ width: '80%', height: 'calc(100% - 5em)' }}>
+      <div style={{
+        width: '85%', height: 'calc(100% - 5em)', display: 'flex', flexDirection: 'column', alignItems: 'center',
+        }}
+      >
         <svg viewBox={`0 0 ${mx[0] + 30} ${mx[1] + 30}`} style={{ width: '100%', height: '100%' }}>
           {nodeArray.slice(0, range).map((value) => (
             <Node key={keyValue()} value={value} nodes={nodes} nodeArray={nodeArray} />))}
           {tempEdges}
         </svg>
-        <button type="button" onClick={handleChangePlus}>+</button>
-        <button type="button" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? 'Restart' : 'Resume' : 'Pause'}</button>
-        <button type="button" onClick={handleChangeMinus}>-</button>
+        <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'center' }}>
+          <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} />
+          <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
+          <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
+          <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faReply} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
+          <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
+        </div>
 
       </div>
-      <div className="callerStack">{callerStack[range - 1].map((value) => (<h1 className="callerStackItems">{value}</h1>))}
+      <div className="callerStack">{callerStack[range - 1].map((value) => (<h1 className="callerStackItems">fn({value})</h1>))}
       </div>
     </div>
   );
