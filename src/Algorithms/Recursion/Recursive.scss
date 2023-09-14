@@ -1,0 +1,13 @@
+.callerStack {
+	display: flex;
+	flex-direction: column-reverse;
+	width: 18%;
+	height: calc(100% - 5em);
+	padding: 5px;
+}
+.callerStackItems {
+	background-color: #ff5733;
+	border: 2px solid #d12d08;
+	text-align: center;
+	margin: 2px;
+}

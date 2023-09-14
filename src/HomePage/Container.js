@@ -1,3 +1,4 @@
+import Recursive from '../Algorithms/Recursion/Recursive';
 import Array from '../DataStructures/Array/Array';
 import Deque from '../DataStructures/Deque/Deque';
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
@@ -116,6 +117,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Recursive Visualization</h2>
           <div className="horizontal-line" />
+          <Recursive />
         </div>
       ) : null}
       {active === 'buttonBacktracking' ? (
