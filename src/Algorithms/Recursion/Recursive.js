@@ -95,12 +95,7 @@ export default function Recursive() {
   };
   const handleChangeRun = (e) => {
     e.preventDefault();
-    nodeArray.length = 0;
-    nodes.length = 0;
-    stack.length = 0;
-    tempEdges.length = 0;
-    edgesList.length = 0;
-    fb(num, 1, 'R');
+    if (isIntervalActive) return;
     setRange(1);
     setNum(numText);
     setIsIntervalActive(true);
