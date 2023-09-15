@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 export default function LinkedLine(props) {
   const {
-    x1, x2, y1, y2, xy, index,
+    x1, x2, y1, y2, xy, index, val,
   } = props;
 
   const distance = 8;
@@ -29,6 +29,21 @@ export default function LinkedLine(props) {
         <animate attributeName="x2" from={ax1} to={ax2} dur="0.2s" repeatCount="1" restart="always" className={`animate${index}`} />
         <animate attributeName="y2" from={ay1} to={ay2} dur="0.2s" repeatCount="1" restart="always" className={`animate${index}`} />
       </line>
+      <text
+        x={(ax1 + ax2) / 2}
+        y={(ay1 + ay2) / 2}
+        style={{
+          transform: 'scale(.35)',
+          transformOrigin: 'center center',
+          transformBox: 'fill-box',
+          textAnchor: 'middle',
+          alignmentBaseline: 'central',
+          stroke: '#f1f1f1',
+          strokeWidth: '5',
+          paintOrder: 'stroke',
+        }}
+      >{(val !== -1) ? val : ''}
+      </text>
     </>
   );
 }
