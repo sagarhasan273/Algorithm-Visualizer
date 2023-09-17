@@ -174,7 +174,7 @@ export default function Recursive() {
 
       </div>
       <div className="callerStack">{callerStack[range - 1]
-      .map((value, index) => (<h1 className={`callerStackItems${value <= 1 ? 'leaf' : (index === callerStack[range - 1].length - 1) ? 'last' : ''}`}>fn({value})</h1>))}
+      .map((value, index) => (<h1 key={keyValue()} className={`callerStackItems${value <= 1 ? 'leaf' : (index === callerStack[range - 1].length - 1) ? 'last' : ''}`}>fn({value})</h1>))}
       </div>
     </div>
   );

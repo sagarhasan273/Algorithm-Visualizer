@@ -1,17 +1,23 @@
+/* eslint-disable no-constant-condition */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
-import './Testing.scss';
+import keyValue from '../Components/GenerateKey';
+import Fibonacci from './DP Room/Fibonncci/Fibonacci';
+import './DynamicProgramming.scss';
 
-export default function App() {
+export default function DynamicProgramming() {
   // const [isVisible, setIsVisible] = useState(true);
   const [haveNotSelect, setHaveNotSelect] = useState(true);
-
+  const [reload, setReload] = useState(true);
   const handleClick = () => {
     setHaveNotSelect(false);
   };
-
+  const reloadContent = () => {
+    setReload((prev) => !prev);
+  };
   return (
     <div>
       {(haveNotSelect) ? (
@@ -23,7 +29,9 @@ export default function App() {
             </div>
           </div>
         </div>
-      ) : null}
+      ) : (reload)
+        ? <Fibonacci key={keyValue()} reload={reloadContent} />
+        : <Fibonacci key={keyValue()} reload={reloadContent} />}
     </div>
   );
 }

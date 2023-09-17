@@ -1,3 +1,4 @@
+import DynamicProgramming from '../Algorithms/Dynamic Programming/DynamicProgramming';
 import Recursive from '../Algorithms/Recursion/Recursive';
 import Array from '../DataStructures/Array/Array';
 import Deque from '../DataStructures/Deque/Deque';
@@ -158,6 +159,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Dynamic Programming Visualization</h2>
           <div className="horizontal-line" />
+          <DynamicProgramming />
         </div>
       ) : null}
       {active === 'buttonTesting' ? (
