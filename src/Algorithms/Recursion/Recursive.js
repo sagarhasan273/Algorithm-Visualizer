@@ -4,7 +4,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-array-index-key */
 import {
-  faBackward, faForward, faPause, faPlay, faReply,
+  faArrowRotateLeft,
+  faBackward, faForward,
+  faHandPointDown,
+  faPause, faPlay,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
@@ -18,6 +21,7 @@ export default function Recursive() {
   const [isIntervalActive, setIsIntervalActive] = useState(false);
   const [num, setNum] = useState(0);
   const [numText, setNumText] = useState(0);
+  const [executionStop, setExecutionStop] = useState(false);
   const delay = 500;
   const mx = [0, 20];
   const nodes = {};
@@ -29,7 +33,7 @@ export default function Recursive() {
   let interval;
 
   function fb(n, d, path) {
-    if (n === 1 || n === 0) {
+    if (n <= 1) {
       nodeArray.push(path);
       nodes[path] = [mx[0] + 20, d * 30, n, n];
 
@@ -72,6 +76,7 @@ export default function Recursive() {
       }, delay);
     } else {
       clearInterval(interval);
+      setIsIntervalActive(false);
     }
 
     return () => {
@@ -95,9 +100,21 @@ export default function Recursive() {
   };
   const handleChangeRun = (e) => {
     e.preventDefault();
-    if (isIntervalActive) return;
-    setRange(1);
+    if (isIntervalActive) {
+      let ecounter = 0;
+      setExecutionStop(true);
+      const executeInterval = setInterval(() => {
+        if (ecounter) {
+          setExecutionStop(false);
+          clearInterval(executeInterval);
+        }
+        ecounter += 1;
+      }, 2000);
+      return;
+    }
+
     setNum(numText);
+    setRange(1);
     setIsIntervalActive(true);
   };
   const onChangeHandleInput = (event) => {
@@ -143,11 +160,15 @@ export default function Recursive() {
             <Node key={keyValue()} value={value} nodes={nodes} last={range - 1} i={index} />))}
           {tempEdges}
         </svg>
-        <div style={{ display: 'flex', alignItems: 'center', justifyItems: 'center' }}>
+        <div style={{
+ display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
+}}
+        >
           <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} />
           <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
           <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
-          <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faReply} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
+          {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStop" /> : null}
+          <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
           <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
         </div>
 
