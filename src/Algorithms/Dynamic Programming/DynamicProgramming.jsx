@@ -38,8 +38,8 @@ export default function DynamicProgramming() {
       case 'FibonacciTabulation':
         return <div>Fibonacci Tabulation Not Yet!</div>;
       case '0-1KnapsackRecursion':
-        return (reload) ? <Knapsack key={keyValue()} reload={reloadContent} />
-          : <Knapsack key={keyValue()} reload={reloadContent} />;
+        return (reload) ? <Knapsack key={1} reload={reloadContent} />
+          : <Knapsack key={2} reload={reloadContent} />;
       case '0-1KnapsackTabulation':
         return <div>0-1Knapsack Tabulation Not Yet!</div>;
       case 'Item3':

@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 
@@ -20,7 +21,7 @@ export default function LinkedLine(props) {
   }, []);
 
   return (
-    <>
+    <g>
       <defs>
         <marker id={`arrowhead-220,200368.75,50${xy}`} markerWidth="10" markerHeight="10" refX="5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M 2,0 L 2,4 L 6,2 Z" /></marker>
       </defs>
@@ -42,8 +43,9 @@ export default function LinkedLine(props) {
           strokeWidth: '5',
           paintOrder: 'stroke',
         }}
-      >{(val !== -1) ? val : ''}
+      >{(val !== -Infinity)
+        ? (val === -1) ? '' : val : '-∞'}
       </text>
-    </>
+    </g>
   );
 }

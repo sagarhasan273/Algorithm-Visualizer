@@ -233,8 +233,8 @@ fibonacci(int(input("Enter Value: ")))
         <button type="button" className="previous" onClick={goToPrev}>Previous</button>
         <button id="recursion" type="button" onClick={selectButtonHandle} onMouseEnter={mouseEntered} onMouseLeave={mouseLeftOver} style={isRecursionStyle}>Recursion</button>
         <button id="tabulation" type="button" onClick={selectButtonHandle} onMouseEnter={mouseEntered} onMouseLeave={mouseLeftOver} style={isTabulationStyle}>Tabulation</button>
-        <button type="button" className="go" onClick={goButton}>Go</button>
         <button type="button" className="next" onClick={goToNext}>Next</button>
+        <button type="button" className="go" onClick={goButton}>Go</button>
       </div>
     </div>
   );

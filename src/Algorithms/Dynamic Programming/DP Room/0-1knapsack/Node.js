@@ -4,7 +4,7 @@
 
 function Node(props) {
   const {
-    value, nodes, last, i,
+    value, nodes,
   } = props;
   return (
     <g>
@@ -14,22 +14,22 @@ function Node(props) {
         r="7"
         stroke="black"
         fill="none"
-        strokeWidth={(i === last || nodes[value][2] <= 1) ? 0.0 : 0.7}
-        style={(i === last) ? { fill: 'rgb(253 153 3)' } : (nodes[value][2] <= 1) ? { fill: 'rgb(0, 189, 9)' } : null}
+        strokeWidth={(nodes[value][4]) ? 0.0 : 0.7}
+        style={(nodes[value][4]) ? { fill: 'rgb(0, 189, 9)' } : null}
       />
       <text
         x={nodes[value][0]}
         y={nodes[value][1]}
         style={{
-          transform: 'scale(.5)',
+          transform: 'scale(.3)',
           transformOrigin: 'center center',
           transformBox: 'fill-box',
           textAnchor: 'middle',
           alignmentBaseline: 'central',
         }}
-        fill={(i === last || nodes[value][2] <= 1) ? 'white' : 'black'}
+        fill={(nodes[value][4]) ? 'white' : 'black'}
         fontSize={18}
-      >{nodes[value][2]}
+      >{nodes[value][3]}
       </text>
     </g>
   );
