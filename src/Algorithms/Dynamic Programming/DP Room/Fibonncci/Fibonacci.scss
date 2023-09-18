@@ -29,6 +29,20 @@
 	padding: 0px;
 	margin: 1px;
 	border: none;
+	position: relative;
+	.speedBar {
+		background-color: #fc502a;
+		background: linear-gradient(
+			to right,
+			#fd0000 0%,
+			#3bfc00 50%,
+			black 100%
+		);
+		height: 4px;
+		position: absolute;
+		top: -8px;
+		left: 2px;
+	}
 }
 .controlbuttonRun {
 	padding: 11px;

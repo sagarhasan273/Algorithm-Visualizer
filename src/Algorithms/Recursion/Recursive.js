@@ -16,12 +16,13 @@ import LinkedLine from './LinkedLine';
 import Node from './Node';
 import './Recursive.scss';
 
-export default function Recursive() {
+export default function Recursive({ reload }) {
   const [range, setRange] = useState(1);
   const [isIntervalActive, setIsIntervalActive] = useState(false);
   const [num, setNum] = useState(0);
   const [numText, setNumText] = useState(0);
   const [executionStop, setExecutionStop] = useState(false);
+  const [valideRange, setValideRange] = useState(false);
   const delay = 500;
   const mx = [0, 20];
   const nodes = {};
@@ -112,7 +113,30 @@ export default function Recursive() {
       }, 2000);
       return;
     }
-
+    if (isIntervalActive) {
+      let ecounter = 0;
+      setExecutionStop(true);
+      const executeInterval = setInterval(() => {
+        if (ecounter) {
+          setExecutionStop(false);
+          clearInterval(executeInterval);
+        }
+        ecounter += 1;
+      }, 1500);
+      return;
+    }
+    if (!(numText >= 0 && numText <= 10) || !numText) {
+      setValideRange(true);
+      let ecounter = 0;
+      const executeInterval = setInterval(() => {
+        if (ecounter) {
+          setValideRange(false);
+          clearInterval(executeInterval);
+        }
+        ecounter += 1;
+      }, 1000);
+      return;
+    }
     setNum(numText);
     setRange(1);
     setIsIntervalActive(true);
@@ -164,10 +188,12 @@ export default function Recursive() {
  display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
 }}
         >
+          <button id="buttonRecursive" type="button" className="controlbuttonRun" onClick={reload}>Reload</button>
           <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} />
           <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
           <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
-          {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStop" /> : null}
+          {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStopRecursion" /> : null}
+          {valideRange ? <div className="controlbutton valideRange">Range 0-10</div> : null}
           <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
           <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
         </div>

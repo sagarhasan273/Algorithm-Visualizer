@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-array-index-key */
@@ -27,7 +26,7 @@ import Node from './Node';
     const [isMemo, setIsMemo] = useState(false);
     const [isMemoAvailable, setIsMemoAvailable] = useState(false);
     const [memoStyle, setMemoStyle] = useState({});
-    const delay = 500;
+    const [delay, setDelay] = useState(500);
     const mx = [0, 20];
     const nodes = {};
     const nodeArray = [];
@@ -214,6 +213,19 @@ import Node from './Node';
         />,
       );
     });
+
+    const handleChangeSpeedUp = () => {
+      if (delay <= 0) return;
+      console.log(delay);
+      setDelay((prev) => prev - 100);
+      setIsIntervalActive(false);
+    };
+    const handleChangeSpeedDown = () => {
+      if (delay > 1000) return;
+      console.log(delay);
+      setDelay((prev) => prev + 100);
+      setIsIntervalActive(false);
+    };
     return (
       <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
         <div style={{
@@ -236,7 +248,7 @@ import Node from './Node';
               onClick={handleChangeIsMemo}
               onMouseEnter={handleStyleChangeMemoOver}
               onMouseLeave={handleStyleChangeMemoLeave}
-              style={(isMemo) ? memoStyle : memoStyle}
+              style={memoStyle}
             >Memoization
             </button>
             <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} />
@@ -246,8 +258,11 @@ import Node from './Node';
             {valideRange ? <div className="controlbutton valideRange">Range 0-10</div> : null}
             <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
             <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
-            <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faPlus} className="controlFont" /></button>
-            <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faMinus} className="controlFont" /></button>
+
+            <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>
+              <div className="speedBar" style={{ width: `${76 - (75 * (delay / 1000))}px` }} /> <FontAwesomeIcon id="1" icon={faPlus} className="controlFont" />
+            </button>
+            <button type="button" className="controlbutton" onClick={handleChangeSpeedDown}> <FontAwesomeIcon id="0" icon={faMinus} className="controlFont" /></button>
           </div>
 
         </div>

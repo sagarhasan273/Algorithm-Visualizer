@@ -5,33 +5,50 @@
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 import keyValue from '../Components/GenerateKey';
+import CarouselDP from './CarouselDP';
+import Knapsack from './DP Room/0-1knapsack/knapsack';
 import Fibonacci from './DP Room/Fibonncci/Fibonacci';
 import './DynamicProgramming.scss';
 
 export default function DynamicProgramming() {
   // const [isVisible, setIsVisible] = useState(true);
-  const [haveNotSelect, setHaveNotSelect] = useState(true);
+  const [haveSelect, setHaveSelect] = useState('');
   const [reload, setReload] = useState(true);
   const handleClick = () => {
-    setHaveNotSelect(false);
+    setHaveSelect(null);
   };
   const reloadContent = () => {
     setReload((prev) => !prev);
   };
-  return (
-    <div>
-      {(haveNotSelect) ? (
-        <div id="myModal" className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={handleClick}>&times;</span>
-            <div className="email text-center">
-              hello
+  function renderContentDP() {
+    switch (haveSelect) {
+      case '':
+        return (
+          <div className="termsMenu">
+            <div className="termsMenu-content">
+              <span className="close" onClick={handleClick}>&times;</span>
+              <CarouselDP setHaveSelect={setHaveSelect} />
             </div>
           </div>
-        </div>
-      ) : (reload)
-        ? <Fibonacci key={keyValue()} reload={reloadContent} />
-        : <Fibonacci key={keyValue()} reload={reloadContent} />}
+        );
+
+      case 'Fibonacci':
+        return (reload) ? <Fibonacci key={keyValue()} reload={reloadContent} />
+          : <Fibonacci key={keyValue()} reload={reloadContent} />;
+      case '0-1Knapsack':
+        return (reload) ? <Knapsack key={keyValue()} reload={reloadContent} />
+          : <Knapsack key={keyValue()} reload={reloadContent} />;
+      case 'Item3':
+        return <div>item 3</div>;
+      case 'Item4':
+        return <div>item 4</div>;
+      default:
+        return null;
+    }
+  }
+  return (
+    <div>
+      {renderContentDP()}
     </div>
   );
 }

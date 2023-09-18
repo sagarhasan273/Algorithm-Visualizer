@@ -4,7 +4,7 @@
 	border-style: solid;
 	border-color: black;
 }
-.modal {
+.termsMenu {
 	position: fixed;
 	z-index: 1;
 	left: 0;
@@ -16,24 +16,102 @@
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.4);
 	display: flex;
-	.modal-content {
+	.termsMenu-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		background-color: #fefefe;
 		margin: auto;
 		padding: 20px;
 		border: 1px solid #888;
 		width: 650px;
 		height: 500px;
+		position: relative;
+		.close {
+			position: absolute;
+			top: 5px;
+			right: 15px;
+			color: #aaaaaa;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.close:hover,
+		.close:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
 	}
-	.close {
-		color: #aaaaaa;
-		float: right;
-		font-size: 30px;
-		font-weight: bold;
-	}
-	.close:hover,
-	.close:focus {
-		color: #000;
-		text-decoration: none;
-		cursor: pointer;
+	.carouselDP {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 10px;
+		.codeContainerDP {
+			margin: auto;
+			height: 300px !important;
+			background-color: #888;
+			position: relative;
+			width: 90%;
+			border: 2px solid #8080807e;
+
+			.copyDP {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				outline: none;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+				i {
+					font-size: 16px;
+				}
+			}
+			.aceEditorDP {
+				font-size: 14px !important;
+				height: 100% !important;
+				width: 100% !important;
+			}
+		}
+		.carousel-item {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 24px;
+		}
+		.buttonDPs {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+			button {
+				padding: 15px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				cursor: pointer;
+				border-radius: 3px;
+				border: 1px solid black;
+
+				&:hover {
+					background-color: #f77153;
+					border: 1px solid rgb(255, 0, 0);
+					color: #ffffff;
+				}
+			}
+
+			.previous {
+				margin-right: 80px;
+			}
+			.next {
+				margin-left: 80px;
+			}
+			.go {
+				margin-left: 40px;
+				&:hover {
+					color: #ffffff;
+					background-color: rgb(0, 189, 9);
+					border: 1px solid rgb(1 163 9);
+				}
+			}
+		}
 	}
 }

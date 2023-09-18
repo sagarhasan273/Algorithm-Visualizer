@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import keyValue from '../Algorithms/Components/GenerateKey';
 import DynamicProgramming from '../Algorithms/Dynamic Programming/DynamicProgramming';
 import Recursive from '../Algorithms/Recursion/Recursive';
 import Array from '../DataStructures/Array/Array';
@@ -10,10 +12,18 @@ import './Container.css';
 import HideShowMenu from './HideShowMenu/HideShowMenu';
 
 export default function Container(props) {
+  const [reloadContainer, setReloadContainer] = useState(true);
   const headingNameStyle = {
     paddingLeft: '15px', margin: '10px', marginBottom: '5px',
   };
-  const { active, sideBarHideShowHandle, sideBarHideShow } = props;
+  const {
+    active, sideBarHideShowHandle, sideBarHideShow,
+  } = props;
+
+  const handleReloadFromInside = () => {
+    setReloadContainer((prev) => !prev);
+  };
+
   return (
     <div className="container">
       {active === 'homebtn' ? (
@@ -118,7 +128,8 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Recursive Visualization</h2>
           <div className="horizontal-line" />
-          <Recursive />
+          {(reloadContainer) ? <Recursive key={keyValue()} reload={handleReloadFromInside} />
+            : <Recursive key={keyValue()} reload={handleReloadFromInside} />}
         </div>
       ) : null}
       {active === 'buttonBacktracking' ? (
