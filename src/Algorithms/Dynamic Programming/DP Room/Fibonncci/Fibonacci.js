@@ -254,7 +254,11 @@ import Node from './Node';
             <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
             {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStop" /> : null}
             {valideRange ? <div className="controlbutton valideRange">Range 0-10</div> : null}
-            <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
+            <button type="button" className="controlbutton" onClick={handleToggleInterval}>
+              {!isIntervalActive ? (range === nodeArray.length)
+              ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" />
+              : <FontAwesomeIcon icon={faPause} className="controlFont" />}
+            </button>
             <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
 
             <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>

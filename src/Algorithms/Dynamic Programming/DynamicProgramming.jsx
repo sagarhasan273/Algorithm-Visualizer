@@ -32,12 +32,16 @@ export default function DynamicProgramming() {
           </div>
         );
 
-      case 'Fibonacci':
+      case 'FibonacciRecursion':
         return (reload) ? <Fibonacci key={keyValue()} reload={reloadContent} />
           : <Fibonacci key={keyValue()} reload={reloadContent} />;
-      case '0-1Knapsack':
+      case 'FibonacciTabulation':
+        return <div>Fibonacci Tabulation Not Yet!</div>;
+      case '0-1KnapsackRecursion':
         return (reload) ? <Knapsack key={keyValue()} reload={reloadContent} />
           : <Knapsack key={keyValue()} reload={reloadContent} />;
+      case '0-1KnapsackTabulation':
+        return <div>0-1Knapsack Tabulation Not Yet!</div>;
       case 'Item3':
         return <div>item 3</div>;
       case 'Item4':

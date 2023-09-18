@@ -11,7 +11,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import keyValue from '../../../Components/GenerateKey';
+import TermInfo from '../DP Components/TermInfo';
 import LinkedLine from './LinkedLine';
 import Node from './Node';
 import './knapsack.scss';
@@ -22,7 +25,6 @@ export default function Knapsack({ reload }) {
       const [num, setNum] = useState(0);
       const [numText, setNumText] = useState(0);
       const [executionStop, setExecutionStop] = useState(false);
-      const [valideRange, setValideRange] = useState(false);
       const [isMemo, setIsMemo] = useState(false);
       const [isMemoAvailable, setIsMemoAvailable] = useState(false);
       const [memoStyle, setMemoStyle] = useState({});
@@ -129,16 +131,8 @@ export default function Knapsack({ reload }) {
           }, 1500);
           return;
         }
-        if (!(numText >= 0 && numText <= 10)) {
-          setValideRange(true);
-          let ecounter = 0;
-          const executeInterval = setInterval(() => {
-            if (ecounter) {
-              setValideRange(false);
-              clearInterval(executeInterval);
-            }
-            ecounter += 1;
-          }, 1000);
+        if (!(numText >= 1 && numText <= 7)) {
+          toast.info('Range is 1 - 6 for better Experiance');
           return;
         }
         setIsMemoAvailable(true);
@@ -215,18 +209,34 @@ export default function Knapsack({ reload }) {
       });
       return (
         <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
+          <ToastContainer position="top-center" autoClose={3500} />
           <div style={{
-            width: '85%', height: 'calc(100% - 5em)', display: 'flex', flexDirection: 'column', alignItems: 'center',
+            width: '85%',
+            height: 'calc(100% - 2em)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '5px',
+            alignItems: 'center',
+            position: 'relative',
             }}
           >
+            <TermInfo txt="0-1 Knapsack Top-down approach" />
             <svg viewBox={`0 0 ${mx[0] + 30} ${mx[1] + 30}`} style={{ width: '100%', height: '100%' }}>
               {nodeArray.slice(0, range).map((value, index) => (
                 <Node key={keyValue()} value={value} nodes={nodes} last={range - 1} i={index} />))}
               {tempEdges}
             </svg>
+            <label htmlFor="profitInput" className="profitWeightLabel">
+            &nbsp;&nbsp;Profits:&nbsp;
+              <input type="text" id="profitInput" className="Profit" value={numText} onChange={onChangeHandleInput} />
+            </label>
+            <label htmlFor="weightInput" className="profitWeightLabel">
+              Weights:&nbsp;
+              <input type="text" id="weightInput" className="Weight" value={numText} onChange={onChangeHandleInput} />
+            </label>
             <div style={{
-     display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
-    }}
+              display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
+              }}
             >
               <button type="button" className="controlbuttonRun" onClick={reload}>Clear</button>
               <button
@@ -242,7 +252,6 @@ export default function Knapsack({ reload }) {
               <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
               <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
               {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStop" /> : null}
-              {valideRange ? <div className="controlbutton valideRange">Range 0</div> : null}
               <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
               <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
               <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faPlus} className="controlFont" /></button>

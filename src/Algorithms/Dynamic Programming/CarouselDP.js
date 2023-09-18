@@ -27,10 +27,94 @@ fibonacci(int(input("Enter Value: ")))
   const items = [
     'Fibonacci',
     '0-1Knapsack',
-    'Item3',
-    'Item4',
   ];
+  function changeCode(index, end) {
+    let endString = end;
+    if (isRecursionActive && end === '') endString = 'Recursion';
+    if (isTabulationActive && end === '') endString = 'Tabulation';
+    switch (`${items[index]}${endString}`) {
+      case 'Fibonacci':
+        setCode(`import collections # Optional line
 
+def fibonacci(n):
+    if n == 0 or n == 1:
+        return n
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci(int(input("Enter Value: ")))
+        
+        `);
+        break;
+      case 'FibonacciRecursion':
+        setCode(`import collections # Optional line
+
+def fibonacciRecursion(n):
+    if n == 0 or n == 1:
+        return n
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci(int(input("Enter Value: ")))
+        
+        `);
+        break;
+      case 'FibonacciTabulation':
+        setCode(`import collections # Optional line
+
+def fibonacciTabulation(n):
+    if n == 0 or n == 1:
+        return n
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci(int(input("Enter Value: ")))
+        
+        `);
+        break;
+      case '0-1Knapsack':
+        setCode(`import collections # Optional line
+
+def Knapsack(n):
+    if n == 0 or n == 1:
+        return n
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci(int(input("Enter Value: ")))
+        
+        `);
+        break;
+      case '0-1KnapsackRecursion':
+        setCode(`import collections # Optional line
+
+def KnapsackRecursion(n):
+    if n == 0 or n == 1:
+        return n
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci(int(input("Enter Value: ")))
+        
+        `);
+        break;
+      case '0-1KnapsackTabulation':
+        setCode(`import collections # Optional line
+
+def KnapsackTabulation(n):
+    if n == 0 or n == 1:
+        return n
+
+    return fibonacci(n-1) + fibonacci(n-2)
+
+fibonacci(int(input("Enter Value: ")))
+        
+        `);
+        break;
+      default:
+        break;
+    }
+  }
   const handleCopy = () => {
     if (editorRef.current) {
       const codePy = editorRef.current.editor.getValue();
@@ -45,10 +129,12 @@ fibonacci(int(input("Enter Value: ")))
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+    changeCode((currentIndex + 1) % items.length, '');
   };
 
   const goToPrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
+    changeCode(currentIndex === 0 ? items.length - 1 : currentIndex - 1, '');
   };
   const mouseEntered = (event) => {
     event.preventDefault();
@@ -101,6 +187,7 @@ fibonacci(int(input("Enter Value: ")))
           backgroundColor: 'rgb(0, 189, 9)',
           border: '1px solid rgb(1 163 9)',
         });
+        changeCode(currentIndex, 'Recursion');
         break;
       case 'tabulation':
         setIsTabulationActive(true);
@@ -111,6 +198,7 @@ fibonacci(int(input("Enter Value: ")))
           backgroundColor: 'rgb(0, 189, 9)',
           border: '1px solid rgb(1 163 9)',
         });
+        changeCode(currentIndex, 'Tabulation');
         break;
       default:
         break;
@@ -120,9 +208,8 @@ fibonacci(int(input("Enter Value: ")))
   const goButton = () => {
     if (!isRecursionActive && !isTabulationActive) {
       toast.info('Select Any! Either Recursion or Tabulation.');
-    } else {
-      setHaveSelect(items[currentIndex]);
-    }
+    } else if (isRecursionStyle) setHaveSelect(`${items[currentIndex]}Recursion`);
+    else if (isTabulationStyle) setHaveSelect(`${items[currentIndex]}Tabulation`);
   };
 
   return (
@@ -137,7 +224,7 @@ fibonacci(int(input("Enter Value: ")))
           onChange={(value) => setCode(value)}
         />
         <button className="copyDP" type="button" onClick={handleCopy} style={{ display: 'block', color: (copy) ? '#08aa02' : 'black' }}>
-          <FontAwesomeIcon icon={faCopy} style={(copy) ? { color: '#00ff33' } : null} /> {(!copy) ? 'Copy' : 'Copied!'}
+          <FontAwesomeIcon icon={faCopy} style={(copy) ? { color: '#08aa02' } : null} /> {(!copy) ? 'Copy' : 'Copied!'}
         </button>
       </div>
       <div className="carousel-item">{items[currentIndex]}</div>
