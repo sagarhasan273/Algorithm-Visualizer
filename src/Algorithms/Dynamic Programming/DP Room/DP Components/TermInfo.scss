@@ -1,0 +1,33 @@
+.termInfo {
+	position: absolute;
+	left: 0;
+	top: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	font-size: 18px;
+	margin-top: 25px;
+	margin-bottom: 10px;
+	p {
+		font-size: 22px;
+		font-weight: bold;
+	}
+	.leafBoxColored {
+		width: 50px;
+		height: 8px;
+		font-weight: bold;
+		background-color: rgb(0, 189, 9);
+	}
+	.memoBoxColored {
+		width: 50px;
+		height: 8px;
+		font-weight: bold;
+		background-color: rgb(0, 0, 0);
+	}
+	.currentBoxColored {
+		width: 50px;
+		height: 8px;
+		font-weight: bold;
+		background-color: rgb(253, 153, 3);
+	}
+}
