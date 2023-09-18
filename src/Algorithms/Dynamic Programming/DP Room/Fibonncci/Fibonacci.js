@@ -216,13 +216,11 @@ import Node from './Node';
 
     const handleChangeSpeedUp = () => {
       if (delay <= 0) return;
-      console.log(delay);
       setDelay((prev) => prev - 100);
       setIsIntervalActive(false);
     };
     const handleChangeSpeedDown = () => {
       if (delay > 1000) return;
-      console.log(delay);
       setDelay((prev) => prev + 100);
       setIsIntervalActive(false);
     };
