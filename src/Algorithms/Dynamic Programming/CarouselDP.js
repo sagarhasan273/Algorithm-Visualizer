@@ -42,7 +42,8 @@ def fibonacci(n):
 
     return fibonacci(n-1) + fibonacci(n-2)
 
-fibonacci(int(input("Enter Value: ")))
+number = int(input("Enter Number: "))
+fibonacci(number)
         
         `);
         break;
@@ -53,9 +54,10 @@ def fibonacciRecursion(n):
     if n == 0 or n == 1:
         return n
 
-    return fibonacci(n-1) + fibonacci(n-2)
+    return fibonacciRecursion(n-1) + fibonacciRecursion(n-2)
 
-fibonacci(int(input("Enter Value: ")))
+number = int(input("Enter Number: "))
+fibonacciRecursion(number)
         
         `);
         break;
@@ -68,7 +70,8 @@ def fibonacciTabulation(n):
 
     return fibonacci(n-1) + fibonacci(n-2)
 
-fibonacci(int(input("Enter Value: ")))
+number = int(input("Enter Value: "))
+fibonacciTabulation(number)
         
         `);
         break;
@@ -86,17 +89,21 @@ fibonacci(int(input("Enter Value: ")))
         `);
         break;
       case '0-1KnapsackRecursion':
-        setCode(`import collections # Optional line
+        setCode(`def KnapsackRecursion(i, s):
+    if i == n:
+        return 0
+    if s < 0:
+        return -inf
 
-def KnapsackRecursion(n):
-    if n == 0 or n == 1:
-        return n
+    return max(KnapsackRecursion(i+1, s), profits[i] + KnapsackRecursion(i+1, s - weights[i]))
 
-    return fibonacci(n-1) + fibonacci(n-2)
-
-fibonacci(int(input("Enter Value: ")))
-        
-        `);
+n = 4
+W = int(input("Enter Bag Capacity: "))
+profits = [50, 70, 20, 28]
+weigths = [4, 7, 2, 8]
+answer = KnapsackRecursion(i, W)
+print(answer)
+`);
         break;
       case '0-1KnapsackTabulation':
         setCode(`import collections # Optional line
@@ -228,7 +235,7 @@ fibonacci(int(input("Enter Value: ")))
         </button>
       </div>
       <div className="carousel-item">{items[currentIndex]}</div>
-      <ToastContainer position="top-center" size={50} />
+      <ToastContainer position="top-center" />
       <div className="buttonDPs">
         <button type="button" className="previous" onClick={goToPrev}>Previous</button>
         <button id="recursion" type="button" onClick={selectButtonHandle} onMouseEnter={mouseEntered} onMouseLeave={mouseLeftOver} style={isRecursionStyle}>Recursion</button>

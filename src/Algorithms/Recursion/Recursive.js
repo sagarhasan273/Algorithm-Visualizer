@@ -7,7 +7,8 @@ import {
   faArrowRotateLeft,
   faBackward, faForward,
   faHandPointDown,
-  faPause, faPlay,
+  faMinus,
+  faPause, faPlay, faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
@@ -23,7 +24,7 @@ export default function Recursive({ reload }) {
   const [numText, setNumText] = useState(0);
   const [executionStop, setExecutionStop] = useState(false);
   const [valideRange, setValideRange] = useState(false);
-  const delay = 500;
+  const [delay, setDelay] = useState(500);
   const mx = [0, 20];
   const nodes = {};
   const nodeArray = [];
@@ -173,6 +174,17 @@ export default function Recursive({ reload }) {
       />,
     );
   });
+
+  const handleChangeSpeedUp = () => {
+    if (delay <= 0) return;
+    setDelay((prev) => prev - 100);
+    setIsIntervalActive(false);
+  };
+  const handleChangeSpeedDown = () => {
+    if (delay >= 1000) return;
+    setDelay((prev) => prev + 100);
+    setIsIntervalActive(false);
+  };
   return (
     <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
       <div style={{
@@ -196,6 +208,10 @@ export default function Recursive({ reload }) {
           {valideRange ? <div className="controlbutton valideRange">Range 0-10</div> : null}
           <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
           <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
+          <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>
+            <div className="speedBar" style={{ width: `${76 - (75 * (delay / 1000))}px` }} /> <FontAwesomeIcon icon={faPlus} className="controlFont" />
+          </button>
+          <button type="button" className="controlbutton" onClick={handleChangeSpeedDown}> <FontAwesomeIcon icon={faMinus} className="controlFont" /></button>
         </div>
 
       </div>

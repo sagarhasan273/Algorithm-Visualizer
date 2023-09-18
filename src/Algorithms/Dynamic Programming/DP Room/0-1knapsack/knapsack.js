@@ -23,7 +23,7 @@ export default function Knapsack({ reload }) {
   const [range, setRange] = useState(1);
   const [isIntervalActive, setIsIntervalActive] = useState(false);
       const [num, setNum] = useState(5);
-      const [numText, setNumText] = useState(5);
+      const [numText, setNumText] = useState('');
       const [executionStop, setExecutionStop] = useState(false);
       const [isMemo, setIsMemo] = useState(false);
       const [isMemoAvailable, setIsMemoAvailable] = useState(false);
@@ -32,7 +32,7 @@ export default function Knapsack({ reload }) {
       const [weightText, setWeightText] = useState('[4, 7, 2, 8]');
       const [profits, setProfits] = useState([50, 70, 20, 28]);
       const [weights, setWeights] = useState([4, 7, 2, 8]);
-      const delay = 500;
+      const [delay, setDelay] = useState(500);
       const mx = [0, 20];
       const nodes = {};
       const nodeArray = [];
@@ -167,13 +167,16 @@ export default function Knapsack({ reload }) {
         setWeights(weightArray);
         setIsMemoAvailable(true);
         setNum(numText);
+        setNumText('');
         setRange(1);
         setIsIntervalActive(true);
       };
+
       const onChangeHandleInput = (event) => {
         event.preventDefault();
         setNumText(event.target.value);
       };
+
       const handleChangeIsMemo = () => {
         if (isIntervalActive || isMemoAvailable) return;
         if (!isMemo) {
@@ -251,6 +254,17 @@ export default function Knapsack({ reload }) {
         }
       };
 
+      const handleChangeSpeedUp = () => {
+        if (delay <= 0) return;
+        setDelay((prev) => prev - 100);
+        setIsIntervalActive(false);
+      };
+      const handleChangeSpeedDown = () => {
+        if (delay >= 1000) return;
+        setDelay((prev) => prev + 100);
+        setIsIntervalActive(false);
+      };
+
       return (
         <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
           <ToastContainer position="top-center" autoClose={3500} />
@@ -292,16 +306,17 @@ export default function Knapsack({ reload }) {
                 style={memoStyle}
               >Memoization
               </button>
-              <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} />
+              <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} placeholder={`Bag Capacity ${num}`} />
               <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
               <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
               {executionStop ? <FontAwesomeIcon icon={faHandPointUp} beat className="executionStop" /> : null}
               <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
               <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
-              <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faPlus} className="controlFont" /></button>
-              <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faMinus} className="controlFont" /></button>
+              <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>
+                <div className="speedBar" style={{ width: `${76 - (75 * (delay / 1000))}px` }} /> <FontAwesomeIcon icon={faPlus} className="controlFont" />
+              </button>
+              <button type="button" className="controlbutton" onClick={handleChangeSpeedDown}> <FontAwesomeIcon icon={faMinus} className="controlFont" /></button>
             </div>
-
           </div>
           <div className="callerStack">{callerStack[range - 1]
           .map((value, index) => (<h1 key={keyValue()} className={`callerStackItems${value <= 1 ? 'leaf' : (index === callerStack[range - 1].length - 1) ? 'last' : ''}`}>knapsack({value})</h1>))}

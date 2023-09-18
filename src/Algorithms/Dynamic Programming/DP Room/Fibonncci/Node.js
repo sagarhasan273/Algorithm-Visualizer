@@ -15,7 +15,8 @@ function Node(props) {
         stroke="black"
         fill="none"
         strokeWidth={(i === last || nodes[value][2] <= 1) ? 0.0 : 0.7}
-        style={(i === last) ? { fill: 'rgb(253 153 3)' } : (nodes[value][2] <= 1) ? { fill: 'rgb(0, 189, 9)' } : null}
+        style={(i === last) ? { fill: 'rgb(253 153 3)' }
+          : (nodes[value][2] <= 1) ? { fill: 'rgb(0, 189, 9)' } : (nodes[value][4] === 'memo') ? { fill: 'black' } : null}
       />
       <text
         x={nodes[value][0]}
@@ -27,7 +28,7 @@ function Node(props) {
           textAnchor: 'middle',
           alignmentBaseline: 'central',
         }}
-        fill={(i === last || nodes[value][2] <= 1) ? 'white' : 'black'}
+        fill={(i === last || nodes[value][2] <= 1 || nodes[value][4] === 'memo') ? 'white' : 'black'}
         fontSize={18}
       >{nodes[value][2]}
       </text>

@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import keyValue from '../../../Components/GenerateKey';
+import TermInfo from '../DP Components/TermInfo';
 import './Fibonacci.scss';
 import LinkedLine from './LinkedLine';
 import Node from './Node';
@@ -20,7 +21,7 @@ import Node from './Node';
     const [range, setRange] = useState(1);
     const [isIntervalActive, setIsIntervalActive] = useState(false);
     const [num, setNum] = useState(0);
-    const [numText, setNumText] = useState(0);
+    const [numText, setNumText] = useState('');
     const [executionStop, setExecutionStop] = useState(false);
     const [valideRange, setValideRange] = useState(false);
     const [isMemo, setIsMemo] = useState(false);
@@ -43,7 +44,7 @@ import Node from './Node';
     function fb(n, d, path) {
       if (isMemo && (memo[n] !== -1)) {
         nodeArray.push(path);
-        nodes[path] = [mx[0] + 20, d * 30, n, memo[n]];
+        nodes[path] = [mx[0] + 20, d * 30, n, memo[n], 'memo'];
 
         mx[0] += 20;
         mx[1] = Math.max(mx[1], d * 30);
@@ -51,7 +52,7 @@ import Node from './Node';
       }
       if (n <= 1) {
         nodeArray.push(path);
-        nodes[path] = [mx[0] + 20, d * 30, n, n];
+        nodes[path] = [mx[0] + 20, d * 30, n, n, 'last'];
 
         mx[0] += 20;
         mx[1] = Math.max(mx[1], d * 30);
@@ -74,7 +75,7 @@ import Node from './Node';
       callerStack.push(stack.slice(0));
 
       nodeArray.push(path);
-      nodes[path] = [(l[0] + r[0]) / 2, d * 30, n, l[1] + r[1]];
+      nodes[path] = [(l[0] + r[0]) / 2, d * 30, n, l[1] + r[1], 'node'];
       memo[n] = l[1] + r[1];
       return [(l[0] + r[0]) / 2, l[1] + r[1]];
     }
@@ -143,6 +144,7 @@ import Node from './Node';
       }
       setIsMemoAvailable(true);
       setNum(numText);
+      setNumText('');
       setRange(1);
       setIsIntervalActive(true);
     };
@@ -226,6 +228,7 @@ import Node from './Node';
     };
     return (
       <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
+        <TermInfo txt="Fibonacci Top-down approach" />
         <div style={{
           width: '85%', height: 'calc(100% - 5em)', display: 'flex', flexDirection: 'column', alignItems: 'center',
           }}
@@ -249,7 +252,7 @@ import Node from './Node';
               style={memoStyle}
             >Memoization
             </button>
-            <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} />
+            <input type="text" className="controlInput" value={numText} onChange={onChangeHandleInput} placeholder={`Fibonacci(${num})`} />
             <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
             <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
             {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStop" /> : null}
@@ -269,7 +272,7 @@ import Node from './Node';
 
         </div>
         <div className="callerStack">{callerStack[range - 1]
-        .map((value, index) => (<h1 key={keyValue()} className={`callerStackItems${value <= 1 ? 'leaf' : (index === callerStack[range - 1].length - 1) ? 'last' : ''}`}>fn({value})</h1>))}
+        .map((value, index) => (<h1 key={keyValue()} className={`callerStackItems${value <= 1 ? 'leaf' : (index === callerStack[range - 1].length - 1) ? 'last' : ''}`}>fb({value})</h1>))}
         </div>
       </div>
     );
