@@ -12,7 +12,11 @@ class App extends React.Component {
   sectionActiveHandle = (event) => {
     const { sideBarActive } = this.state;
     if (sideBarActive !== event.target.id) {
-      this.setState({ sideBarActive: event.target.id, containerActive: event.target.id });
+      this.setState({
+        sideBarActive: event.target.id,
+        containerActive: event.target.id,
+        sideBarHideShow: false,
+      });
     }
   };
 

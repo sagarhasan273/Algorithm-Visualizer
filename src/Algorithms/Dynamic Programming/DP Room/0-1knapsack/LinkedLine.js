@@ -26,7 +26,7 @@ export default function LinkedLine(props) {
         <marker id={`arrowhead-220,200368.75,50${xy}`} markerWidth="10" markerHeight="10" refX="5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M 2,0 L 2,4 L 6,2 Z" /></marker>
       </defs>
 
-      <line x1={ax1} y1={ay1} x2={ax2} y2={ay2} markerEnd={`url(#arrowhead-220,200368.75,50${xy})`} stroke="black" strokeWidth={0.7}>
+      <line x1={ax1} y1={ay1} x2={ax2} y2={ay2} markerEnd={`url(#arrowhead-220,200368.75,50${xy})`} stroke="black" strokeWidth={0.5}>
         <animate attributeName="x2" from={ax1} to={ax2} dur="0.2s" repeatCount="1" restart="always" className={`animate${index}`} />
         <animate attributeName="y2" from={ay1} to={ay2} dur="0.2s" repeatCount="1" restart="always" className={`animate${index}`} />
       </line>
@@ -40,7 +40,7 @@ export default function LinkedLine(props) {
           textAnchor: 'middle',
           alignmentBaseline: 'central',
           stroke: '#f1f1f1',
-          strokeWidth: '5',
+          strokeWidth: '4',
           paintOrder: 'stroke',
         }}
       >{(val !== -Infinity)

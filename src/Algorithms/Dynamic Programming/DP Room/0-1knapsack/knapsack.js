@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable indent */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -22,127 +23,129 @@ import './knapsack.scss';
 export default function Knapsack({ reload }) {
   const [range, setRange] = useState(1);
   const [isIntervalActive, setIsIntervalActive] = useState(false);
-      const [num, setNum] = useState(5);
-      const [numText, setNumText] = useState('');
-      const [executionStop, setExecutionStop] = useState(false);
-      const [isMemo, setIsMemo] = useState(false);
-      const [isMemoAvailable, setIsMemoAvailable] = useState(false);
-      const [memoStyle, setMemoStyle] = useState({});
-      const [profitText, setProfitText] = useState('[50, 70, 20, 28]');
-      const [weightText, setWeightText] = useState('[4, 7, 2, 8]');
-      const [profits, setProfits] = useState([50, 70, 20, 28]);
-      const [weights, setWeights] = useState([4, 7, 2, 8]);
-      const [delay, setDelay] = useState(500);
-      const mx = [0, 20];
-      const nodes = {};
-      const nodeArray = [];
-      const callerStack = [[`0, ${num}`]];
-      const stack = [`0, ${num}`];
-      const tempEdges = [];
-      const edgesList = new Map();
-      const memo = new Map();
-      let interval;
+  const [num, setNum] = useState(5);
+  const [numText, setNumText] = useState('');
+  const [executionStop, setExecutionStop] = useState(false);
+  const [isMemo, setIsMemo] = useState(false);
+  const [isMemoAvailable, setIsMemoAvailable] = useState(false);
+  const [memoStyle, setMemoStyle] = useState({});
+  const [profitText, setProfitText] = useState('[50, 70, 20, 28]');
+  const [weightText, setWeightText] = useState('[4, 7, 2, 8]');
+  const [profits, setProfits] = useState([50, 70, 20, 28]);
+  const [weights, setWeights] = useState([4, 7, 2, 8]);
+const [delay, setDelay] = useState(500);
+const mx = [0, 20];
+const nodes = {};
+const nodeArray = [];
+const callerStack = [[`0, ${num}`]];
+const stack = [`0, ${num}`];
+const tempEdges = [];
+const edgesList = new Map();
+const memo = new Map();
+let interval;
 
-      function getAbsoluteArray(string) {
-        let array = null;
-        try {
-          array = JSON.parse(string);
-        } catch (err) {
-          toast.error(err);
-        }
-        return array;
-      }
+function getAbsoluteArray(string) {
+    let array = null;
+    try {
+      array = JSON.parse(string);
+    } catch (err) {
+      toast.error(err);
+    }
+    return array;
+  }
 
-      function fn(i, s, d, path) {
-        if (isMemo && (memo.has((i, s)))) {
-          nodeArray.push(path);
-          nodes[path] = [mx[0] + 20, d * 30, memo[(i, s)], `${i}, ${s}`, true];
+function fn(i, s, d, path) {
+  if (isMemo && (memo.has((i, s)))) {
+    nodeArray.push(path);
+    nodes[path] = [mx[0] + 20, d * 30, memo[(i, s)], `${i}, ${s}`, 'memo', null];
 
-          mx[0] += 20;
-          mx[1] = Math.max(mx[1], d * 30);
-          return [mx[0], memo[(i, s)]];
-        }
-        if (i === weights.length) {
-          nodeArray.push(path);
-          nodes[path] = [mx[0] + 20, d * 30, 0, `${i}, ${s}`, true];
-          mx[0] += 20;
-          mx[1] = Math.max(mx[1], d * 30);
-          return [mx[0], 0];
-        }
-        if (s < 0) {
-          nodeArray.push(path);
-          nodes[path] = [mx[0] + 20, d * 30, -Infinity, `${i}, ${s}`, true];
-          mx[0] += 20;
-          mx[1] = Math.max(mx[1], d * 30);
-          return [mx[0], -Infinity];
-        }
+    mx[0] += 20;
+    mx[1] = Math.max(mx[1], d * 30);
+    return [mx[0], memo[(i, s)]];
+  }
+  if (s < 0) {
+    nodeArray.push(path);
+    nodes[path] = [mx[0] + 20, d * 30, -Infinity, `${i}, ${s}`, 'leaf', null];
+    mx[0] += 20;
+    mx[1] = Math.max(mx[1], d * 30);
+    return [mx[0], -Infinity];
+  }
+  if (i === weights.length) {
+    nodeArray.push(path);
+    nodes[path] = [mx[0] + 20, d * 30, 0, `${i}, ${s}`, 'leaf', null];
+    mx[0] += 20;
+    mx[1] = Math.max(mx[1], d * 30);
+    return [mx[0], 0];
+  }
 
-        nodeArray.push(path);
-        stack.push(`${i + 1}, ${s}`);
-        callerStack.push(stack.slice(0));
+  nodeArray.push(path);
+  stack.push(`${i + 1}, ${s}`);
+  callerStack.push(stack.slice(0));
 
-        const l = fn(i + 1, s, d + 1, `${path}L`, stack);
-        stack.pop();
-        callerStack.push(stack.slice(0));
-        nodeArray.push(path);
-        stack.push(`${i + 1}, ${s - weights[i]}`);
-        callerStack.push(stack.slice(0));
+  const l = fn(i + 1, s, d + 1, `${path}L`, stack);
+  stack.pop();
+  callerStack.push(stack.slice(0));
+  nodeArray.push(path);
+  stack.push(`${i + 1}, ${s - weights[i]}`);
+  callerStack.push(stack.slice(0));
 
-        const r = fn(i + 1, s - weights[i], d + 1, `${path}R`, stack);
+  let res = profits[i];
 
-        stack.pop();
-        callerStack.push(stack.slice(0));
+  const r = fn(i + 1, s - weights[i], d + 1, `${path}R`, stack);
+  res += r[1];
+  stack.pop();
+  callerStack.push(stack.slice(0));
 
-        nodeArray.push(path);
+  nodeArray.push(path);
 
-        nodes[path] = [(l[0] + r[0]) / 2, d * 30, Math.max(l[1], r[1] + profits[i]), `${i}, ${s}`, false];
+  nodes[path] = [(l[0] + r[0]) / 2, d * 30, Math.max(l[1], res), `${i}, ${s}`, '', (s - weights[i] >= 0) ? profits[i] : null];
 
-        memo.set((i, s), Math.max(l[1], r[1] + profits[i]));
-        return [(l[0] + r[0]) / 2, Math.max(l[1], r[1] + profits[i])];
-      }
+  memo.set((i, s), Math.max(l[1], res));
+  return [(l[0] + r[0]) / 2, Math.max(l[1], res)];
+}
 
-      fn(0, num, 1, 'R');
+fn(0, num, 1, 'R');
 
-      useEffect(() => {
-        if (isIntervalActive && range > 0 && range < nodeArray.length - 1) {
-          let counter = range;
-          interval = setInterval(() => {
-            counter += 1;
-            if (counter === nodeArray.length) {
-              clearInterval(interval);
-              setIsIntervalActive((prev) => !prev);
-            } setRange((prevCount) => prevCount + 1);
-          }, delay);
-        } else {
-          clearInterval(interval);
-          setIsIntervalActive(false);
-        }
-
-        return () => {
-          clearInterval(interval);
-        };
-      }, [isIntervalActive]);
-
-      const handleToggleInterval = () => {
-        if (range === nodeArray.length) { setRange(1); }
+useEffect(() => {
+  if (isIntervalActive && range > 0 && range < nodeArray.length - 1) {
+    let counter = range;
+    interval = setInterval(() => {
+      counter += 1;
+      if (counter === nodeArray.length) {
+        clearInterval(interval);
         setIsIntervalActive((prev) => !prev);
-      };
+      } setRange((prevCount) => prevCount + 1);
+    }, delay);
+  } else {
+    clearInterval(interval);
+    setIsIntervalActive(false);
+  }
 
-      const handleChangePlus = () => {
-        if (range === nodeArray.length || isIntervalActive) return;
-        setRange((prev) => prev + 1);
-      };
-      const handleChangeMinus = () => {
-        if (range === 0 || isIntervalActive || num === 0) return;
-        setRange((prev) => prev - 1);
-        setIsIntervalActive(false);
-      };
-      const handleChangeRun = (e) => {
-        e.preventDefault();
-        if (isIntervalActive) {
-          let ecounter = 0;
-          setExecutionStop(true);
-          const executeInterval = setInterval(() => {
+  return () => {
+    clearInterval(interval);
+  };
+  }, [isIntervalActive]);
+
+  const handleToggleInterval = () => {
+    if (range === nodeArray.length) { setRange(1); }
+    setIsIntervalActive((prev) => !prev);
+  };
+
+  const handleChangePlus = () => {
+    if (range === nodeArray.length || isIntervalActive) return;
+    setRange((prev) => prev + 1);
+  };
+  const handleChangeMinus = () => {
+    if (range <= 1 || isIntervalActive || num === 0) return;
+    setRange((prev) => prev - 1);
+    setIsIntervalActive(false);
+  };
+  const handleChangeRun = (e) => {
+    e.preventDefault();
+    if (isIntervalActive) {
+      let ecounter = 0;
+      setExecutionStop(true);
+      const executeInterval = setInterval(() => {
             if (ecounter) {
               setExecutionStop(false);
               clearInterval(executeInterval);
@@ -150,50 +153,50 @@ export default function Knapsack({ reload }) {
             ecounter += 1;
           }, 1500);
           return;
-        }
-        if (!(numText >= 1 && numText <= 15)) {
-          toast.info('Range is 1 - 15 for better Experiance');
-          return;
-        }
-        const profitArray = getAbsoluteArray(profitText);
-        const weightArray = getAbsoluteArray(weightText);
-        if ((profitArray === null)
-        || (weightArray === null)
-        || (profitArray.length !== weightArray.length)) {
-          toast.error("Arrays arn't Valide!");
-          return;
-        }
-        setProfits(profitArray);
-        setWeights(weightArray);
-        setIsMemoAvailable(true);
-        setNum(numText);
-        setNumText('');
-        setRange(1);
-        setIsIntervalActive(true);
-      };
+    }
+    if (!(numText >= 1 && numText <= 15)) {
+      toast.info('Range is 1 - 15 for better Experiance');
+      return;
+    }
+    const profitArray = getAbsoluteArray(profitText);
+    const weightArray = getAbsoluteArray(weightText);
+    if ((profitArray === null)
+    || (weightArray === null)
+    || (profitArray.length !== weightArray.length)) {
+      toast.error("Arrays arn't Valide!");
+      return;
+    }
+    setProfits(profitArray);
+    setWeights(weightArray);
+    setIsMemoAvailable(true);
+    setNum(numText);
+    setNumText('');
+    setRange(1);
+    setIsIntervalActive(true);
+  };
 
-      const onChangeHandleInput = (event) => {
-        event.preventDefault();
-        setNumText(event.target.value);
-      };
+  const onChangeHandleInput = (event) => {
+    event.preventDefault();
+    setNumText(event.target.value);
+  };
 
-      const handleChangeIsMemo = () => {
-        if (isIntervalActive || isMemoAvailable) return;
-        if (!isMemo) {
-          setMemoStyle({
-            color: '#ffffff',
-            backgroundColor: 'rgb(0, 189, 9)',
-            border: '1px solid rgb(1 163 9)',
-          });
-        } else {
-          setMemoStyle({
-            color: '#ffffff',
-            backgroundColor: '#f77153',
-            border: '1px solid rgb(255, 0, 0)',
-          });
-        }
-        setIsMemo((prev) => !prev);
-      };
+  const handleChangeIsMemo = () => {
+    if (isIntervalActive || isMemoAvailable) return;
+    if (!isMemo) {
+      setMemoStyle({
+        color: '#ffffff',
+        backgroundColor: 'rgb(0, 189, 9)',
+        border: '1px solid rgb(1 163 9)',
+      });
+    } else {
+      setMemoStyle({
+        color: '#ffffff',
+        backgroundColor: '#f77153',
+        border: '1px solid rgb(255, 0, 0)',
+      });
+    }
+    setIsMemo((prev) => !prev);
+  };
 
       const handleStyleChangeMemoOver = () => {
         if (!isMemo) {
@@ -213,6 +216,7 @@ export default function Knapsack({ reload }) {
         }
       };
 
+      const addProfits = new Map();
       for (let index = 1; index < range; index += 1) {
         const x1 = nodes[nodeArray[index - 1]][0];
         const x2 = nodes[nodeArray[index]][0];
@@ -222,6 +226,7 @@ export default function Knapsack({ reload }) {
         let val = -1;
         if (edgesList.has(edgeNumString)) {
           val = Math.min(nodes[nodeArray[index]][2], nodes[nodeArray[index - 1]][2]);
+          addProfits.set((x2, y2), true);
         }
         edgesList.set(edgeNumString, [x1, x2, y1, y2, index, val]);
       }
@@ -259,6 +264,7 @@ export default function Knapsack({ reload }) {
         setDelay((prev) => prev - 100);
         setIsIntervalActive(false);
       };
+
       const handleChangeSpeedDown = () => {
         if (delay >= 1000) return;
         setDelay((prev) => prev + 100);
@@ -280,8 +286,16 @@ export default function Knapsack({ reload }) {
           >
             <TermInfo txt="0-1 Knapsack Top-down approach" />
             <svg viewBox={`0 0 ${mx[0] + 30} ${mx[1] + 30}`} style={{ width: '100%', height: '100%' }}>
-              {nodeArray.slice(0, range).map((value) => (
-                <Node key={keyValue()} value={value} nodes={nodes} />))}
+              {nodeArray.slice(0, range).map((value, index) => (
+                <Node
+                  key={keyValue()}
+                  value={value}
+                  nodes={nodes}
+                  addProfits={addProfits}
+                  last={range - 1}
+                  index={index}
+                />
+))}
               {tempEdges}
             </svg>
             <label htmlFor="profitInput" className="profitWeightLabel">

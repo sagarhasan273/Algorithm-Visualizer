@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react';
 import AceEditor from 'react-ace';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import changeCode from './DP Room/DP Components/ChangeCode';
 
 function CarouselDP({ setHaveSelect }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,100 +29,7 @@ fibonacci(int(input("Enter Value: ")))
     'Fibonacci',
     '0-1Knapsack',
   ];
-  function changeCode(index, end) {
-    let endString = end;
-    if (isRecursionActive && end === '') endString = 'Recursion';
-    if (isTabulationActive && end === '') endString = 'Tabulation';
-    switch (`${items[index]}${endString}`) {
-      case 'Fibonacci':
-        setCode(`import collections # Optional line
 
-def fibonacci(n):
-    if n == 0 or n == 1:
-        return n
-
-    return fibonacci(n-1) + fibonacci(n-2)
-
-number = int(input("Enter Number: "))
-fibonacci(number)
-        
-        `);
-        break;
-      case 'FibonacciRecursion':
-        setCode(`import collections # Optional line
-
-def fibonacciRecursion(n):
-    if n == 0 or n == 1:
-        return n
-
-    return fibonacciRecursion(n-1) + fibonacciRecursion(n-2)
-
-number = int(input("Enter Number: "))
-fibonacciRecursion(number)
-        
-        `);
-        break;
-      case 'FibonacciTabulation':
-        setCode(`import collections # Optional line
-
-def fibonacciTabulation(n):
-    if n == 0 or n == 1:
-        return n
-
-    return fibonacci(n-1) + fibonacci(n-2)
-
-number = int(input("Enter Value: "))
-fibonacciTabulation(number)
-        
-        `);
-        break;
-      case '0-1Knapsack':
-        setCode(`import collections # Optional line
-
-def Knapsack(n):
-    if n == 0 or n == 1:
-        return n
-
-    return fibonacci(n-1) + fibonacci(n-2)
-
-fibonacci(int(input("Enter Value: ")))
-        
-        `);
-        break;
-      case '0-1KnapsackRecursion':
-        setCode(`def KnapsackRecursion(i, s):
-    if i == n:
-        return 0
-    if s < 0:
-        return -inf
-
-    return max(KnapsackRecursion(i+1, s), profits[i] + KnapsackRecursion(i+1, s - weights[i]))
-
-n = 4
-W = int(input("Enter Bag Capacity: "))
-profits = [50, 70, 20, 28]
-weigths = [4, 7, 2, 8]
-answer = KnapsackRecursion(i, W)
-print(answer)
-`);
-        break;
-      case '0-1KnapsackTabulation':
-        setCode(`import collections # Optional line
-
-def KnapsackTabulation(n):
-    if n == 0 or n == 1:
-        return n
-
-    return fibonacci(n-1) + fibonacci(n-2)
-
-fibonacci(int(input("Enter Value: ")))
-        
-        `);
-        break;
-      default:
-        break;
-    }
-  }
   const handleCopy = () => {
     if (editorRef.current) {
       const codePy = editorRef.current.editor.getValue();
@@ -136,12 +44,12 @@ fibonacci(int(input("Enter Value: ")))
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    changeCode((currentIndex + 1) % items.length, '');
+    changeCode((currentIndex + 1) % items.length, '', isRecursionActive, isTabulationActive, items, setCode);
   };
 
   const goToPrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
-    changeCode(currentIndex === 0 ? items.length - 1 : currentIndex - 1, '');
+    changeCode(currentIndex === 0 ? items.length - 1 : currentIndex - 1, '', isRecursionActive, isTabulationActive, items, setCode);
   };
   const mouseEntered = (event) => {
     event.preventDefault();
@@ -194,7 +102,7 @@ fibonacci(int(input("Enter Value: ")))
           backgroundColor: 'rgb(0, 189, 9)',
           border: '1px solid rgb(1 163 9)',
         });
-        changeCode(currentIndex, 'Recursion');
+        changeCode(currentIndex, 'Recursion', isRecursionActive, isTabulationActive, items, setCode);
         break;
       case 'tabulation':
         setIsTabulationActive(true);
@@ -205,7 +113,7 @@ fibonacci(int(input("Enter Value: ")))
           backgroundColor: 'rgb(0, 189, 9)',
           border: '1px solid rgb(1 163 9)',
         });
-        changeCode(currentIndex, 'Tabulation');
+        changeCode(currentIndex, 'Tabulation', isRecursionActive, isTabulationActive, items, setCode);
         break;
       default:
         break;

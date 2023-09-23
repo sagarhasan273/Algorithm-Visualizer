@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import keyValue from '../Components/GenerateKey';
 import CarouselDP from './CarouselDP';
+import KnapsackTabulation from './DP Room/0-1knapsack/KnapsackTabulation';
 import Knapsack from './DP Room/0-1knapsack/knapsack';
 import Fibonacci from './DP Room/Fibonncci/Fibonacci';
 import './DynamicProgramming.scss';
@@ -41,7 +42,8 @@ export default function DynamicProgramming() {
         return (reload) ? <Knapsack key={1} reload={reloadContent} />
           : <Knapsack key={2} reload={reloadContent} />;
       case '0-1KnapsackTabulation':
-        return <div>0-1Knapsack Tabulation Not Yet!</div>;
+        return (reload) ? <KnapsackTabulation key={1} reload={reloadContent} />
+          : <KnapsackTabulation key={2} reload={reloadContent} />;
       case 'Item3':
         return <div>item 3</div>;
       case 'Item4':
@@ -51,7 +53,7 @@ export default function DynamicProgramming() {
     }
   }
   return (
-    <div>
+    <div style={{ width: '100%', height: 'calc(100% - 2em)', overflow: 'auto' }}>
       {renderContentDP()}
     </div>
   );
