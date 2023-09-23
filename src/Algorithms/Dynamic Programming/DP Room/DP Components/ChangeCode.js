@@ -85,9 +85,7 @@ print(answer)
 `);
       break;
     case '0-1KnapsackTabulation':
-      setCode(`import collections # Optional line
-
-def KnapsackTabulation(n):
+      setCode(`def KnapsackTabulation(n):
     dp = [[0 for x in range(W + 1)] for x in range(n + 1)]
 
     # Build table dp[][] in bottom up manner
@@ -109,8 +107,8 @@ n = len(profit)
 profits = [50, 70, 20, 28]
 weigths = [4, 7, 2, 8]
 print(knapSackTabulation(W, weights, profits, n))
-        
-        `);
+
+`);
       break;
     default:
       break;
