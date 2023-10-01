@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+<p style="font-size: 16px;">I Never Copy Code In my life. I learn from them. It is very sad when people ask where did you get this code from. Well, I made this project by my self using React.js</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## I have used my inner thought to visualize those algorithms and Data Structures by traversing verious websites and have learnt new techniques (On Going...).
 
-In the project directory, you can run:
+# Binary Search-Visualizer
+I've created a novel binary search visualization with the aim of making it more accessible and understandable for students. My intention is to assist teachers in effectively conveying this concept to their students.
 
-### `npm start`
+### Binary Search Unique
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/35034ba1-c556-41fe-b77e-0b79a366dbee
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![image](https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/edd060f6-19b8-4726-b435-d1cfd0c3bd9f)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Dynamic Programming-Visualizer
+DP visualizer is a visualization tool for some DP standard problems, which helps to understand DP technique in general and how to use it to solve these problems in particular.
 
-### `npm run build`
+### So far the visualizer includes 2 problems 4 ways:
+  - 01knapsack Recursive.
+  - 01knapsack Tabulation.
+  - Fibonacci Recursive.
+  - Fibonacci Tabulation.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 0-1Knapsack Recursive:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![knapsackrecursive](https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/93ad8735-86d6-4523-91da-f4595ff0d0e3)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/58f8e5bd-46c2-409c-a7b1-0def38d2ac85
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 0-1Knapsack Tabulation:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![image](https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/9d33a548-a558-44d8-bb68-24b2330fdf69)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/efdebacc-75cb-49fc-94f9-1d956c9c0c58
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Fibonacci Recursive:
 
-### Code Splitting
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/2d03949f-1ce3-4895-84ce-b7338ecda940
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Fibonacci Tabulation:
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+# Recursion-Visualizer
+Recursion visualizer is a visualization tool for understanding Recursive technique to solve problems.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### So far the visualizer includes 2 problems 2 ways:
+  - Recursion.
+  - Recursion Tree.
+### Recursion Tree
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/a36f5767-6f0a-46a3-954a-8a9f2fabcb7a
 
-### Deployment
+# Array, Stack, Deque, Queue -Visualizer
+Data Structures visualizer is a visualization tool for understanding the storage uses.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Data Structures
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/40c566c8-4fa8-4590-8401-daacaa0bc9de
+
