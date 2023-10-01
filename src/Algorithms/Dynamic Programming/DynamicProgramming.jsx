@@ -9,6 +9,7 @@ import CarouselDP from './CarouselDP';
 import KnapsackTabulation from './DP Room/0-1knapsack/KnapsackTabulation';
 import Knapsack from './DP Room/0-1knapsack/knapsack';
 import Fibonacci from './DP Room/Fibonncci/Fibonacci';
+import FibonacciTabulation from './DP Room/Fibonncci/FibonacciTabulation';
 import './DynamicProgramming.scss';
 
 export default function DynamicProgramming() {
@@ -37,7 +38,8 @@ export default function DynamicProgramming() {
         return (reload) ? <Fibonacci key={keyValue()} reload={reloadContent} />
           : <Fibonacci key={keyValue()} reload={reloadContent} />;
       case 'FibonacciTabulation':
-        return <div>Fibonacci Tabulation Not Yet!</div>;
+        return (reload) ? <FibonacciTabulation key={1} reload={reloadContent} />
+          : <FibonacciTabulation key={2} reload={reloadContent} />;
       case '0-1KnapsackRecursion':
         return (reload) ? <Knapsack key={1} reload={reloadContent} />
           : <Knapsack key={2} reload={reloadContent} />;

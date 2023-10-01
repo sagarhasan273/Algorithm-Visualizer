@@ -44,10 +44,13 @@ fibonacciRecursion(number)
 def fibonacciTabulation(n):
     if n == 0 or n == 1:
         return n
+    dp = [0, 1] + [0]*(n-1)
+    for i in range(2, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
 
-    return fibonacci(n-1) + fibonacci(n-2)
+    return dp[n]
 
-number = int(input("Enter Value: "))
+number = int(input("Enter Number: "))
 fibonacciTabulation(number)
         
         `);
@@ -86,6 +89,7 @@ print(answer)
       break;
     case '0-1KnapsackTabulation':
       setCode(`def KnapsackTabulation(n):
+
     dp = [[0 for x in range(W + 1)] for x in range(n + 1)]
 
     # Build table dp[][] in bottom up manner
