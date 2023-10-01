@@ -1,6 +1,17 @@
- I Never Copy Code In my life. I learn from them. It is very sad when people ask where did you get this code from. Well i made this project by my self. Using React.js
+<p style="font-size: 16px;">I Never Copy Code In my life. I learn from them. It is very sad when people ask where did you get this code from. Well, I made this project by my self using React.js</p>
 
-## I have used my inner thought to visualize those algorithms and Data Structures by traversing verious websites and have learnt new techniques.
+
+## I have used my inner thought to visualize those algorithms and Data Structures by traversing verious websites and have learnt new techniques (On Going...).
+
+# Binary Search-Visualizer
+I've created a novel binary search visualization with the aim of making it more accessible and understandable for students. My intention is to assist teachers in effectively conveying this concept to their students.
+
+### Binary Search Unique
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/35034ba1-c556-41fe-b77e-0b79a366dbee
+
+![image](https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/edd060f6-19b8-4726-b435-d1cfd0c3bd9f)
+
+
 
 # Dynamic Programming-Visualizer
 DP visualizer is a visualization tool for some DP standard problems, which helps to understand DP technique in general and how to use it to solve these problems in particular.
