@@ -2,7 +2,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
-  faArrowRotateLeft,
   faBackward, faForward,
   faHandPointUp,
   faMinus,
@@ -14,17 +13,17 @@ import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import keyValue from '../Components/GenerateKey';
-import PolygonWithCenteredText from './BinaryComponent/PolygonWithCenteredText';
-import './BinarySearch.scss';
+import PolygonWithCenteredTextLinear from './BinaryComponent/PolygonWithCenteredTextLinear';
+import './LinearSearch.scss';
 
-export default function BinarySearch({ reload }) {
+export default function LinearSearch({ reload }) {
   const [isIntervalActive, setIsIntervalActive] = useState(false);
   const [num, setNum] = useState(5);
-  const [range, setRange] = useState(1);
+  const [range, setRange] = useState(0);
   const [numText, setNumText] = useState('');
   const [executionStop, setExecutionStop] = useState(false);
-  const [binaryArrayText, setBinaryArrayText] = useState('[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]');
-  const [binaryArray, setbinaryArray] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]);
+  const [linearArrayText, setlinearArrayText] = useState('[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]');
+  const [linearArray, setlinearArray] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]);
   const [delay, setDelay] = useState(500);
   const nodes = [];
 
@@ -41,48 +40,34 @@ export default function BinarySearch({ reload }) {
     return array;
   }
 
-  function ListOfBoxesFill(x, y, r, mid) {
+  function ListOfBoxesFill(y, r, mid) {
     const demmo = new Array([]);
-    for (let i = x; i <= y; i += 1) {
-      demmo.push(<PolygonWithCenteredText
+    for (let i = 0; i <= y; i += 1) {
+      demmo.push(<PolygonWithCenteredTextLinear
         key={keyValue()}
-        x={((i + 2) * 9) + 1}
+        x={((i + 1) * 9) + 1}
         y={((r + 0.5) * 15) + 1}
-        value={binaryArray[i]}
+        value={linearArray[i]}
         i={i}
         range={range}
-        left={i === x}
-        right={i === y}
-        mid={mid ? mid === i : false}
+        mid={mid}
       />);
     }
     nodes.push(demmo);
   }
 
   function binSearch(target) {
-    let low = 0;
-    let high = binaryArray.length - 1;
-    let j = 0;
-
-    while (low <= high) {
-      ListOfBoxesFill(low, high, j, null);
-      const mid = low + Math.floor((high - low) / 2);
-      ListOfBoxesFill(low, high, j, mid);
-      j += 1;
-      if (binaryArray[mid] === target) {
-        if (low !== mid || high !== mid) { ListOfBoxesFill(mid, mid, j, mid); }
+    for (let i = 0; i < linearArray.length; i += 1) {
+      ListOfBoxesFill(linearArray.length - 1, 1, i);
+      if (linearArray[i] === target) {
+        ListOfBoxesFill(linearArray.length - 1, 1, i);
         return true;
-      }
-
-      if (binaryArray[mid] > target) {
-        high = mid - 1;
-      } else {
-        low = mid + 1;
       }
     }
     return false;
   }
 
+  ListOfBoxesFill(linearArray.length - 1, 1, null);
   const targetFound = binSearch(maxCols);
 
   useEffect(() => {
@@ -90,7 +75,7 @@ export default function BinarySearch({ reload }) {
       let counter = range;
       interval = setInterval(() => {
         counter += 1;
-        if (counter === nodes.length) {
+        if (counter === nodes.length - 1) {
           clearInterval(interval);
           setIsIntervalActive((prev) => !prev);
         } setRange((prevCount) => prevCount + 1);
@@ -106,12 +91,12 @@ export default function BinarySearch({ reload }) {
   }, [isIntervalActive]);
 
   const handleToggleInterval = () => {
-    if (range === nodes.length) { setRange(1); }
+    if (range === nodes.length) { setRange(0); }
     setIsIntervalActive((prev) => !prev);
   };
 
   const handleChangePlus = () => {
-    if (range === nodes.length || isIntervalActive) return;
+    if (range === nodes.length - 1 || isIntervalActive) return;
     setRange((prev) => prev + 1);
   };
   const handleChangeMinus = () => {
@@ -133,21 +118,27 @@ export default function BinarySearch({ reload }) {
       }, 1500);
       return;
     }
-    const profitArray = getAbsoluteArray(binaryArrayText);
-    if (profitArray === null) {
+    const dummyArray = getAbsoluteArray(linearArrayText);
+    if (dummyArray === null) {
       toast.error("Arrays arn't Valide!");
       return;
     }
+    for (let i = 0; i < dummyArray.length; i += 1) {
+      if (dummyArray[i] < -999 || dummyArray[i] >= 999) {
+        toast.error('Integer Range -999 to 999');
+        return;
+      }
+    }
     if (!numText) {
-      toast.info('Bag capacity is Empty!');
+      toast.info('Target is Null!');
       return;
     }
-    if (!(numText >= 1 && numText <= 50)) {
-      toast.info('Capacity range is 1 - 25 for better Experiance!');
+    if (!(numText >= -999 && numText <= 999)) {
+      toast.info('Capacity range is 1 - 999 for better Experiance!');
       return;
     }
 
-    setbinaryArray(profitArray);
+    setlinearArray(dummyArray);
     if (!numText) { setNum(num); } else {
       setNum(numText);
     }
@@ -175,8 +166,8 @@ export default function BinarySearch({ reload }) {
 
   const onChangeHandleInputProfitWeight = (event) => {
     switch (event.target.id) {
-      case 'binaryArrayInput':
-        setBinaryArrayText(event.target.value);
+      case 'linearArrayInput':
+        setlinearArrayText(event.target.value);
         break;
       default:
         break;
@@ -184,26 +175,20 @@ export default function BinarySearch({ reload }) {
   };
 
   return (
-    <div className="svgContainerBS">
+    <div className="svgContainerLS">
       <ToastContainer position="top-center" autoClose={3500} />
-      <svg viewBox={`0 0 ${(binaryArray.length + 4) * 9} ${(binaryArray.length / 2 + 0.8) * 9}`}>
-        {nodes.slice(0, range)}
-        <text
-          x={((binaryArray.length + 2) * 9) / 2}
-          y={(binaryArray.length / 2 + 0.5) * 9}
-          style={{
-            alignmentBaseline: 'central',
-            fontSize: '4px',
-            fontWeight: '500',
-          }}
-        >
-          Target: {num} {range === nodes.length
-          ? targetFound ? 'Found!' : 'Not Found!' : null}
-        </text>
+      <h1>Linear Search</h1>
+
+      <svg viewBox={`0 0 ${(linearArray.length + 2) * 9} ${50}`}>
+        {(range !== nodes.length) ? nodes[range] : nodes[0]}
       </svg>
-      <label htmlFor="binaryArrayInput" className="binaryArrayLabel">
-              &nbsp;&nbsp;BinaryArray:&nbsp;
-        <input type="text" id="binaryArrayInput" className="binaryArray" value={binaryArrayText} onChange={onChangeHandleInputProfitWeight} />
+
+      <h1>Target: {num} {range === nodes.length - 1
+        ? targetFound ? 'Found!' : 'Not Found!' : null}
+      </h1>
+      <label htmlFor="linearArrayInput" className="linearArrayLabel">
+              &nbsp;&nbsp;Linear Array:&nbsp;
+        <input type="text" id="linearArrayInput" className="linearArray" value={linearArrayText} onChange={onChangeHandleInputProfitWeight} />
       </label>
       <div style={{
         display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
@@ -214,7 +199,7 @@ export default function BinarySearch({ reload }) {
         <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
         <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
         {executionStop ? <FontAwesomeIcon icon={faHandPointUp} beat className="executionStopKT" /> : null}
-        <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === 0) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
+        <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
         <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
         <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>
           <div className="speedBar" style={{ width: `${76 - (75 * (delay / 1100))}px` }} /> <FontAwesomeIcon icon={faPlus} className="controlFont" />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import keyValue from '../Algorithms/Components/GenerateKey';
 import DynamicProgramming from '../Algorithms/Dynamic Programming/DynamicProgramming';
 import Recursive from '../Algorithms/Recursion/Recursive';
-import BinarySearch from '../Algorithms/Search/BinarySearch';
+import Search from '../Algorithms/Search/Search';
 import Array from '../DataStructures/Array/Array';
 import Deque from '../DataStructures/Deque/Deque';
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
@@ -149,9 +149,9 @@ export default function Container(props) {
             sideBarHideShow={sideBarHideShow}
             sideBarHideShowHandle={sideBarHideShowHandle}
           />
-          <h2 style={headingNameStyle}>Binary Searching Visualization</h2>
+          <h2 style={headingNameStyle}>Searching Visualization</h2>
           <div className="horizontal-line" />
-          <BinarySearch reload={handleReloadFromInside} />
+          <Search reload={handleReloadFromInside} />
         </div>
       ) : null}
       {active === 'buttonSorting' ? (

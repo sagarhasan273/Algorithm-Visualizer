@@ -1,0 +1,118 @@
+.btn {
+	border-radius: 50px;
+	margin: 10px;
+	border-style: solid;
+	border-color: black;
+}
+.termsMenu {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	text-align: left;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+	display: flex;
+	.termsMenu-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		width: 650px;
+		height: 500px;
+		position: relative;
+		.close {
+			position: absolute;
+			top: 5px;
+			right: 15px;
+			color: #aaaaaa;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.close:hover,
+		.close:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	}
+	.carouselSearch {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 15px;
+		width: 80%;
+		.codeContainerSearch {
+			margin: auto;
+			height: 350px !important;
+			background-color: #888;
+			position: relative;
+			width: 95%;
+			border: 2px solid #8080807e;
+
+			.copySearch {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				outline: none;
+				border: none;
+				background: transparent;
+				cursor: pointer;
+				i {
+					font-size: 16px;
+				}
+			}
+			.aceEditorSearch {
+				font-size: 14px !important;
+				height: 100% !important;
+				width: 100% !important;
+			}
+		}
+		.carousel-item {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.buttonSearchs {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			button {
+				padding: 20px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				cursor: pointer;
+				border-radius: 3px;
+				border: 1px solid black;
+
+				&:hover {
+					background-color: #f77153;
+					border: 1px solid rgb(255, 0, 0);
+					color: #ffffff;
+				}
+			}
+
+			.previous {
+				margin-right: 80px;
+			}
+			.next {
+				margin-left: 80px;
+			}
+			.go {
+				&:hover {
+					color: #ffffff;
+					background-color: rgb(0, 189, 9);
+					border: 1px solid rgb(1 163 9);
+				}
+			}
+		}
+	}
+}
