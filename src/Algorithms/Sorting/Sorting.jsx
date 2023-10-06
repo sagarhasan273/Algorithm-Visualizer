@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -16,6 +17,7 @@ import './Sorting.scss';
 export default function Sorting({ homeStage }) {
   const [haveSelect, setHaveSelect] = useState('');
   const [reload, setReload] = useState(true);
+  const [order, setOrder] = useState(true);
   const handleClick = () => {
     setHaveSelect(null);
     homeStage();
@@ -30,7 +32,7 @@ export default function Sorting({ homeStage }) {
           <div className="termsMenu">
             <div className="termsMenu-content">
               <span className="close" onClick={handleClick}>&times;</span>
-              <CarouselSorting setHaveSelect={setHaveSelect} />
+              <CarouselSorting setHaveSelect={setHaveSelect} order={order} setOrder={setOrder} />
             </div>
           </div>
         );
@@ -39,8 +41,8 @@ export default function Sorting({ homeStage }) {
         return (reload) ? <QuickSorting key={keyValue()} reload={reloadContent} />
           : <QuickSorting key={keyValue()} reload={reloadContent} />;
       case 'Merge Sorting':
-        return (reload) ? <MergeSorting key={1} reload={reloadContent} />
-          : <MergeSorting key={2} reload={reloadContent} />;
+        return (reload) ? <MergeSorting key={1} reload={reloadContent} order={order} setOrder={setOrder} />
+          : <MergeSorting key={2} reload={reloadContent} order={order} setOrder={setOrder} />;
       case 'Selection Sorting':
         return (reload) ? <SelectionSorting key={1} reload={reloadContent} />
           : <SelectionSorting key={2} reload={reloadContent} />;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-nested-ternary */
@@ -17,18 +18,21 @@ import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MergeNodes from './MergeSort Components/MergeNodes';
+import NodesPrinting from './MergeSort Components/NodesPrinting';
 import './MergeSorting.scss';
 
-export default function MergeSorting({ reload }) {
+export default function MergeSorting({ reload, order, setOrder }) {
   const [isIntervalActive, setIsIntervalActive] = useState(false);
   const [range, setRange] = useState(1);
   const [executionStop, setExecutionStop] = useState(false);
-  const [arrayMergeText, setArrayMergeText] = useState('[1, 7, 4, 1, 10, 9, -2]');
-  const [arrayMerge, setArrayMerge] = useState([1, 7, 4, 1, 10, 9, -2]);
+  const [arrayMergeText, setArrayMergeText] = useState('[72, 16, 71, 57, 52, 22, 86, 17, 53, 45, 18, 73, 9, 4, 75]');
+  const [arrayMerge, setArrayMerge] = useState([72, 16, 71, 57, 52, 22, 86, 17, 53, 45, 18, 73, 9, 4, 75]);
   const [delay, setDelay] = useState(500);
   const arr = [...arrayMerge];
   const nodes = [];
-  const maxLeftPosOfDepth = [8];
+  const maxLeftPosOfDepth = [4, 5];
+  const nodesPositions = {};
+  const nodesInPositions = {};
 
   let interval = null;
 
@@ -42,14 +46,19 @@ export default function MergeSorting({ reload }) {
     return array;
   }
 
-  function NodeArrayInsert(x, y, i, j) {
-    let xi = x;
+  function NodeArrayInsert(i, j) {
+    let xi = nodesPositions[`${i}${j}`][0];
+    const y = nodesPositions[`${i}${j}`][1];
     const apartNodes = new Array([]);
     for (let n = i; n <= j; n += 1) {
       apartNodes.push(<MergeNodes x={xi} y={y} value={arr[n]} />);
-      xi += 4;
+      xi += 5.01;
     }
-    nodes.push(apartNodes);
+    nodes.push([`${i}+${j}`]);
+
+    if (nodesInPositions[`${i}+${j}`] === undefined) { nodesInPositions[`${i}+${j}`] = [apartNodes]; } else {
+      nodesInPositions[`${i}+${j}`].push(apartNodes);
+    }
   }
 
   function merge(l, m, r) {
@@ -67,7 +76,7 @@ export default function MergeSorting({ reload }) {
     let k = l;
 
     while (i < n1 && j < n2) {
-      if (L[i] <= R[j]) {
+      if (order ? L[i] <= R[j] : L[i] > R[j]) {
         arr[k] = L[i];
         i += 1;
       } else {
@@ -90,25 +99,41 @@ export default function MergeSorting({ reload }) {
     }
   }
 
-  function mergeSort(l, r, depth) {
+  function mergeSort(l, r) {
+    NodeArrayInsert(l, r);
     if (l >= r) {
-      NodeArrayInsert(maxLeftPosOfDepth[0], depth, l, r);
-      maxLeftPosOfDepth[0] += 4;
+      return;
+    }
+
+    const m = l + parseInt((r - l) / 2, 10);
+    mergeSort(l, m);
+
+    mergeSort(m + 1, r);
+
+    merge(l, m, r);
+
+    NodeArrayInsert(l, r);
+  }
+
+  function getMergeNodesPos(l, r, depth) {
+    maxLeftPosOfDepth[1] = Math.max(maxLeftPosOfDepth[1], depth);
+    if (l >= r) {
+      nodesPositions[`${l}${r}`] = [maxLeftPosOfDepth[0], depth];
+      maxLeftPosOfDepth[0] += 5;
       return maxLeftPosOfDepth[0];
     }
     const m = l + parseInt((r - l) / 2, 10);
-    const left = mergeSort(l, m, depth + 5);
-    maxLeftPosOfDepth[0] += 4;
-    const right = mergeSort(m + 1, r, depth + 5);
-    merge(l, m, r);
-
-    maxLeftPosOfDepth[0] = Math.max(maxLeftPosOfDepth[0], Math.max(left, right)) + 4;
-    NodeArrayInsert((left + right) / 2 - ((r - l + 2) / 2) * 4, depth, l, r);
+    const left = getMergeNodesPos(l, m, depth + 8);
+    maxLeftPosOfDepth[0] += 2;
+    const right = getMergeNodesPos(m + 1, r, depth + 8);
+    maxLeftPosOfDepth[0] = Math.max(maxLeftPosOfDepth[0], Math.max(left, right)) + 2;
+    nodesPositions[`${l}${r}`] = [(left + right) / 2 - ((r - l + 2) / 2) * 5, depth];
     return (left + right) / 2;
   }
 
   const arrSize = arr.length;
-  mergeSort(0, arrSize - 1, 3);
+  getMergeNodesPos(0, arrSize - 1, 8);
+  mergeSort(0, arrSize - 1);
 
   useEffect(() => {
     if (isIntervalActive && range > 0 && range < nodes.length - 1) {
@@ -163,6 +188,12 @@ export default function MergeSorting({ reload }) {
       toast.error("Arrays arn't Valide!");
       return;
     }
+    for (let i = 0; i < checkArray.length; i += 1) {
+      if (parseInt(checkArray[i], 10) < -999 || parseInt(checkArray[i], 10) > 999) {
+        toast.error('Element Range -999 to 999!');
+        return;
+      }
+    }
 
     setArrayMerge(checkArray);
 
@@ -191,13 +222,21 @@ export default function MergeSorting({ reload }) {
         break;
     }
   };
-
+  const ascendingDescendingHandle = (event) => {
+    event.preventDefault();
+    if (event.target.id === 'ascending') {
+      setOrder(true);
+    } else {
+      setOrder(false);
+    }
+  };
   return (
     <div className="ContainerMergeSort">
+      <div className="mergeSortLabel">Merge Sort Visualization</div>
       <ToastContainer position="top-center" autoClose={3500} />
       <div className="svgContainerMergeSort">
-        <svg viewBox={`0 0 ${maxLeftPosOfDepth[0]} 65`}>
-          {nodes.slice(0, range)}
+        <svg viewBox={`0 0 ${maxLeftPosOfDepth[0] - 2} ${maxLeftPosOfDepth[1] + 10}`}>
+          <NodesPrinting nodes={nodes.slice(0, range)} nodesInPositions={nodesInPositions} />
         </svg>
       </div>
       <label htmlFor="ArrayMergeInput" className="ArrayMergeLabel">
@@ -209,6 +248,8 @@ export default function MergeSorting({ reload }) {
       }}
       >
         <button type="button" className="controlbuttonRun" onClick={reload}>Clear</button>
+        <button type="button" id="ascending" className={`controlbuttonRun ${order ? 'active' : ''}`} onClick={ascendingDescendingHandle}>Ascending</button>
+        <button type="button" id="descending" className={`controlbuttonRun ${order ? '' : 'active'}`} onClick={ascendingDescendingHandle}>Descending</button>
         <button type="button" className="controlbuttonRun" onClick={handleChangeRun}>Run</button>
         <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
         {executionStop ? <FontAwesomeIcon icon={faHandPointUp} beat className="executionStopKT" /> : null}

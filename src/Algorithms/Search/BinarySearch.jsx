@@ -139,11 +139,11 @@ export default function BinarySearch({ reload }) {
       return;
     }
     if (!numText) {
-      toast.info('Bag capacity is Empty!');
+      toast.info('Target is Empty!');
       return;
     }
     if (!(numText >= 1 && numText <= 50)) {
-      toast.info('Capacity range is 1 - 25 for better Experiance!');
+      toast.info('Target range is 1 - 50 for better Experiance!');
       return;
     }
 

@@ -6,7 +6,7 @@ import AceEditor from 'react-ace';
 import 'react-toastify/dist/ReactToastify.css';
 import changeCode from './Sorting Components/ChangeCode';
 
-function CarouselSorting({ setHaveSelect }) {
+function CarouselSorting({ setHaveSelect, setOrder }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [whichSort, setLinearSorting] = useState(false);
   const [ascending, setAscending] = useState(true);
@@ -77,6 +77,7 @@ print(array)
   const goButton = () => {
     if (whichSort) setHaveSelect(`${items[currentIndex]}`);
     else setHaveSelect(`${items[currentIndex]}`);
+    setOrder(ascending);
   };
 
   const ascendingDescendingHandle = (event) => {
