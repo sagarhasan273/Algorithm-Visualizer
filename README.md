@@ -7,7 +7,8 @@
 I've created a novel binary search visualization with the aim of making it more accessible and understandable for students. My intention is to assist teachers in effectively conveying this concept to their students.
 
 ### Binary Search Unique
-https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/35034ba1-c556-41fe-b77e-0b79a366dbee
+
+https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/dbd5e556-351a-4b4d-a265-645409410dea
 
 ![image](https://github.com/sagarhasan273/Algorithm-Visualizer/assets/77304333/edd060f6-19b8-4726-b435-d1cfd0c3bd9f)
 
