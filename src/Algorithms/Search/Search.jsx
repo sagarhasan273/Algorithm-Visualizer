@@ -10,11 +10,12 @@ import CarouselSearch from './CarouselSearch';
 import LinearSearch from './LinearSearch';
 import './Search.scss';
 
-export default function Search() {
+export default function Search({ homeStage }) {
   const [haveSelect, setHaveSelect] = useState('');
   const [reload, setReload] = useState(true);
   const handleClick = () => {
     setHaveSelect(null);
+    homeStage();
   };
   const reloadContent = () => {
     setReload((prev) => !prev);

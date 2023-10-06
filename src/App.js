@@ -18,6 +18,10 @@ class App extends React.Component {
     });
   };
 
+  homeStage = () => {
+    this.setState({ sideBarActive: 'homebtn', containerActive: 'homebtn', sideBarHideShow: true });
+  };
+
   sideBarHideShowHandle = (event) => {
     event.preventDefault();
     this.setState((prevState) => ({ sideBarHideShow: !prevState.sideBarHideShow }));
@@ -32,6 +36,7 @@ class App extends React.Component {
           active={containerActive}
           sideBarHideShowHandle={this.sideBarHideShowHandle}
           sideBarHideShow={sideBarHideShow}
+          homeStage={this.homeStage}
         />
       </div>
     );

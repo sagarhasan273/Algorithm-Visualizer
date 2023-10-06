@@ -12,12 +12,13 @@ import Fibonacci from './DP Room/Fibonncci/Fibonacci';
 import FibonacciTabulation from './DP Room/Fibonncci/FibonacciTabulation';
 import './DynamicProgramming.scss';
 
-export default function DynamicProgramming() {
+export default function DynamicProgramming({ homeStage }) {
   // const [isVisible, setIsVisible] = useState(true);
   const [haveSelect, setHaveSelect] = useState('');
   const [reload, setReload] = useState(true);
   const handleClick = () => {
     setHaveSelect(null);
+    homeStage();
   };
   const reloadContent = () => {
     setReload((prev) => !prev);

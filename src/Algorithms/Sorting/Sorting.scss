@@ -42,22 +42,23 @@
 			cursor: pointer;
 		}
 	}
-	.carouselSearch {
+	.carouselSorting {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
 		gap: 15px;
-		width: 80%;
-		.codeContainerSearch {
+		width: 95%;
+
+		.codeContainerSorting {
 			margin: auto;
-			height: 350px !important;
+			height: 370px !important;
 			background-color: #888;
 			position: relative;
 			width: 95%;
 			border: 2px solid #8080807e;
 
-			.copySearch {
+			.copySorting {
 				position: absolute;
 				right: 10px;
 				top: 10px;
@@ -69,7 +70,7 @@
 					font-size: 16px;
 				}
 			}
-			.aceEditorSearch {
+			.aceEditorSorting {
 				font-size: 14px !important;
 				height: 100% !important;
 				width: 100% !important;
@@ -94,7 +95,7 @@
 			font-size: 30px;
 			font-weight: bold;
 		}
-		.buttonSearchs {
+		.buttonSortings {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -115,17 +116,30 @@
 			}
 
 			.previous {
-				margin-right: 80px;
+				margin-right: 60px;
 			}
 			.next {
-				margin-left: 80px;
+				margin-left: 60px;
 			}
 			.go {
+				margin-left: 20px;
 				&:hover {
 					color: #ffffff;
 					background-color: rgb(0, 189, 9);
 					border: 1px solid rgb(1 163 9);
 				}
+			}
+			.order {
+				&:hover {
+					color: #ffffff;
+					background-color: rgb(0, 189, 9);
+					border: 1px solid rgb(1 163 9);
+				}
+			}
+			.active {
+				color: #ffffff;
+				background-color: rgb(0, 189, 9);
+				border: 1px solid rgb(1 163 9);
 			}
 		}
 	}

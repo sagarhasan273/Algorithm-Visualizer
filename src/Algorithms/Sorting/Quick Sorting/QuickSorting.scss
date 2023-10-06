@@ -1,0 +1,24 @@
+.ContainerMergeSort {
+	height: calc(100% - 1rem);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	.svgContainerMergeSort {
+		width: 800px;
+		height: 520px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.ArrayMergeLabel {
+		font-size: 20px;
+		.ArrayMerge {
+			width: 500px;
+			padding-top: 3px !important;
+			padding-bottom: 3px !important;
+			font-size: 20px !important;
+		}
+	}
+}

@@ -3,6 +3,7 @@ import keyValue from '../Algorithms/Components/GenerateKey';
 import DynamicProgramming from '../Algorithms/Dynamic Programming/DynamicProgramming';
 import Recursive from '../Algorithms/Recursion/Recursive';
 import Search from '../Algorithms/Search/Search';
+import Sorting from '../Algorithms/Sorting/Sorting';
 import Array from '../DataStructures/Array/Array';
 import Deque from '../DataStructures/Deque/Deque';
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
@@ -18,7 +19,7 @@ export default function Container(props) {
     paddingLeft: '15px', margin: '10px', marginBottom: '5px',
   };
   const {
-    active, sideBarHideShowHandle, sideBarHideShow,
+    active, sideBarHideShowHandle, sideBarHideShow, homeStage,
   } = props;
 
   const handleReloadFromInside = () => {
@@ -151,7 +152,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Searching Visualization</h2>
           <div className="horizontal-line" />
-          <Search reload={handleReloadFromInside} />
+          <Search reload={handleReloadFromInside} homeStage={homeStage} />
         </div>
       ) : null}
       {active === 'buttonSorting' ? (
@@ -162,6 +163,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Sorting Visualization</h2>
           <div className="horizontal-line" />
+          <Sorting reload={handleReloadFromInside} homeStage={homeStage} />
         </div>
       ) : null}
       {active === 'buttonHashing' ? (
@@ -182,7 +184,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Dynamic Programming Visualization</h2>
           <div className="horizontal-line" />
-          <DynamicProgramming />
+          <DynamicProgramming homeStage={homeStage} />
         </div>
       ) : null}
       {active === 'buttonTesting' ? (
