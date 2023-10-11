@@ -17,7 +17,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import MergeNodes from './MergeSort Components/MergeNodes';
 import NodesPrinting from './MergeSort Components/NodesPrinting';
 import './MergeSorting.scss';
 
@@ -51,10 +50,10 @@ export default function MergeSorting({ reload, order, setOrder }) {
     const y = nodesPositions[`${i}${j}`][1];
     const apartNodes = new Array([]);
     for (let n = i; n <= j; n += 1) {
-      apartNodes.push(<MergeNodes x={xi} y={y} value={arr[n]} />);
+      apartNodes.push([xi, y, arr[n]]);
       xi += 5.01;
     }
-    nodes.push([`${i}+${j}`]);
+    nodes.push(`${i}+${j}`);
 
     if (nodesInPositions[`${i}+${j}`] === undefined) { nodesInPositions[`${i}+${j}`] = [apartNodes]; } else {
       nodesInPositions[`${i}+${j}`].push(apartNodes);
@@ -111,7 +110,6 @@ export default function MergeSorting({ reload, order, setOrder }) {
     mergeSort(m + 1, r);
 
     merge(l, m, r);
-
     NodeArrayInsert(l, r);
   }
 
@@ -186,6 +184,10 @@ export default function MergeSorting({ reload, order, setOrder }) {
     const checkArray = getAbsoluteArray(arrayMergeText);
     if (checkArray === null) {
       toast.error("Arrays arn't Valide!");
+      return;
+    }
+    if (checkArray.length > 15) {
+      toast.error('Reduce array size for better experiance!');
       return;
     }
     for (let i = 0; i < checkArray.length; i += 1) {

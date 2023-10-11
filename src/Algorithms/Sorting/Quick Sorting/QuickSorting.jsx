@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-constant-condition */
 /* eslint-disable no-nested-ternary */
@@ -16,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import QuickPrinting from './QuickSort Components/QuickPrinting';
 import './QuickSorting.scss';
 
 export default function QuickSorting({ reload }) {
@@ -24,11 +26,15 @@ export default function QuickSorting({ reload }) {
   const [range, setRange] = useState(1);
 
   const [executionStop, setExecutionStop] = useState(false);
-  const [arrayMergeText, setArrayMergeText] = useState('[1, 7, 4, 1, 10, 9, -2]');
-  const [arrayMerge, setArrayMerge] = useState([1, 7, 4, 1, 10, 9, -2]);
+  const [arrayQuickText, setArrayQuickText] = useState('[1, 7, 4, 1, 10, 9, -2, 5, 2, 9, 3, 4, 6, 8, 1, 7]');
+  const [arrayQuick, setArrayQuick] = useState([1, 7, 4, 1, 10, 9, -2, 5, 2, 9, 3, 4, 6, 8, 1, 7]);
   const [delay, setDelay] = useState(500);
   const nodes = [];
-  const arr = [1, 7, 4, 1, 10, 9, -2];
+  const mostLeftDepthPos = {};
+  const nodesInPositions = {};
+  const svgWeightHeight = [0, 0];
+
+  const arr = [...arrayQuick];
 
   let interval = null;
 
@@ -42,61 +48,69 @@ export default function QuickSorting({ reload }) {
     return array;
   }
 
-  function merge(l, m, r) {
-    const n1 = m - l + 1;
-    const n2 = r - m;
+  function NodesArrayInsert(l, h, p, d) {
+    let newArray = new Array([]);
+    if (mostLeftDepthPos[d] === undefined) { mostLeftDepthPos[d] = 5; }
+    nodes.push(`${p}+${p}`);
+    newArray.push([mostLeftDepthPos[d] + 5 * (p + 1) + 1, d, arr[p], p]);
+    nodesInPositions[`${p}+${p}`] = [];
+    nodesInPositions[`${p}+${p}`].push(newArray);
 
-    const L = new Array(n1);
-    const R = new Array(n2);
-
-    for (let i = 0; i < n1; i += 1) { L[i] = arr[l + i]; }
-    for (let j = 0; j < n2; j += 1) { R[j] = arr[m + 1 + j]; }
-
-    let i = 0;
-    let j = 0;
-    let k = l;
-
-    while (i < n1 && j < n2) {
-      if (L[i] <= R[j]) {
-        arr[k] = L[i];
-        i += 1;
-      } else {
-        arr[k] = R[j];
-        j += 1;
-      }
-      k += 1;
+    newArray = new Array([]);
+    nodes.push(`${l}+${p - 1}`);
+    nodesInPositions[`${l}+${p - 1}`] = [];
+    for (let i = l; i < p; i += 1) {
+      newArray.push([mostLeftDepthPos[d] + (5 * (i + 1)), d, arr[i], i]);
     }
+    nodesInPositions[`${l}+${p - 1}`].push(newArray);
 
-    while (i < n1) {
-      arr[k] = L[i];
-      i += 1;
-      k += 1;
+    newArray = new Array([]);
+    for (let i = p + 1; i <= h; i += 1) {
+      newArray.push([mostLeftDepthPos[d] + (5 * (i + 1)) + 2, d, arr[i], i]);
+      svgWeightHeight[1] = Math.max(svgWeightHeight[1], mostLeftDepthPos[d] + (5 * (i + 1)) + 2);
     }
-
-    while (j < n2) {
-      arr[k] = R[j];
-      j += 1;
-      k += 1;
-    }
+    nodes.push(`${p + 1}+${h}`);
+    nodesInPositions[`${p + 1}+${h}`] = [];
+    nodesInPositions[`${p + 1}+${h}`].push(newArray);
+    mostLeftDepthPos[d] += 5;
   }
 
-  function mergeSort(l, r) {
-    if (l >= r) {
-      return;
+  function partition(low, high) {
+    const pivot = arr[high];
+    let i = low - 1;
+
+    for (let j = low; j <= high - 1; j += 1) {
+      if (arr[j] <= pivot) {
+        i += 1;
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
     }
-    const m = l + parseInt((r - l) / 2, 10);
-    mergeSort(l, m);
-    mergeSort(m + 1, r);
-    merge(l, m, r);
+
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+
+    return i + 1;
+  }
+
+  function quickSort(low, high, depth) {
+    svgWeightHeight[0] = Math.max(svgWeightHeight[0], depth);
+    if (low < high) {
+      const pi = partition(low, high, depth);
+      NodesArrayInsert(low, high, pi, depth);
+      quickSort(low, pi - 1, depth + 8);
+      quickSort(pi + 1, high, depth + 8);
+    }
   }
 
   const arrSize = arr.length;
-
-  console.log('Given array is ', arr);
-
-  mergeSort(0, arrSize - 1);
-
-  console.log('Sorted array is ', arr);
+  const newArr = new Array([]);
+  if (mostLeftDepthPos[8] === undefined) { mostLeftDepthPos[8] = 5; }
+  nodes.push(`${0}+${arrSize - 1}`);
+  nodesInPositions[`${0}+${arrSize - 1}`] = [];
+  for (let i = 0; i < arrSize; i += 1) {
+    newArr.push([mostLeftDepthPos[8] + (5 * (i + 1)), 8, arr[i], i]);
+  }
+  nodesInPositions[`${0}+${arrSize - 1}`].push(newArr);
+  quickSort(0, arrSize - 1, 16);
 
   useEffect(() => {
     if (isIntervalActive && range > 0 && range < nodes.length - 1) {
@@ -146,13 +160,13 @@ export default function QuickSorting({ reload }) {
       }, 1500);
       return;
     }
-    const checkArray = getAbsoluteArray(arrayMergeText);
+    const checkArray = getAbsoluteArray(arrayQuickText);
     if (checkArray === null) {
       toast.error("Arrays arn't Valide!");
       return;
     }
 
-    setArrayMerge(checkArray);
+    setArrayQuick(checkArray);
 
     setRange(1);
     setIsIntervalActive(true);
@@ -172,8 +186,8 @@ export default function QuickSorting({ reload }) {
 
   const onChangeHandleInputProfitWeight = (event) => {
     switch (event.target.id) {
-      case 'ArrayMergeInput':
-        setArrayMergeText(event.target.value);
+      case 'ArrayQuickInput':
+        setArrayQuickText(event.target.value);
         break;
       default:
         break;
@@ -181,27 +195,16 @@ export default function QuickSorting({ reload }) {
   };
 
   return (
-    <div className="ContainerMergeSort">
+    <div className="ContainerquickSort">
       <ToastContainer position="top-center" autoClose={3500} />
-      <div className="svgContainerMergeSort">
-        <svg viewBox="0 0 100 65">
-          {nodes.slice(0, range)}
-          <text
-            x={((arrayMerge.length + 2) * 9) / 2}
-            y={(arrayMerge.length / 2 + 0.5) * 9}
-            style={{
-              alignmentBaseline: 'central',
-              fontSize: '4px',
-              fontWeight: '500',
-            }}
-          >
-            {arrayMerge}
-          </text>
+      <div className="svgContainerquickSort">
+        <svg viewBox={`0 0 ${svgWeightHeight[1] + 15} ${svgWeightHeight[0] + 8}`}>
+          <QuickPrinting nodes={nodes.slice(0, range)} nodesInPositions={nodesInPositions} />
         </svg>
       </div>
-      <label htmlFor="ArrayMergeInput" className="ArrayMergeLabel">
-              &nbsp;&nbsp;ArrayMerge:&nbsp;
-        <input type="text" id="ArrayMergeInput" className="ArrayMerge" value={arrayMergeText} onChange={onChangeHandleInputProfitWeight} />
+      <label htmlFor="ArrayQuickInput" className="ArrayQuickLabel">
+              &nbsp;&nbsp;ArrayQuick:&nbsp;
+        <input type="text" id="ArrayQuickInput" className="ArrayQuick" value={arrayQuickText} onChange={onChangeHandleInputProfitWeight} />
       </label>
       <div style={{
         display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',

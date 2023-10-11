@@ -1,20 +1,20 @@
-.ContainerMergeSort {
+.ContainerquickSort {
 	height: calc(100% - 1rem);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 15px;
-	.svgContainerMergeSort {
+	.svgContainerquickSort {
 		width: 800px;
 		height: 520px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-	.ArrayMergeLabel {
+	.ArrayQuickLabel {
 		font-size: 20px;
-		.ArrayMerge {
+		.ArrayQuick {
 			width: 500px;
 			padding-top: 3px !important;
 			padding-bottom: 3px !important;
