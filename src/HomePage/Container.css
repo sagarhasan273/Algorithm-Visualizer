@@ -1,20 +1,23 @@
 .container {
 	flex: 1;
-	padding: 20px;
-	padding-top: 5px;
 	height: 100%;
 	background-color: #f1f1f1;
 	margin: 2px;
-	/* background-image: url('./images/homebackground.png'); */
-	background-size: cover;
-	background-position: center;
 	box-sizing: border-box;
 	overflow: hidden;
 }
 
 .sectionContainer {
-	height: 99%;
+	height: 99vh;
 	position: relative;
+	width: 100%;
+	padding-left: 10px;
+}
+#startingWindow {
+	background-image: url('../Images/homebg2.jpg');
+	background-size: cover;
+	background-position: center;
+	box-sizing: border-box;
 }
 
 .startButton {

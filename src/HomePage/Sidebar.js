@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import './Sidebar.css';
 
 const sectionAvailablePopUpStyle = {
@@ -33,7 +34,7 @@ export default function SideBar(props) {
         <li><button id="buttonBacktracking" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonBacktracking' ? 'active' : ''}`} onClick={sectionActiveHandle}>Backtracking</button></li>
         <li><button id="buttonSearch" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonSearch' ? 'active' : ''}`} onClick={sectionActiveHandle}>Search</button></li>
         <li><button id="buttonSorting" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonSorting' ? 'active' : ''}`} onClick={sectionActiveHandle}>Sorting</button></li>
-        <li><button id="buttonHashing" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonHashing' ? 'active' : ''}`} onClick={sectionActiveHandle}>Hashing</button></li>
+        {/* <li><button id="buttonHashing" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonHashing' ? 'active' : ''}`} onClick={sectionActiveHandle}>Hashing</button></li> */}
         <li><button id="buttonDynamicProgramming" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDynamicProgramming' ? 'active' : ''}`} onClick={sectionActiveHandle}>Dynamic Programming</button></li>
         <li><button id="buttonTesting" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonTesting' ? 'active' : ''}`} onClick={sectionActiveHandle}>Testing</button></li>
       </ul>

@@ -1,98 +1,185 @@
-/* eslint-disable radix */
-/* eslint-disable max-len */
-/* eslint-disable prefer-const */
-/* eslint-disable no-restricted-syntax */
-import React, { useState } from 'react';
-import keyValue from '../Components/GenerateKey';
-import getRandomInteger from '../Components/GetRandomInteger';
-import Element from './Element';
+/* eslint-disable indent */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/no-array-index-key */
+import {
+  faArrowRotateLeft,
+  faBackward, faForward,
+  faHandPointDown,
+  faMinus,
+  faPause, faPlay, faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
+// import keyValue from '../Components/GenerateKey';
+
 import './LinkedList.scss';
 
-export default function LinkedList() {
-  // eslint-disable-next-line no-unused-vars
-  const [dataKey, setDataKey] = useState(['845dab75-622e-4cd5-908b-52924f10e193', '3908fd4e-0793-4555-987c-092ed653e2f5']);
-  const [hashMap, setHashMap] = useState({ '845dab75-622e-4cd5-908b-52924f10e193': 76, '3908fd4e-0793-4555-987c-092ed653e2f5': 28 });
-  const [indexToAdd, setIndexToAdd] = useState(dataKey.length);
+export default function Linkedlist({ reload }) {
+  const [range, setRange] = useState(1);
+  const [isIntervalActive, setIsIntervalActive] = useState(false);
+  const [num, setNum] = useState(0);
+  const [numText, setNumText] = useState(null);
+  const [numTextAddValue, setNumTextAddValue] = useState(null);
+  const [numTextInsertIndex, setNumTextInsertIndex] = useState(null);
+  const [numTextInsertValue, setNumTextInsertValue] = useState(null);
+  const [numTextSetIndex, setNumTextSetIndex] = useState(null);
+  const [numTextSetValue, setNumTextSetValue] = useState(null);
+  const [numTextRemoveIndex, setNumTextRemoveIndex] = useState(null);
+  const [numTextRemoveValue, setNumTextRemoveValue] = useState(null);
+  const [executionStop, setExecutionStop] = useState(false);
+  const [valideRange, setValideRange] = useState(false);
+  const [delay, setDelay] = useState(500);
+  const nodeArray = [];
+  let interval;
 
-  const addElement = () => {
-    const k = keyValue();
-    const x = getRandomInteger(1, 100);
-    setDataKey((prevState) => [...prevState, k]);
-    setHashMap((prevHashMap) => {
-      const newHashMap = { ...prevHashMap };
-      newHashMap[k] = x;
-      return newHashMap;
-    });
+  useEffect(() => {
+    if (isIntervalActive && range > 0 && range < nodeArray.length - 1) {
+      let counter = range;
+      interval = setInterval(() => {
+        counter += 1;
+        if (counter === nodeArray.length) {
+          clearInterval(interval);
+          setIsIntervalActive((prev) => !prev);
+        } setRange((prevCount) => prevCount + 1);
+      }, delay);
+    } else {
+      clearInterval(interval);
+      setIsIntervalActive(false);
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isIntervalActive]);
+
+  const handleToggleInterval = () => {
+    if (range === nodeArray.length) { setRange(1); }
+    setIsIntervalActive((prev) => !prev);
   };
 
-  const handleRemove = (e) => {
+  const handleChangePlus = () => {
+    if (range === nodeArray.length || isIntervalActive) return;
+    setRange((prev) => prev + 1);
+  };
+  const handleChangeMinus = () => {
+    if (range === 0 || isIntervalActive || num === 0) return;
+    setRange((prev) => prev - 1);
+    setIsIntervalActive(false);
+  };
+  const handleChangeRun = (e) => {
     e.preventDefault();
-    const index = parseInt(indexToAdd);
-    console.log(index);
-    const key = dataKey[index];
-    const popDiv = document.querySelector(`.element${index}`);
-    popDiv.classList.add('elementOut');
-    const popDiv1 = document.querySelector(`.element${index - 1}`);
-    popDiv1.classList.add('prevElementAni');
-
-    let counter = 0;
-    const interval = setTimeout(() => {
-      popDiv.classList.remove('elementOut');
-      popDiv1.classList.remove('prevElementAni');
-      popDiv1.classList.add('prevElementAnimation');
-      setDataKey((prevState) => [...prevState.slice(0, index), ...prevState.slice(index + 1, prevState.length)]);
-      setHashMap((prevHashMap) => {
-        const newHashMap = { ...prevHashMap };
-        delete newHashMap[key];
-        return newHashMap;
-      });
-      counter += 1;
-      if (counter === 1) {
-        clearInterval(interval);
-      }
-    }, 500);
-
-    counter = 0;
-    const interval1 = setTimeout(() => {
-      popDiv1.classList.remove('prevElementAnimation');
-      counter += 1;
-      if (counter === 1) {
-        clearInterval(interval1);
-      }
-    }, 1000);
+    if (isIntervalActive) {
+      let ecounter = 0;
+      setExecutionStop(true);
+      const executeInterval = setInterval(() => {
+        if (ecounter) {
+          setExecutionStop(false);
+          clearInterval(executeInterval);
+        }
+        ecounter += 1;
+      }, 2000);
+      return;
+    }
+    if (isIntervalActive) {
+      let ecounter = 0;
+      setExecutionStop(true);
+      const executeInterval = setInterval(() => {
+        if (ecounter) {
+          setExecutionStop(false);
+          clearInterval(executeInterval);
+        }
+        ecounter += 1;
+      }, 1500);
+      return;
+    }
+    if (!(numText >= 0 && numText <= 10) || !numText) {
+      setValideRange(true);
+      let ecounter = 0;
+      const executeInterval = setInterval(() => {
+        if (ecounter) {
+          setValideRange(false);
+          clearInterval(executeInterval);
+        }
+        ecounter += 1;
+      }, 1000);
+      return;
+    }
+    setNum(numText);
+    setRange(1);
+    setIsIntervalActive(true);
+  };
+  const onChangeHandleInput = (event) => {
+    event.preventDefault();
+    if (event.target.id === 'input1') { setNumTextAddValue(event.target.value); }
+    if (event.target.id === 'input2') { setNumTextInsertIndex(event.target.value); }
+    if (event.target.id === 'input3') { setNumTextInsertValue(event.target.value); }
+    if (event.target.id === 'input4') setNumTextSetIndex(event.target.value);
+    if (event.target.id === 'input5') setNumTextSetValue(event.target.value);
+    if (event.target.id === 'input6') setNumTextRemoveIndex(event.target.value);
+    if (event.target.id === 'input7') setNumTextRemoveValue(event.target.value);
+    else { setNumText(event.target.value); }
   };
 
-  const addMiddleElement = () => {
-    const k = keyValue();
-    const x = getRandomInteger(1, 100);
-
-    setDataKey((prevState) => [...prevState.slice(0, 1),
-      k,
-      ...prevState.slice(1),
-    ]);
-    setHashMap((prevHashMap) => {
-      const newHashMap = { ...prevHashMap };
-      newHashMap[k] = x;
-      return newHashMap;
-    });
+  const handleChangeSpeedUp = () => {
+    if (delay <= 0) return;
+    setDelay((prev) => prev - 100);
+    setIsIntervalActive(false);
+  };
+  const handleChangeSpeedDown = () => {
+    if (delay >= 1000) return;
+    setDelay((prev) => prev + 100);
+    setIsIntervalActive(false);
   };
 
-  const handleChangeIndexAdd = (e) => {
-    e.preventDefault();
-    setIndexToAdd(e.target.value);
+  const LinkedListContainerNodesButtons = {
+    width: '100%', height: 'calc(100% - 5em)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '50px', justifyContent: 'center',
   };
+
   return (
-    <div className="LinkedListContainer">
-      <div className="elements">
-        {dataKey.map((value, index) => <Element value={hashMap[value]} key={value} index={index} length={dataKey.length} />)}
-        <Element value="Null" index={dataKey.length} length={dataKey.length} />
+    <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
+      <div style={LinkedListContainerNodesButtons}>
+        <svg viewBox="0 0 100 100" style={{ width: '850px', height: '300px', backgroundColor: 'aqua' }} />
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
+          }}
+        >
+          <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={reload}>Reload</button>
+          <div>
+            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRun}>Add</button><br />
+            <input type="text" id="input1" className="controlInput" value={numTextAddValue} onChange={onChangeHandleInput} placeholder="Value..." /><br />
+          </div>
+          <div>
+            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRun}>Insert</button><br />
+            <input type="text" id="input2" className="controlInput" value={numTextInsertIndex} onChange={onChangeHandleInput} placeholder="Index..." /><br />
+            <input type="text" id="input3" className="controlInput" value={numTextInsertValue} onChange={onChangeHandleInput} placeholder="Value..." />
+          </div>
+          <div>
+            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRun}>Set</button><br />
+            <input type="text" id="input4" className="controlInput" value={numTextSetIndex} onChange={onChangeHandleInput} placeholder="Index..." /><br />
+            <input type="text" id="input5" className="controlInput" value={numTextSetValue} onChange={onChangeHandleInput} placeholder="Value..." />
+          </div>
+          <div>
+            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRun}>Remove</button><br />
+            <input type="text" id="input6" className="controlInput" value={numTextRemoveIndex} onChange={onChangeHandleInput} placeholder="Index..." /><br />
+            <input type="text" id="input7" className="controlInput" value={numTextRemoveValue} onChange={onChangeHandleInput} placeholder="Value..." />
+          </div>
+          <div>
+            <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
+            {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStopRecursion" /> : null}
+            {valideRange ? <div className="controlbutton valideRange">Range 0-10</div> : null}
+            <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
+            <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
+            <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>
+              <div className="speedBar" style={{ width: `${76 - (75 * (delay / 1000))}px` }} /> <FontAwesomeIcon icon={faPlus} className="controlFont" />
+            </button>
+            <button type="button" className="controlbutton" onClick={handleChangeSpeedDown}> <FontAwesomeIcon icon={faMinus} className="controlFont" /></button>
+          </div>
+        </div>
+
       </div>
-      <div className="bottomContainer">
-        <button type="button" onClick={addElement}>add element</button>
-        <input type="text" className="indexInputAdd" value={indexToAdd} onChange={handleChangeIndexAdd} placeholder={`Index ${dataKey.length}`} />
-        <button type="button" onClick={handleRemove}>add element</button>
-        <button type="button" onClick={addMiddleElement}>add middle element</button>
-      </div>
+
     </div>
   );
 }
