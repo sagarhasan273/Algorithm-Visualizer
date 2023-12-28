@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable indent */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-nested-ternary */
@@ -15,23 +16,25 @@ import { useEffect, useState } from 'react';
 // import keyValue from '../Components/GenerateKey';
 
 import './LinkedList.scss';
+import PrintLinkedListAdd from './PrintingLinkedList/PrintLinkedListAdd';
+import PrintLinkedListInsert from './PrintingLinkedList/PrintLinkedListInsert';
+import PrintLinkedList from './PrintingLinkedList/PrintLinkedList';
 
 export default function Linkedlist({ reload }) {
   const [range, setRange] = useState(1);
   const [isIntervalActive, setIsIntervalActive] = useState(false);
-  const [num, setNum] = useState(0);
-  const [numText, setNumText] = useState(null);
-  const [numTextAddValue, setNumTextAddValue] = useState(null);
-  const [numTextInsertIndex, setNumTextInsertIndex] = useState(null);
-  const [numTextInsertValue, setNumTextInsertValue] = useState(null);
-  const [numTextSetIndex, setNumTextSetIndex] = useState(null);
-  const [numTextSetValue, setNumTextSetValue] = useState(null);
-  const [numTextRemoveIndex, setNumTextRemoveIndex] = useState(null);
-  const [numTextRemoveValue, setNumTextRemoveValue] = useState(null);
+  const [numTextAddValue, setNumTextAddValue] = useState('');
+  const [numTextInsertIndex, setNumTextInsertIndex] = useState('');
+  const [numTextInsertValue, setNumTextInsertValue] = useState('');
+  const [numTextSetIndex, setNumTextSetIndex] = useState('');
+  const [numTextSetValue, setNumTextSetValue] = useState('');
+  const [numTextRemoveIndex, setNumTextRemoveIndex] = useState('');
+  const [numTextRemoveValue, setNumTextRemoveValue] = useState('');
+  const [action, setAction] = useState('');
   const [executionStop, setExecutionStop] = useState(false);
-  const [valideRange, setValideRange] = useState(false);
-  const [delay, setDelay] = useState(500);
-  const nodeArray = [];
+  const [delay, setDelay] = useState(700);
+  const [linkedlist, setLinkedlist] = useState([12, 25, 34, 23]);
+  const [nodeArray, setNodeArray] = useState([[...linkedlist, null, null], [...linkedlist, 0, null]]);
   let interval;
 
   useEffect(() => {
@@ -39,12 +42,15 @@ export default function Linkedlist({ reload }) {
       let counter = range;
       interval = setInterval(() => {
         counter += 1;
-        if (counter === nodeArray.length) {
+        if (counter === nodeArray.length - 1) {
           clearInterval(interval);
           setIsIntervalActive((prev) => !prev);
         } setRange((prevCount) => prevCount + 1);
       }, delay);
     } else {
+      document.querySelectorAll(`.animate${range - 1}`).forEach((element) => {
+        if (element) { element.beginElement(); }
+      });
       clearInterval(interval);
       setIsIntervalActive(false);
     }
@@ -55,16 +61,17 @@ export default function Linkedlist({ reload }) {
   }, [isIntervalActive]);
 
   const handleToggleInterval = () => {
-    if (range === nodeArray.length) { setRange(1); }
+    console.log(range, nodeArray.length);
+    setRange(1);
     setIsIntervalActive((prev) => !prev);
   };
 
   const handleChangePlus = () => {
-    if (range === nodeArray.length || isIntervalActive) return;
+    if (range === nodeArray.length - 1 || isIntervalActive) return;
     setRange((prev) => prev + 1);
   };
   const handleChangeMinus = () => {
-    if (range === 0 || isIntervalActive || num === 0) return;
+    if (range === 1 || isIntervalActive) return;
     setRange((prev) => prev - 1);
     setIsIntervalActive(false);
   };
@@ -94,32 +101,36 @@ export default function Linkedlist({ reload }) {
       }, 1500);
       return;
     }
-    if (!(numText >= 0 && numText <= 10) || !numText) {
-      setValideRange(true);
-      let ecounter = 0;
-      const executeInterval = setInterval(() => {
-        if (ecounter) {
-          setValideRange(false);
-          clearInterval(executeInterval);
-        }
-        ecounter += 1;
-      }, 1000);
-      return;
-    }
-    setNum(numText);
     setRange(1);
     setIsIntervalActive(true);
   };
+  const handleChangeRunAdd = () => {
+    const list = linkedlist.slice();
+    setLinkedlist((prev) => [...prev, parseInt(numTextAddValue, 10)]);
+    setNodeArray([[...list, null, null]]);
+    for (let i = 0; i < list.length + 1; i += 1) {
+      setNodeArray((prev) => [...prev, [...[...list, parseInt(numTextAddValue, 10)], i, null]]);
+    }
+    setRange(1);
+    setIsIntervalActive(true);
+    setAction('add');
+  };
+
+  const handleChangeRunInsert = () => {
+    setAction('insert');
+  };
+
   const onChangeHandleInput = (event) => {
     event.preventDefault();
-    if (event.target.id === 'input1') { setNumTextAddValue(event.target.value); }
+    if (event.target.id === 'input1') {
+      setNumTextAddValue(event.target.value);
+}
     if (event.target.id === 'input2') { setNumTextInsertIndex(event.target.value); }
     if (event.target.id === 'input3') { setNumTextInsertValue(event.target.value); }
     if (event.target.id === 'input4') setNumTextSetIndex(event.target.value);
     if (event.target.id === 'input5') setNumTextSetValue(event.target.value);
     if (event.target.id === 'input6') setNumTextRemoveIndex(event.target.value);
     if (event.target.id === 'input7') setNumTextRemoveValue(event.target.value);
-    else { setNumText(event.target.value); }
   };
 
   const handleChangeSpeedUp = () => {
@@ -140,18 +151,22 @@ export default function Linkedlist({ reload }) {
   return (
     <div style={{ width: '100%', height: '90vh', display: 'flex' }}>
       <div style={LinkedListContainerNodesButtons}>
-        <svg viewBox="0 0 100 100" style={{ width: '850px', height: '300px', backgroundColor: 'aqua' }} />
+        <svg viewBox="0 0 250 100" style={{ width: '850px', height: '300px' }}>
+          {(range > 0 && range < nodeArray.length && action === '') ? <PrintLinkedList array={nodeArray[range]} range={range} /> : null}
+          {(range > 0 && range < nodeArray.length && action === 'add') ? <PrintLinkedListAdd array={nodeArray[range]} range={range} /> : null}
+          {(range > 0 && range < nodeArray.length && action === 'insert') ? <PrintLinkedListInsert array={nodeArray[range]} range={range} /> : null}
+        </svg>
         <div style={{
           display: 'flex', alignItems: 'center', justifyItems: 'center', position: 'relative',
           }}
         >
-          <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={reload}>Reload</button>
           <div>
-            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRun}>Add</button><br />
+            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={reload}>Reload</button><br />
+            <button id="buttonLinkedlistAdd" type="button" className="controlbuttonRun" onClick={handleChangeRunAdd}>Add</button><br />
             <input type="text" id="input1" className="controlInput" value={numTextAddValue} onChange={onChangeHandleInput} placeholder="Value..." /><br />
           </div>
           <div>
-            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRun}>Insert</button><br />
+            <button id="buttonLinkedlist" type="button" className="controlbuttonRun" onClick={handleChangeRunInsert}>Insert</button><br />
             <input type="text" id="input2" className="controlInput" value={numTextInsertIndex} onChange={onChangeHandleInput} placeholder="Index..." /><br />
             <input type="text" id="input3" className="controlInput" value={numTextInsertValue} onChange={onChangeHandleInput} placeholder="Value..." />
           </div>
@@ -165,10 +180,10 @@ export default function Linkedlist({ reload }) {
             <input type="text" id="input6" className="controlInput" value={numTextRemoveIndex} onChange={onChangeHandleInput} placeholder="Index..." /><br />
             <input type="text" id="input7" className="controlInput" value={numTextRemoveValue} onChange={onChangeHandleInput} placeholder="Value..." />
           </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <div>
             <button type="button" className="controlbutton" onClick={handleChangePlus}> <FontAwesomeIcon icon={faForward} className="controlFont" /></button>
             {executionStop ? <FontAwesomeIcon icon={faHandPointDown} beat className="executionStopRecursion" /> : null}
-            {valideRange ? <div className="controlbutton valideRange">Range 0-10</div> : null}
             <button type="button" className="controlbutton" onClick={handleToggleInterval}>{!isIntervalActive ? (range === nodeArray.length) ? <FontAwesomeIcon icon={faArrowRotateLeft} className="controlFont" /> : <FontAwesomeIcon icon={faPlay} className="controlFont" /> : <FontAwesomeIcon icon={faPause} className="controlFont" />}</button>
             <button type="button" className="controlbutton" onClick={handleChangeMinus}> <FontAwesomeIcon icon={faBackward} className="controlFont" /></button>
             <button type="button" className="controlbutton" onClick={handleChangeSpeedUp}>
