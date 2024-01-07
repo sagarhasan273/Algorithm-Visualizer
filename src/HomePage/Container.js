@@ -7,6 +7,7 @@ import Sorting from '../Algorithms/Sorting/Sorting';
 import Array from '../DataStructures/Array/Array';
 import Deque from '../DataStructures/Deque/Deque';
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
+import DoublyLinkedlist from '../DataStructures/DoublyLinkedList/DoublyLinkedList';
 import Queue from '../DataStructures/Queue/Queue';
 import Stack from '../DataStructures/Stack/Stack';
 import Testing from '../DataStructures/Testing/Testing';
@@ -100,6 +101,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Doubly linked list Visualization</h2>
           <div className="horizontal-line" />
+          <DoublyLinkedlist />
         </div>
       ) : null}
       {active === 'buttonBinaryTree' ? (

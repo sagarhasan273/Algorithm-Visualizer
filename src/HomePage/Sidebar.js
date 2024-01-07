@@ -25,7 +25,7 @@ export default function SideBar(props) {
         <li><button id="buttonDeque" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDeque' ? 'active' : ''}`} onClick={sectionActiveHandle}>Deque</button></li>
         <li><button id="buttonLinkedList" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonLinkedList' ? 'active' : ''}`} onClick={sectionActiveHandle}>Singly Linked list</button></li>
         <li><button id="buttonDoublyLinkedList" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDoublyLinkedList' ? 'active' : ''}`} onClick={sectionActiveHandle}>Doubly linked list</button></li>
-        <li><button id="buttonBinaryTree" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonBinaryTree' ? 'active' : ''}`} onClick={sectionActiveHandle}>Binary Tree</button></li>
+        {/* <li><button id="buttonBinaryTree" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonBinaryTree' ? 'active' : ''}`} onClick={sectionActiveHandle}>Binary Tree</button></li> */}
         <hr />
         <h4 className="sectionName">Algorithms</h4>
         <hr />
@@ -36,7 +36,7 @@ export default function SideBar(props) {
         <li><button id="buttonSorting" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonSorting' ? 'active' : ''}`} onClick={sectionActiveHandle}>Sorting</button></li>
         {/* <li><button id="buttonHashing" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonHashing' ? 'active' : ''}`} onClick={sectionActiveHandle}>Hashing</button></li> */}
         <li><button id="buttonDynamicProgramming" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonDynamicProgramming' ? 'active' : ''}`} onClick={sectionActiveHandle}>Dynamic Programming</button></li>
-        <li><button id="buttonTesting" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonTesting' ? 'active' : ''}`} onClick={sectionActiveHandle}>Testing</button></li>
+        {/* <li><button id="buttonTesting" type="button" className={`buttonRemove buttonsCommonStyle ${active === 'buttonTesting' ? 'active' : ''}`} onClick={sectionActiveHandle}>Testing</button></li> */}
       </ul>
     </div>
   );

@@ -1,0 +1,29 @@
+.LinkedListContainerNodesButtons {
+	width: '100%';
+	height: 'calc(100% - 5em)';
+	display: 'flex';
+	flex-direction: 'column';
+	align-items: 'center';
+	gap: '50px';
+	justify-content: 'center';
+}
+.controlbuttonRun {
+	width: 84px !important;
+}
+.controlInput {
+	width: 60px !important;
+}
+
+.animatedGroup {
+	opacity: 0;
+	animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
