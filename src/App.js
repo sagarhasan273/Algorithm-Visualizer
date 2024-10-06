@@ -24,7 +24,8 @@ class App extends React.Component {
 
   sideBarHideShowHandle = (event) => {
     event.preventDefault();
-    this.setState((prevState) => ({ sideBarHideShow: !prevState.sideBarHideShow }));
+    // this.setState((prevState) => ({ sideBarHideShow: !prevState.sideBarHideShow }));
+    this.setState({ sideBarActive: 'homebtn', containerActive: 'homebtn', sideBarHideShow: true });
   };
 
   render() {
