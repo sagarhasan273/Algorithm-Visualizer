@@ -7,16 +7,18 @@ import Sorting from '../Algorithms/Sorting/Sorting';
 import Array from '../DataStructures/Array/Array';
 import Deque from '../DataStructures/Deque/Deque';
 import LinkedList from '../DataStructures/LinkedList/LinkedList';
+import DoublyLinkedlist from '../DataStructures/DoublyLinkedList/DoublyLinkedList';
 import Queue from '../DataStructures/Queue/Queue';
 import Stack from '../DataStructures/Stack/Stack';
 import Testing from '../DataStructures/Testing/Testing';
 import './Container.css';
 import HideShowMenu from './HideShowMenu/HideShowMenu';
+import HomeContainer from './HomeContainer/HomeContainer';
 
 export default function Container(props) {
   const [reloadContainer, setReloadContainer] = useState(true);
   const headingNameStyle = {
-    paddingLeft: '15px', margin: '10px', marginBottom: '5px',
+    paddingLeft: '35px', margin: '10px', marginBottom: '5px',
   };
   const {
     active, sideBarHideShowHandle, sideBarHideShow, homeStage,
@@ -30,8 +32,7 @@ export default function Container(props) {
     <div className="container">
       {active === 'homebtn' ? (
         <div id="startingWindow" className="sectionContainer">
-          <h1>Welcome, to Our Site!</h1>
-          <button type="button" className="buttonRemove startButton" onClick={sideBarHideShowHandle}>Start</button>
+          <HomeContainer sideBarHideShowHandle={sideBarHideShowHandle} />
         </div>
       ) : null}
 
@@ -100,6 +101,7 @@ export default function Container(props) {
           />
           <h2 style={headingNameStyle}>Doubly linked list Visualization</h2>
           <div className="horizontal-line" />
+          <DoublyLinkedlist />
         </div>
       ) : null}
       {active === 'buttonBinaryTree' ? (

@@ -20,7 +20,8 @@
     "sass": "^1.62.1",
     "scss": "^0.2.4",
     "styled-components": "^6.0.0-rc.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yarn": "^1.22.21"
   },
   "scripts": {
     "start": "react-scripts start",

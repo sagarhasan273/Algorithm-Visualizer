@@ -1,15 +1,14 @@
 .menuToggle {
 	position: absolute;
-	height: 96%;
 	width: 15px;
-	left: -18px;
+	left: 10px;
 }
 
 .arrowhideShow {
 	position: absolute;
 	background-image: url('./chevron.png') !important;
-	height: 45px;
-	width: 15px;
+	height: 30px;
+	width: 30px;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-size: contain;

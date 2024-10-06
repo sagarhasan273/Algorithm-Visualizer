@@ -15,12 +15,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 // import keyValue from '../Components/GenerateKey';
 
-import './LinkedList.scss';
+import './DoublyLinkedList.scss';
 import PrintLinkedListAdd from './PrintingLinkedList/PrintLinkedListAdd';
 import PrintLinkedListInsert from './PrintingLinkedList/PrintLinkedListInsert';
 import PrintLinkedList from './PrintingLinkedList/PrintLinkedList';
 
-export default function Linkedlist({ reload }) {
+export default function DoublyLinkedlist({ reload }) {
   const [range, setRange] = useState(1);
   const [isIntervalActive, setIsIntervalActive] = useState(false);
   const [numTextAddValue, setNumTextAddValue] = useState('');

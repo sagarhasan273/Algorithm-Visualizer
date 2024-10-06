@@ -1,0 +1,24 @@
+.HomeContainer {
+	padding: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	.title {
+		font-family: 'Gill Sans', sans-serif;
+		font-weight: 900;
+		font-size: 34px;
+	}
+	.coverText {
+		font-size: 24px;
+		font-weight: 500;
+		width: 75%;
+		padding: 10px;
+		padding-left: 3px;
+		background-color: rgba(255, 255, 255, 0.39);
+		border-radius: 10px;
+		cursor: auto;
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.925);
+		}
+	}
+}
