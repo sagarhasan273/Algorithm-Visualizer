@@ -1,5 +1,6 @@
 <p style="font-size: 16px;">I Never Copy Code In my life. I learn from them. It is very sad when people ask where did you get this code from. Well, I made this project by my self using React.js</p>
 
+![Live view of the project](https://sagarhasan273.github.io/Algorithm-Visualizer/)
 
 ## I have used my inner thought to visualize those algorithms and Data Structures by traversing verious websites and have learnt new techniques (On Going...).
 
